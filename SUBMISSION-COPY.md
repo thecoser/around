@@ -41,18 +41,18 @@ The positive two-device visit is verified with sample events only. Classified mo
 
 ## Current local review
 
-New review: `data/recordings/around-submission-review-v10.mp4`, 105.3 seconds (displayed as 105 seconds). The owner approved the three-section framing and simplified sample explanation, then requested a cleaner presentation and the Around logo. Reading holds were extended at the owner’s request. Review of the rendered v10 is pending. The approved sample master, owner-approved v6 and previous cuts remain unchanged.
+New review: `data/recordings/around-submission-review-v11.mp4`, 112.3 seconds (displayed as 112 seconds). At the owner’s request, the sample product demo now leads after the opening page, followed by the real Ring walkthrough and integration proof. Ring walkthrough holds are longer. Review of rendered v11 is pending. The approved sample master and previous cuts remain unchanged.
 
-The video addresses hackathon judges: establish the official simulator source, verify real Ring integration, then demonstrate homeowner value with a clearly disclosed sample.
+The video addresses hackathon judges: demonstrate homeowner value with a clearly disclosed sample, then establish the official simulator source and verify real Ring integration.
 
 | Time | Section and purpose |
 | --- | --- |
 | 0–8 | Opening: Around connects expected activities with recorded activity; explains the viewing sequence |
-| 8–27 | 1. Ring integration: the official Playground. Purpose card, recorded control still and actual simulator playback |
-| 27–61 | 2. Integration proof: Ring activity in Around. Purpose card, recorded successful result and labeled saved-record still |
-| 61–71 | 3. Product demo: was the expected visit likely? Uses the approved plain-language sample explanation |
-| 71–100.3 | Full approved sample once, with its original audio |
-| 100.3–105.3 | Prototype limits and edited microphone disclosure |
+| 8–18 | 1. Product demo: was the expected visit likely? Uses the approved plain-language sample explanation |
+| 18–47.3 | Full approved sample once, with its original audio |
+| 47.3–73.3 | 2. Ring integration: the official Playground. Eight-second purpose card, ten-second recorded control still and eight-second simulator playback segment |
+| 73.3–107.3 | 3. Integration proof: Ring activity in Around. Purpose card, recorded successful result and labeled saved-record still |
+| 107.3–112.3 | Prototype limits and edited microphone disclosure |
 
 Approved sample setup: “Next, see how Around answers ‘Did the plumber come?’ This example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.”
 
@@ -149,7 +149,7 @@ Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator,
 | --- | --- |
 | Ring and Bedrock runtime evidence | Verified within the limits above |
 | Source labels and sample rehearsal | Prepared; separate modes and databases |
-| Public English video under three minutes | 105.3-second v10 assembled; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
+| Public English video under three minutes | 112.3-second v11 assembled; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
 | GitHub repository and judge access | Local repository only; visibility and publication pending |
 | Public-repository license, if applicable | Owner decision pending |
 | Devpost project URL and submission | Not created or submitted |
