@@ -16,7 +16,7 @@ Lead owns repository and media edits. The read-only Progress Steward reviews pha
 | Approved sample master | 9,589,336 bytes; SHA-256 below; no edits |
 | Source exclusions | `.env.local`, `data/`, recordings, databases, build and test output ignored |
 | Credential-pattern scan | Initial 51 non-ignored source candidates: no AWS access-key, Bedrock bearer-key, JWT-shaped value or private-key matches; this is a bounded check, not a security audit |
-| Git | Local `main`, no initial commit or remote at first inspection |
+| Git | Local source baseline `e7452a6`, 53 files; no remote or publication. Initial inspection found no commits. |
 
 Approved file: `data/recordings/around-demo-ring-sparkle.mp4`
 
@@ -37,9 +37,15 @@ The first browser-suite attempt could not bind port 3100 in the sandbox (`listen
 
 ## Capture queue
 
-The signed-in Ring Playground was reachable during preparation. Its fresh capture tab had no token. Around was started at http://127.0.0.1:3000 with the existing Ring database. Owner-only temporary token generation and direct entry are pending. Do not inspect or record the retrieval field. No fresh sync or new provider footage has occurred in this preparation pass.
+The signed-in Ring Playground was reachable during preparation. Around was started at http://127.0.0.1:3000 with the existing Ring database. The owner entered a temporary Ring token in the Codex in-app browser. Presence-only inspection confirmed it without reading or moving the value; Bedrock was empty. Earlier checks of Chrome missed the correct browser and incorrectly reported the token as absent. That was a capture-coordination error.
 
-Capture blocker: inspecting the already-running QuickTime recorder returned “The Mac is locked” after about 19 minutes 50 seconds inside the tool call. No recording was verified as started. Stop UI attempts until the owner unlocks the Mac; elapsed wait is not capture evidence. The recorder inspection did not invoke Ring or Bedrock. Owner unlock and private token entry were requested. On resume, inspect the current page and recording frame once before using a token; do not assume an earlier token is still valid.
+Earlier capture blocker: inspecting the already-running QuickTime recorder returned “The Mac is locked” after about 19 minutes 50 seconds inside the tool call. Owner subsequently unlocked the Mac. QuickTime became accessible, but the automated recording command did not expose usable controls. Owner then started a selected-area recording of the Codex app panel.
+
+Current blocker: one submitted Ring sync returned “The request could not be completed. Check local configuration and try again.” The first pointer action produced no visible status and left the token field populated; valid input and no browser error were observed. One keyboard activation then cleared the token and produced the failure. The app maps that generic message to HTTP 500 for an unclassified exception. Its exact cause and whether the provider received an HTTP request are unknown. No provider retry occurred. Read-only database inspection still shows the original two events, one device and zero matches. A host DNS-only lookup resolved `api.amazonvision.com`; it did not test TLS, authorization, provider availability or the failing request. The app console provided no additional diagnostic category. No paid calls were made.
+
+The owner stopped recording and confirmed the Desktop location. Original preserved; identical copy saved as `data/recordings/around-ring-sync-failed-2026-09-29.mov`. SHA-256: `efbac205808e0a8d45d3548033f03803b6c32699817dd22ab4f0f3f680376693`. Duration 194.788 seconds, 602 by 734 pixels, one audio track. Eight decoded frames were inspected: correct app panel and source label, populated masked token field, cleared field, then the generic error. No unmasked token appeared in those inspected frames. Audio was not reviewed. This is failure evidence, not submission-ready footage; masked credential controls and long pauses should not be published. Media inspection details are under `data/recordings/ring-failed-review/`.
+
+The approved sample master's hash remains unchanged. A failed attempt does not complete the real Ring walkthrough. Next materially different test: expose only an allowlisted failure category at the existing server boundary, validate it with synthetic errors, and use that category to distinguish transport/timeout from local runtime failure before planning a new capture. That diagnostic change and any further sync have not been performed. Owner token entry would be required again; do not reuse or reconstruct the cleared token.
 
 Capture the simulator control and actual sync first. Keep the Ring source label and actual event dates visible. Show the returned result and expanded live-view record. A live-view request remains a request even if the simulator player fails. Keep credential setup off camera. Stop before any Tell/Ask action in Bedrock mode unless additional calls have been approved.
 
@@ -54,3 +60,5 @@ The [FAQ](https://amazonappdev2026.devpost.com/details/faqs) permits the Ring Pl
 Pending: owner visibility/license choice, GitHub destination, real Ring recording, combined video review, upload destination, Devpost entry and final submission approval. The judge guide provides free local sample evaluation; live-provider judging access remains to be arranged without distributing owner credentials. Do not describe this as completed judge access.
 
 Prepared materials: [submission copy](../SUBMISSION-COPY.md), [judge guide](JUDGE-GUIDE.md), [runbook](DEMO-RUNBOOK.md), [product feedback](../PRODUCT-FEEDBACK.md), and [friction log](../FRICTION-LOG.md). Licensing, collaborator invitations, publishing, uploading and submitting remain separate owner actions or approval gates.
+
+Local source baseline: `data/submission/around-source-e7452a6.zip`, with per-file hashes in `around-source-e7452a6-manifest.json`. All 53 archived files matched the committed blobs and passed ZIP CRC checks. The exact archived bytes passed the same bounded credential-pattern scan with no matches. The archive preserves the earlier preparation checkpoint; subsequent capture notes do not change its contents. It contains no credentials, databases or recordings.

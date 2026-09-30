@@ -8,6 +8,8 @@ Preserve the approved 29.3-second `data/recordings/around-demo-ring-sparkle.mp4`
 
 For the next capture, show official Playground interaction and Around's actual sync with credentials prepared privately. Record the returned result, source label and dated live-view evidence without a new Bedrock query. The page's Amazon Bedrock configuration label does not prove inference during this capture. Reuse the approved sample segment only after an explicit sample transition. Fresh Bedrock narration requires an actual approved call or wording that clearly refers to the earlier verified run.
 
+Latest capture attempt: owner recorded the Codex in-app browser, where the Ring token was entered. One submitted sync returned the generic app error and added no stored records. No retry occurred. The saved take is preserved as `data/recordings/around-ring-sync-failed-2026-09-29.mov`; eight decoded frames confirm correct framing and the failure. Do not use it as successful ingestion footage. A materially different diagnosis remains pending. See SUBMISSION-READINESS for exact evidence. The earlier successful Ring ingestion remains historical evidence.
+
 ## Start the two tabs
 
 Build once:

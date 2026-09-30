@@ -10,6 +10,16 @@ Fresh read-only data verification found the original two September 28 Ring live 
 
 Capture setup then hit a host blocker. A read-only inspection of the already-running QuickTime app took about 19 minutes 50 seconds and returned that the Mac was locked and could not be unlocked automatically. No recording was verified as started. Stopped UI attempts and requested owner unlock. No new sync, inference or video was produced. Continue only after the host state changes; do not retry recorder launch unchanged.
 
+### Capture resumed after unlock
+
+The Mac became accessible, but the native recording command did not expose usable controls. Owner-started recording was selected. Lead checked three Chrome Ring tabs and found empty token fields, but the owner had entered the token in the Codex in-app browser. Presence-only inspection of that correct tab confirmed the token and an empty Bedrock field. The unnecessary repeated entry requests were caused by checking the wrong browser. No token was read, moved or printed.
+
+Owner confirmed recording. The pointer action on Sync Ring activity produced no status and did not clear the token. The input was valid and browser error logs were empty. One keyboard activation cleared the field and submitted the request. Around returned the generic “The request could not be completed. Check local configuration and try again.” Its generic error handler maps this to HTTP 500; the underlying exception was not exposed. No retry followed, and the owner was asked to stop recording.
+
+Read-only database verification still found one device, the original two September 28 Ring live views and zero matches. One host DNS-only lookup resolved api.amazonvision.com without a credential or provider HTTP request. DNS success does not identify the sync failure or establish current API availability. The server console had no further diagnostic category. Steward recommended stopping after the token-free diagnostic. No new Bedrock call, feature, upload, publication or submission occurred.
+
+Owner confirmed the take saved to Desktop. Preserved the original and verified an identical project copy at data/recordings/around-ring-sync-failed-2026-09-29.mov. Technical inspection: 194.788 seconds, 602 by 734, one audio track. Eight inspected frames show the correct app, masked token field, cleared field and later generic error. No unmasked credential was visible in those frames; audio was not reviewed. Keep it as failure evidence. It does not show successful ingestion and is not a submission cut. The approved sample master remains byte-for-byte unchanged.
+
 ## 2026-09-28: Local Git executable incompatible with host
 
 - Tool/task: Git, inspect empty workspace before implementation.
