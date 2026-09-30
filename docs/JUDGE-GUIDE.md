@@ -43,7 +43,7 @@ To exercise Bedrock, explicitly select `AI_MODE=bedrock`, a supported model and 
 
 ## Evidence and limits
 
-Actual September 28 Ring ingestion received one device and two live views. September 29 app-side Bedrock checks covered parsing, a dated insufficient-evidence answer from those Ring records, and a corrected briefing. The positive multi-device visit uses sample events. Live classified Ring events and live webhook delivery remain unverified.
+Actual September 28 Ring ingestion received one device and two live views. A September 30 sync added one new live-view record at 10:54 AM Eastern, for three stored Ring records and zero expectation matches. September 29 app-side Bedrock checks covered parsing, a dated insufficient-evidence answer from those Ring records, and a corrected briefing. The positive multi-device visit uses sample events. Live classified Ring events and live webhook delivery remain unverified.
 
 The approved sample video shows saved results. Its typing and microphone graphic were added in editing; voice input is not implemented. See [submission copy](../SUBMISSION-COPY.md) and [current readiness](SUBMISSION-READINESS.md) for capture and publication status.
 

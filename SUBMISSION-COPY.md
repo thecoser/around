@@ -150,8 +150,8 @@ Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator,
 | Ring and Bedrock runtime evidence | Verified within the limits above |
 | Source labels and sample rehearsal | Prepared; separate modes and databases |
 | Public English video under three minutes | 118.3-second v13 approved by the owner; public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
-| GitHub repository and judge access | Local repository only; visibility and publication pending |
-| Public-repository license, if applicable | Owner decision pending |
+| GitHub repository and judge access | Public `thecoser/around` selected; local source ready, publication pending |
+| Public-repository license, if applicable | MIT with Praxais LLC copyright prepared; publication pending |
 | Devpost project URL and submission | Not created or submitted |
 | Optional organizer clarification | Draft retained in FRICTION-LOG.md; not sent; not a submission prerequisite |
 

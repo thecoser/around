@@ -257,3 +257,7 @@ Credential cleanup result: owner approved removal, and AWS now confirms both old
 Results-clip editing checkpoint: owner supplied the Desktop location for the corrected take. Lead owns the local media edit; original stays untouched. Next observable result is a short silent clip showing only saved sample/Bedrock results, excluding pauses and credential controls. Budget: ten minutes including frame review and exported-file verification. No new provider calls, upload or publication. Runtime count remains sixteen total, two approved calls unused.
 
 Results-clip outcome: exported and verified data/recordings/around-bedrock-results-cut.mp4, 38 seconds at 952 by 886, with no audio track. Eleven representative frames including the edit boundary were inspected. The clip preserves source labels and shows saved briefing/evidence and the matched cards. Original Desktop recording is unchanged. Credential-controls footage and long pauses are excluded. No new cloud calls; real Ring footage and final assembly remain unfinished.
+
+## License
+
+Copyright (c) 2026 Praxais LLC. Project source is licensed under [MIT](LICENSE). See [third-party notices](THIRD-PARTY-NOTICES.md) for dependency and icon credits. Private recordings and third-party footage are not included in the source repository.
