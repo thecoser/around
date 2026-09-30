@@ -1,10 +1,10 @@
 # Around submission readiness
 
-Checked September 30, 2026, America/New_York. The local v13 video and submission copy include the owner’s final wording correction. Nothing has been published, uploaded or submitted.
+Checked September 30, 2026, America/New_York. The owner approved the final v13 video after the last wording correction. Submission materials are prepared locally. Nothing has been published, uploaded or submitted.
 
-Current cut: `data/recordings/around-submission-review-v13.mp4`, 118.3 seconds, with the labeled sample demo first, then the Ring walkthrough and integration proof. Official Playground playback and fresh Ring ingestion are verified. The edit uses separate takes and labeled stills. An unobscured sync-click sequence is not included; do not claim continuous capture. The owner-approved sample master and v6 remain unchanged.
+Approved submission video: `data/recordings/around-submission-review-v13.mp4`, 118.3 seconds, with the labeled sample demo first, then the Ring walkthrough and integration proof. Official Playground playback and fresh Ring ingestion are verified. The edit uses separate takes and labeled stills. An unobscured sync-click sequence is not included; do not claim continuous capture. The owner-approved sample master and v6 remain unchanged.
 
-Lead owns repository and media edits. The read-only Progress Steward reviews phase transitions. Target outcome: a reviewable source package and a complete real Ring capture, preserving the approved sample master. Next observable capture result: official Playground interaction followed by successful Around sync and dated Ring cards. Budget: one capture pass after private token entry, stop on the first access failure; up to 15 minutes for capture and review. No additional paid provider calls without fresh owner approval.
+The capture and edit phase is complete within the evidence limits below. Lead owns local delivery preparation. Next observable result: confirmed GitHub visibility/account and video platform/account, followed by exact publishing details for owner approval. No more capture or provider calls are planned. Uploading, publishing, collaborator invitations and final submission still require explicit approval.
 
 ## Verified now
 
@@ -165,3 +165,7 @@ Continuous v12 browser playback reached `ended=true`, `currentTime=118.3`, `erro
 Owner said everything looked good, with one change: “Next, see how” implied a missed step after the opening “First, we demonstrate.” v13 changes the product-demo card to “See how Around answers ‘Did the plumber come?’” No other wording, timing, source, audio or design change. The owner’s approval covers v12 with this requested correction.
 
 File: `data/recordings/around-submission-review-v13.mp4`, SHA-256 `7f08ff9eee987b02c7ec31a0c4d11998bfe2be6f6e65d2eae6863e8bed12ec0a`. Duration remains 118.3 seconds and the page still displays 118 seconds. Lead visually verified the corrected card and unchanged transition at 18 seconds. The 1,758 sample frames and 56 original compressed audio blocks are preserved. Approved master and v12 hashes are unchanged. Full continuous playback was verified on v12 and was not repeated for this single-line correction. Publication, upload and submission remain pending separate approval.
+
+### September 30 final video approval
+
+Owner approved final v13 in conversation: “good. ready.” SHA-256 was rechecked as `7f08ff9eee987b02c7ec31a0c4d11998bfe2be6f6e65d2eae6863e8bed12ec0a`. Preserve this 118.3-second submission video and the original approved sample master. This approval closes media review; it does not authorize publication, uploads, collaborator invitations, submission or paid provider calls. Next decisions are repository account/visibility and video platform/account.

@@ -41,7 +41,7 @@ The positive two-device visit is verified with sample events only. Classified mo
 
 ## Current local review
 
-New review: `data/recordings/around-submission-review-v13.mp4`, 118.3 seconds (displayed as 118 seconds). At the owner’s request, the sample product demo now leads after the opening page, followed by the real Ring walkthrough and integration proof. Ring walkthrough and integration-proof holds are longer. The closing uses the established animated logo, tagline and “Single Home Prototype.” The owner approved the cut with one wording correction: “See how Around answers” replaces “Next, see how Around answers.” That correction is applied in v13. The approved sample master and previous cuts remain unchanged.
+New review: `data/recordings/around-submission-review-v13.mp4`, 118.3 seconds (displayed as 118 seconds). At the owner’s request, the sample product demo now leads after the opening page, followed by the real Ring walkthrough and integration proof. Ring walkthrough and integration-proof holds are longer. The closing uses the established animated logo, tagline and “Single Home Prototype.” The owner approved the cut with one wording correction: “See how Around answers” replaces “Next, see how Around answers.” That correction is applied in v13, and the owner approved the final video. The approved sample master and previous cuts remain unchanged.
 
 The video addresses hackathon judges: demonstrate homeowner value with a clearly disclosed sample, then establish the official simulator source and verify real Ring integration.
 
@@ -149,7 +149,7 @@ Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator,
 | --- | --- |
 | Ring and Bedrock runtime evidence | Verified within the limits above |
 | Source labels and sample rehearsal | Prepared; separate modes and databases |
-| Public English video under three minutes | 118.3-second v13 prepared with the owner’s final wording correction; public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
+| Public English video under three minutes | 118.3-second v13 approved by the owner; public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
 | GitHub repository and judge access | Local repository only; visibility and publication pending |
 | Public-repository license, if applicable | Owner decision pending |
 | Devpost project URL and submission | Not created or submitted |
