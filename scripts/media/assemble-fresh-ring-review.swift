@@ -56,7 +56,7 @@ func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:Stri
  return b!
 }
 Task {do {
- let out=dir.appendingPathComponent("around-submission-review-v9-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v9.mp4")
+ let out=dir.appendingPathComponent("around-submission-review-v10-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v10.mp4")
  guard !FileManager.default.fileExists(atPath:out.path),!FileManager.default.fileExists(atPath:final.path) else {fatalError("Preserving existing outputs")}
  let writer=try AVAssetWriter(outputURL:out,fileType:.mp4)
  let input=AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:W,AVVideoHeightKey:H,AVVideoCompressionPropertiesKey:[AVVideoAverageBitRateKey:10_000_000,AVVideoExpectedSourceFrameRateKey:60,AVVideoMaxKeyFrameIntervalKey:60]])
@@ -66,16 +66,18 @@ Task {do {
  func hold(_ b:CVPixelBuffer,_ seconds:Int) async throws {for _ in 0..<(seconds*60) {try await append(b)}}
  try await hold(buffer(nil,crop:nil,title:"Around",subtitle:"Around helps homeowners connect expected activities with recorded activity.\n\nFirst, we show the Ring integration. Then, we demonstrate the visit experience using labeled sample activity.",footer:"",branded:true),8)
  try await hold(buffer(nil,crop:nil,title:"1. Ring integration\nThe official Playground",subtitle:"We use Ring’s simulator to exercise the integration without physical hardware.",footer:"This section establishes where the activity comes from."),5)
- try await hold(buffer(still("private/control-crop-review/player-22.png"),crop:nil,title:"1. Ring integration",subtitle:"Motion live-view control\nRecorded control frame",footer:""),3)
- func clip(_ path:String,_ start:Double,_ seconds:Int,_ crop:CGRect,_ title:String,_ subtitle:String,_ footer:String) async throws {
+ try await hold(buffer(still("private/control-crop-review/player-22.png"),crop:nil,title:"1. Ring integration",subtitle:"Motion live-view control\nRecorded control frame",footer:""),8)
+ func clip(_ path:String,_ start:Double,_ seconds:Int,_ crop:CGRect,_ title:String,_ subtitle:String,_ footer:String,_ tailHold:Int=0) async throws {
  let a=AVURLAsset(url:dir.appendingPathComponent(path));let g=AVAssetImageGenerator(asset:a);g.appliesPreferredTrackTransform=true;g.requestedTimeToleranceBefore = .zero;g.requestedTimeToleranceAfter = .zero
- for f in 0..<(seconds*60) {let im=try await g.image(at:tm(start+Double(f)/60));try await append(buffer(im.image,crop:crop,title:title,subtitle:subtitle,footer:footer))}
+ var last:CVPixelBuffer?
+ for f in 0..<(seconds*60) {let im=try await g.image(at:tm(start+Double(f)/60));let frame=buffer(im.image,crop:crop,title:title,subtitle:subtitle,footer:footer);try await append(frame);last=frame}
+ if tailHold>0,let last {try await hold(last,tailHold)}
  }
  try await clip("private/around-playground-trace-2026-09-30.mov",30,6,CGRect(x:160,y:520,width:1040,height:465),"1. Ring integration","Recorded simulator playback","“Birds on Feeders” by Michael Black on Vimeo, CC BY 4.0. Cropped excerpt.")
  print("Playground scenes rendered")
- try await hold(buffer(nil,crop:nil,title:"2. Integration proof\nRing activity in Around",subtitle:"Around receives a new live-view record through the official Ring API and shows what that record can establish.",footer:"This section verifies the connection and how Around treats the evidence."),6)
- try await clip("private/around-fresh-sync-2026-09-30.mov",60,5,CGRect(x:650,y:390,width:1710,height:670),"2. Integration proof","Official device discovery and event history\nSuccessful sync, recorded in a separate take","")
- try await hold(buffer(still("ring-evidence/fresh-record-still.png"),crop:CGRect(x:215,y:180,width:585,height:270),title:"2. Integration proof",subtitle:"New Ring record: September 30 at 10:54 AM\nSaved record, shown in a still image",footer:""),6)
+ try await hold(buffer(nil,crop:nil,title:"2. Integration proof\nRing activity in Around",subtitle:"Around receives a new live-view record through the official Ring API and shows what that record can establish.",footer:"This section verifies the connection and how Around treats the evidence."),10)
+ try await clip("private/around-fresh-sync-2026-09-30.mov",60,5,CGRect(x:650,y:390,width:1710,height:670),"2. Integration proof","Official device discovery and event history\nSuccessful sync, recorded in a separate take","",5)
+ try await hold(buffer(still("ring-evidence/fresh-record-still.png"),crop:CGRect(x:215,y:180,width:585,height:270),title:"2. Integration proof",subtitle:"New Ring record: September 30 at 10:54 AM\nSaved record, shown in a still image",footer:""),14)
  try await hold(buffer(nil,crop:nil,title:"3. Product demo\nWas the expected visit likely?",subtitle:"Next, see how Around answers ‘Did the plumber come?’\n\nThis example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.",footer:"This section shows the value to a homeowner."),10)
  let sampleStart=Double(frameIndex)/60
  let master=AVURLAsset(url:dir.appendingPathComponent("around-demo-ring-sparkle.mp4"));let track=try await master.loadTracks(withMediaType:.video)[0]
@@ -88,7 +90,7 @@ Task {do {
  let rendered=AVURLAsset(url:out);try v.insertTimeRange(CMTimeRange(start:.zero,duration:tm(duration)),of:try await rendered.loadTracks(withMediaType:.video)[0],at:.zero)
  try a.insertTimeRange(CMTimeRange(start:.zero,duration:tm(29.3)),of:try await master.loadTracks(withMediaType:.audio)[0],at:tm(sampleStart))
  let ex=AVAssetExportSession(asset:c,presetName:AVAssetExportPresetPassthrough)!;ex.outputURL=final;ex.outputFileType = .mp4;ex.shouldOptimizeForNetworkUse=true;await ex.export();guard ex.status == .completed else {throw ex.error!}
- let manifest:[String:Any]=["output":final.lastPathComponent,"duration":duration,"sampleStart":sampleStart,"sampleFrames":sampleFrames,"sampleDuration":29.3,"audio":"Original compressed sample audio only; no gain or speed change; raw recording audio omitted.","segments":["0-8: audience orientation","8-13: section1 purpose card","13-16: recorded Motion control frame at source22s","16-22: Playground player source30-36s, cropped","22-28: section2 purpose card","28-33: Around successful result source60-65s, cropped","33-39: saved dated record still captured after recording","39-49: section3 purpose card with owner-approved sample explanation","49-78.3: complete approved sample once","78.3-83.3: closing limits"],"scope":"Edited separate recordings and disclosed still, not a continuous Playground-to-Around take. Official live-view ingestion, not classified motion or visitor validation.","review":"Render complete; visual, privacy and continuous playback checks pending. Owner approval pending."]
+ let manifest:[String:Any]=["output":final.lastPathComponent,"duration":duration,"sampleStart":sampleStart,"sampleFrames":sampleFrames,"sampleDuration":29.3,"audio":"Original compressed sample audio only; no gain or speed change; raw recording audio omitted.","segments":["0-8: audience orientation","8-13: section1 purpose card","13-21: recorded Motion control frame at source22s","21-27: Playground player source30-36s, cropped","27-37: section2 purpose card","37-47: Around successful result source60-65s, cropped; final frame held 5s for reading","47-61: saved dated record still captured after recording","61-71: section3 purpose card with owner-approved sample explanation","71-100.3: complete approved sample once","100.3-105.3: closing limits"],"scope":"Edited separate recordings and disclosed still, not a continuous Playground-to-Around take. Official live-view ingestion, not classified motion or visitor validation.","review":"Render complete; visual, privacy and continuous playback checks pending. Owner approval pending."]
  try JSONSerialization.data(withJSONObject:manifest,options:[.prettyPrinted,.sortedKeys]).write(to:final.deletingPathExtension().appendingPathExtension("json"));print("Rendered",duration,"sampleStart",sampleStart,"frames",sampleFrames);exit(0)
 } catch {print("Failed:",error);exit(1)}}
 dispatchMain()

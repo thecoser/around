@@ -6,7 +6,7 @@ Use two tabs running the same application with separate data. Keep the source la
 
 Preserve the approved 29.3-second `data/recordings/around-demo-ring-sparkle.mp4` and its sidecars. Current verification, hash and remaining delivery work are in [SUBMISSION-READINESS](SUBMISSION-READINESS.md). Historical media entries below are receipts, not current instructions to renew keys, repeat inference or replace the master. Ask before any additional paid provider calls. No upload, publication or submission is authorized.
 
-New local review: `data/recordings/around-submission-review-v9.mp4`, 83.3 seconds. Three numbered purpose cards orient hackathon judges. The opening uses the established Around logo and owner-requested tagline; captions omit redundant editing notes. It shows a recorded Playground control frame, actual simulator video playback, the successful fresh-sync result from a separate take, a labeled saved-record still, and the full approved sample once at seconds 49–78.3. Visual, audio-payload and uninterrupted browser-playback checks passed. Owner approved the section wording; review of the rendered v9 is pending. The owner-approved v6 is preserved unchanged.
+New local review: `data/recordings/around-submission-review-v10.mp4`, 105.3 seconds. Three numbered purpose cards orient hackathon judges. The opening uses the established Around logo and owner-requested tagline; captions omit redundant editing notes. It shows a recorded Playground control frame, actual simulator video playback, the successful fresh-sync result from a separate take, a labeled saved-record still, and the full approved sample once at seconds 71–100.3. Visual, audio-payload and uninterrupted browser-playback checks passed. Owner approved the section wording; review of the rendered v10 is pending. The owner-approved v6 is preserved unchanged.
 
 The September 30 sync received one new live-view request at 10:54:33 AM Eastern. One device and three Ring live-view records are stored, with zero matches. The Motion control label does not turn the returned record into a classified detection. No Bedrock query occurred during this capture; its configuration label is not inference evidence.
 
@@ -76,7 +76,7 @@ The default sample mode uses local demo answers. Label this in the recording and
 
 ## Recording and delivery
 
-Review the current 83.3-second edited cut described in SUBMISSION-COPY.md, or the optional 2:45 full-flow script only after its additional provider calls are approved. Trim pauses, not evidence or source labels. Use English narration or subtitles. The rules require a public YouTube or Vimeo video under three minutes and a GitHub repository with judge access. The source can run locally; do not expose this unauthenticated app publicly.
+Review the current 105.3-second edited cut described in SUBMISSION-COPY.md, or the optional 2:45 full-flow script only after its additional provider calls are approved. Trim pauses, not evidence or source labels. Use English narration or subtitles. The rules require a public YouTube or Vimeo video under three minutes and a GitHub repository with judge access. The source can run locally; do not expose this unauthenticated app publicly.
 
 Repository visibility, any public license, upload destination, and final publication still need owner decisions. Organizer clarification is optional. The official FAQ permits Playground demos; the sample segment must remain disclosed. No hardware purchase is required for this preparation path.
 
