@@ -16,7 +16,9 @@ func text(_ c:CGContext,_ value:String,_ y:CGFloat,_ size:CGFloat,_ height:CGFlo
  CTFrameDraw(CTFramesetterCreateFrame(fs,CFRange(location:0,length:0),path,nil),c)
 }
 // Established Around wordmark and Radio geometry, reused from render-logo-intro.swift.
-func logo(_ c:CGContext) {
+func logo(_ c:CGContext,time:Double=2.6,centerY:Double=775,prototype:Bool=false) {
+ func progress(_ start:Double,_ end:Double)->Double {min(1,max(0,(time-start)/(end-start)))}
+ func ease(_ p:Double)->Double {1-pow(1-p,3)}
  let orange=CGColor(red:225/255,green:115/255,blue:66/255,alpha:1)
  let ink=CGColor(red:53/255,green:43/255,blue:38/255,alpha:1)
  func line(_ value:String,_ size:CGFloat,_ color:CGColor,_ bold:Bool=false,_ kern:CGFloat=0)->CTLine {
@@ -24,11 +26,21 @@ func logo(_ c:CGContext) {
  }
  let word=line("around",99,ink,true,-5.7),dot=line(".",99,orange,true,-5.7)
  let ww=CTLineGetTypographicBounds(word,nil,nil,nil),dw=CTLineGetTypographicBounds(dot,nil,nil,nil)
- let mx=(970-(108+27+ww+dw-3))/2+54,cy=775.0
- c.textPosition=CGPoint(x:mx+81,y:cy-32);CTLineDraw(word,c)
- c.textPosition=CGPoint(x:mx+81+ww-3,y:cy-32);CTLineDraw(dot,c)
- c.saveGState();c.translateBy(x:mx,y:cy)
+ let textWidth=ww+dw-3,finalX=(970-(108+27+textWidth))/2+54,cy=centerY
+ let movement=ease(progress(0.2,0.86)),wordProgress=ease(progress(0.20,0.88))
+ let mx=485+(finalX-485)*movement
+ if time>0.20 {
+  let wordCenter=finalX+81+textWidth/2,x=mx+(wordCenter-mx)*wordProgress
+  c.saveGState();c.setAlpha(progress(0.20,0.40));c.translateBy(x:x,y:cy)
+  c.rotate(by:(1-wordProgress)*1.5 * .pi)
+  let scale=0.1+0.9*wordProgress;c.scaleBy(x:scale,y:scale)
+  c.textPosition=CGPoint(x:-textWidth/2,y:-32);CTLineDraw(word,c)
+  c.textPosition=CGPoint(x:-textWidth/2+ww-3,y:-32);CTLineDraw(dot,c);c.restoreGState()
+ }
+ c.saveGState();c.setAlpha(progress(0,0.22));c.translateBy(x:mx,y:cy)
+ let markScale=0.88+0.12*ease(progress(0,0.22));c.scaleBy(x:markScale,y:markScale)
  c.setFillColor(orange);c.fillEllipse(in:CGRect(x:-54,y:-54,width:108,height:108))
+ c.rotate(by:-2 * .pi * ease(progress(0.03,0.98)))
  c.scaleBy(x:75/24,y:75/24);c.setStrokeColor(CGColor(red:45/255,green:32/255,blue:27/255,alpha:1));c.setLineWidth(2);c.setLineCap(.round)
  for r in [6.0,10.0] {
   c.beginPath();c.addArc(center:.zero,radius:r,startAngle:-.pi/4,endAngle:.pi/4,clockwise:false);c.strokePath()
@@ -36,16 +48,24 @@ func logo(_ c:CGContext) {
  }
  c.strokeEllipse(in:CGRect(x:-2,y:-2,width:4,height:4));c.restoreGState()
  let tagline=line("Spatial Intelligence for your home",26,ink)
- c.textPosition=CGPoint(x:(970-CTLineGetTypographicBounds(tagline,nil,nil,nil))/2,y:660);CTLineDraw(tagline,c)
+ c.saveGState();c.setAlpha(progress(0.88,1.16))
+ c.textPosition=CGPoint(x:(970-CTLineGetTypographicBounds(tagline,nil,nil,nil))/2,y:cy-115);CTLineDraw(tagline,c)
+ if prototype {
+  let label=line("Single Home Prototype.",30,ink)
+  c.textPosition=CGPoint(x:(970-CTLineGetTypographicBounds(label,nil,nil,nil))/2,y:cy-195);CTLineDraw(label,c)
+ }
+ c.restoreGState()
 }
 func still(_ path:String)->CGImage {CGImageSourceCreateImageAtIndex(CGImageSourceCreateWithURL(dir.appendingPathComponent(path) as CFURL,nil)!,0,nil)!}
-func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:String,branded:Bool=false)->CVPixelBuffer {
+func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:String,branded:Bool=false,closingTime:Double?=nil)->CVPixelBuffer {
  var b:CVPixelBuffer?;CVPixelBufferCreate(nil,W,H,kCVPixelFormatType_32BGRA,[kCVPixelBufferCGImageCompatibilityKey:true,kCVPixelBufferCGBitmapContextCompatibilityKey:true] as CFDictionary,&b)
  CVPixelBufferLockBaseAddress(b!,[]);defer{CVPixelBufferUnlockBaseAddress(b!,[])}
  let c=CGContext(data:CVPixelBufferGetBaseAddress(b!),width:W,height:H,bitsPerComponent:8,bytesPerRow:CVPixelBufferGetBytesPerRow(b!),space:CGColorSpaceCreateDeviceRGB(),bitmapInfo:CGImageAlphaInfo.premultipliedFirst.rawValue|CGBitmapInfo.byteOrder32Little.rawValue)!
  c.setFillColor(CGColor(red:1,green:0.98,blue:0.96,alpha:1));c.fill(CGRect(x:0,y:0,width:W,height:H))
  c.setFillColor(CGColor(red:0.88,green:0.45,blue:0.26,alpha:1));c.fill(CGRect(x:44,y:CGFloat(H)-32,width:64,height:5))
- if img == nil {
+ if let time=closingTime {
+  logo(c,time:time,centerY:620,prototype:true)
+ } else if img == nil {
   if branded {logo(c)} else {text(c,title,90,44,150)}
   text(c,subtitle,branded ? 330 : 300,32,340)
  } else {
@@ -56,7 +76,7 @@ func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:Stri
  return b!
 }
 Task {do {
- let out=dir.appendingPathComponent("around-submission-review-v11-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v11.mp4")
+ let out=dir.appendingPathComponent("around-submission-review-v12-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v12.mp4")
  guard !FileManager.default.fileExists(atPath:out.path),!FileManager.default.fileExists(atPath:final.path) else {fatalError("Preserving existing outputs")}
  let writer=try AVAssetWriter(outputURL:out,fileType:.mp4)
  let input=AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:W,AVVideoHeightKey:H,AVVideoCompressionPropertiesKey:[AVVideoAverageBitRateKey:10_000_000,AVVideoExpectedSourceFrameRateKey:60,AVVideoMaxKeyFrameIntervalKey:60]])
@@ -65,7 +85,7 @@ Task {do {
  func append(_ b:CVPixelBuffer) async throws {while !input.isReadyForMoreMediaData {try await Task.sleep(nanoseconds:1_000_000)};guard adaptor.append(b,withPresentationTime:CMTime(value:frameIndex,timescale:60)) else {throw writer.error!};frameIndex+=1}
  func hold(_ b:CVPixelBuffer,_ seconds:Int) async throws {for _ in 0..<(seconds*60) {try await append(b)}}
  try await hold(buffer(nil,crop:nil,title:"Around",subtitle:"Around helps homeowners connect expected activities with recorded activity.\n\nFirst, we demonstrate the visit experience using labeled sample activity. Then, we show the Ring integration.",footer:"",branded:true),8)
- try await hold(buffer(nil,crop:nil,title:"1. Product demo\nWas the expected visit likely?",subtitle:"Next, see how Around answers ‘Did the plumber come?’\n\nThis example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.",footer:"This section shows the value to a homeowner."),10)
+ try await hold(buffer(nil,crop:nil,title:"1. Product demo",subtitle:"Next, see how Around answers ‘Did the plumber come?’\n\nThis example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.",footer:"This section shows the value to a homeowner."),10)
  let sampleStart=Double(frameIndex)/60
  let master=AVURLAsset(url:dir.appendingPathComponent("around-demo-ring-sparkle.mp4"));let track=try await master.loadTracks(withMediaType:.video)[0]
  let reader=try AVAssetReader(asset:master);let output=AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA]);reader.add(output);reader.startReading();var sampleFrames=0
@@ -81,16 +101,16 @@ Task {do {
  }
  try await clip("private/around-playground-trace-2026-09-30.mov",30,6,CGRect(x:160,y:520,width:1040,height:465),"2. Ring integration","Recorded simulator playback","“Birds on Feeders” by Michael Black on Vimeo, CC BY 4.0. Cropped excerpt.",2)
  print("Playground scenes rendered")
- try await hold(buffer(nil,crop:nil,title:"3. Integration proof\nRing activity in Around",subtitle:"Around receives a new live-view record through the official Ring API and shows what that record can establish.",footer:"This section verifies the connection and how Around treats the evidence."),10)
- try await clip("private/around-fresh-sync-2026-09-30.mov",60,5,CGRect(x:650,y:390,width:1710,height:670),"3. Integration proof","Official device discovery and event history\nSuccessful sync, recorded in a separate take","",5)
- try await hold(buffer(still("ring-evidence/fresh-record-still.png"),crop:CGRect(x:215,y:180,width:585,height:270),title:"3. Integration proof",subtitle:"New Ring record: September 30 at 10:54 AM\nSaved record, shown in a still image",footer:""),14)
- try await hold(buffer(nil,crop:nil,title:"Around",subtitle:"Spatial intelligence for your home.\nA single-home prototype.",footer:"Timing does not confirm identity. The sample typing and microphone are edited visuals; voice input is not implemented."),5)
+ try await hold(buffer(nil,crop:nil,title:"3. Integration proof\nRing activity in Around",subtitle:"Around receives a new live-view record through the official Ring API and shows what that record can establish.",footer:"This section verifies the connection and how Around treats the evidence."),12)
+ try await clip("private/around-fresh-sync-2026-09-30.mov",60,5,CGRect(x:650,y:390,width:1710,height:670),"3. Integration proof","Official device discovery and event history\nSuccessful sync, recorded in a separate take","",7)
+ try await hold(buffer(still("ring-evidence/fresh-record-still.png"),crop:CGRect(x:215,y:180,width:585,height:270),title:"3. Integration proof",subtitle:"New Ring record: September 30 at 10:54 AM\nSaved record, shown in a still image",footer:""),16)
+ for frame in 0..<300 {try await append(buffer(nil,crop:nil,title:"",subtitle:"",footer:"Sample typing and microphone are edited visuals. Voice input is not implemented.",closingTime:Double(frame)/60))}
  let duration=Double(frameIndex)/60;writer.endSession(atSourceTime:CMTime(value:frameIndex,timescale:60));input.markAsFinished();await writer.finishWriting();guard writer.status == .completed else {throw writer.error!}
  let c=AVMutableComposition();let v=c.addMutableTrack(withMediaType:.video,preferredTrackID:kCMPersistentTrackID_Invalid)!,a=c.addMutableTrack(withMediaType:.audio,preferredTrackID:kCMPersistentTrackID_Invalid)!
  let rendered=AVURLAsset(url:out);try v.insertTimeRange(CMTimeRange(start:.zero,duration:tm(duration)),of:try await rendered.loadTracks(withMediaType:.video)[0],at:.zero)
  try a.insertTimeRange(CMTimeRange(start:.zero,duration:tm(29.3)),of:try await master.loadTracks(withMediaType:.audio)[0],at:tm(sampleStart))
  let ex=AVAssetExportSession(asset:c,presetName:AVAssetExportPresetPassthrough)!;ex.outputURL=final;ex.outputFileType = .mp4;ex.shouldOptimizeForNetworkUse=true;await ex.export();guard ex.status == .completed else {throw ex.error!}
- let manifest:[String:Any]=["output":final.lastPathComponent,"duration":duration,"sampleStart":sampleStart,"sampleFrames":sampleFrames,"sampleDuration":29.3,"audio":"Original compressed sample audio only; no gain or speed change; raw recording audio omitted.","segments":["0-8: audience orientation","8-18: section1 product demo and sample explanation","18-47.3: complete approved sample once","47.3-55.3: section2 Ring Playground purpose card","55.3-65.3: recorded Motion control frame at source22s","65.3-73.3: Playground player source30-36s, cropped; final frame held 2s for reading","73.3-83.3: section3 integration proof purpose card","83.3-93.3: Around successful result source60-65s, cropped; final frame held 5s for reading","93.3-107.3: saved dated record still captured after recording","107.3-112.3: closing limits"],"scope":"Edited separate recordings and disclosed still, not a continuous Playground-to-Around take. Official live-view ingestion, not classified motion or visitor validation.","review":"Render complete; visual, privacy and continuous playback checks pending. Owner approval pending."]
+ let manifest:[String:Any]=["output":final.lastPathComponent,"duration":duration,"sampleStart":sampleStart,"sampleFrames":sampleFrames,"sampleDuration":29.3,"audio":"Original compressed sample audio only; no gain or speed change; raw recording audio omitted.","segments":["0-8: audience orientation","8-18: section1 product demo and sample explanation","18-47.3: complete approved sample once","47.3-55.3: section2 Ring Playground purpose card","55.3-65.3: recorded Motion control frame at source22s","65.3-73.3: Playground player source30-36s, cropped; final frame held 2s for reading","73.3-85.3: section3 integration proof purpose card","85.3-97.3: Around successful result source60-65s, cropped; final frame held 7s for reading","97.3-113.3: saved dated record still captured after recording","113.3-118.3: animated Around logo settles, tagline and Single Home Prototype; edited visuals and voice-input disclosure"],"scope":"Edited separate recordings and disclosed still, not a continuous Playground-to-Around take. Official live-view ingestion, not classified motion or visitor validation.","review":"Render complete; visual, privacy and continuous playback checks pending. Owner approval pending."]
  try JSONSerialization.data(withJSONObject:manifest,options:[.prettyPrinted,.sortedKeys]).write(to:final.deletingPathExtension().appendingPathExtension("json"));print("Rendered",duration,"sampleStart",sampleStart,"frames",sampleFrames);exit(0)
 } catch {print("Failed:",error);exit(1)}}
 dispatchMain()

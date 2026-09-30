@@ -41,18 +41,18 @@ The positive two-device visit is verified with sample events only. Classified mo
 
 ## Current local review
 
-New review: `data/recordings/around-submission-review-v11.mp4`, 112.3 seconds (displayed as 112 seconds). At the owner’s request, the sample product demo now leads after the opening page, followed by the real Ring walkthrough and integration proof. Ring walkthrough holds are longer. Review of rendered v11 is pending. The approved sample master and previous cuts remain unchanged.
+New review: `data/recordings/around-submission-review-v12.mp4`, 118.3 seconds (displayed as 118 seconds). At the owner’s request, the sample product demo now leads after the opening page, followed by the real Ring walkthrough and integration proof. Ring walkthrough and integration-proof holds are longer. The closing uses the established animated logo, tagline and “Single Home Prototype.” Review of rendered v12 is pending. The approved sample master and previous cuts remain unchanged.
 
 The video addresses hackathon judges: demonstrate homeowner value with a clearly disclosed sample, then establish the official simulator source and verify real Ring integration.
 
 | Time | Section and purpose |
 | --- | --- |
 | 0–8 | Opening: Around connects expected activities with recorded activity; explains the viewing sequence |
-| 8–18 | 1. Product demo: was the expected visit likely? Uses the approved plain-language sample explanation |
+| 8–18 | 1. Product demo. Uses the approved plain-language sample explanation |
 | 18–47.3 | Full approved sample once, with its original audio |
 | 47.3–73.3 | 2. Ring integration: the official Playground. Eight-second purpose card, ten-second recorded control still and eight-second simulator playback segment |
-| 73.3–107.3 | 3. Integration proof: Ring activity in Around. Purpose card, recorded successful result and labeled saved-record still |
-| 107.3–112.3 | Prototype limits and edited microphone disclosure |
+| 73.3–113.3 | 3. Integration proof: Ring activity in Around. Purpose card, recorded successful result and labeled saved-record still |
+| 113.3–118.3 | Animated Around logo, tagline, Single Home Prototype and edited-visuals/voice-input disclosure |
 
 Approved sample setup: “Next, see how Around answers ‘Did the plumber come?’ This example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.”
 
@@ -149,7 +149,7 @@ Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator,
 | --- | --- |
 | Ring and Bedrock runtime evidence | Verified within the limits above |
 | Source labels and sample rehearsal | Prepared; separate modes and databases |
-| Public English video under three minutes | 112.3-second v11 assembled; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
+| Public English video under three minutes | 118.3-second v12 assembled; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
 | GitHub repository and judge access | Local repository only; visibility and publication pending |
 | Public-repository license, if applicable | Owner decision pending |
 | Devpost project URL and submission | Not created or submitted |
