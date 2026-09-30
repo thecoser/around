@@ -2,7 +2,7 @@
 
 Checked September 30, 2026, America/New_York. Local preparation is in progress. Nothing has been published, uploaded or submitted.
 
-Lead owns repository and media edits. The read-only Progress Steward reviews phase transitions. Current outcome: a reviewable source package and a real Ring capture, preserving the approved sample master. Next observable capture result: official Playground interaction followed by successful Around sync and dated Ring cards. Budget: one capture pass after private token entry, stop on the first access failure; up to 15 minutes for capture and review. No additional paid provider calls without fresh owner approval.
+Lead owns repository and media edits. The read-only Progress Steward reviews phase transitions. Target outcome: a reviewable source package and a complete real Ring capture, preserving the approved sample master. Next observable capture result: official Playground interaction followed by successful Around sync and dated Ring cards. Budget: one capture pass after private token entry, stop on the first access failure; up to 15 minutes for capture and review. No additional paid provider calls without fresh owner approval.
 
 ## Verified now
 
@@ -16,7 +16,7 @@ Lead owns repository and media edits. The read-only Progress Steward reviews pha
 | Approved sample master | 9,589,336 bytes; SHA-256 below; no edits |
 | Source exclusions | `.env.local`, `data/`, recordings, databases, build and test output ignored |
 | Credential-pattern scan | Initial 51 non-ignored source candidates: no AWS access-key, Bedrock bearer-key, JWT-shaped value or private-key matches; this is a bounded check, not a security audit |
-| Git | Local source baseline `e7452a6`, 53 files; no remote or publication. Initial inspection found no commits. |
+| Git | Historical local source baseline `e7452a6`, 53 files; no remote or publication. Initial inspection found no commits. |
 
 Approved file: `data/recordings/around-demo-ring-sparkle.mp4`
 
@@ -78,4 +78,7 @@ Pending: owner visibility/license choice, GitHub destination, official Playgroun
 
 Prepared materials: [submission copy](../SUBMISSION-COPY.md), [judge guide](JUDGE-GUIDE.md), [runbook](DEMO-RUNBOOK.md), [product feedback](../PRODUCT-FEEDBACK.md), and [friction log](../FRICTION-LOG.md). Licensing, collaborator invitations, publishing, uploading and submitting remain separate owner actions or approval gates.
 
-Local source baseline: `data/submission/around-source-e7452a6.zip`, with per-file hashes in `around-source-e7452a6-manifest.json`. All 53 archived files matched the committed blobs and passed ZIP CRC checks. The exact archived bytes passed the same bounded credential-pattern scan with no matches. The archive preserves the earlier preparation checkpoint; subsequent capture notes do not change its contents. It contains no credentials, databases or recordings.
+Historical local source baseline: `data/submission/around-source-e7452a6.zip`, with per-file hashes in `around-source-e7452a6-manifest.json`. All 53 archived files matched the committed blobs and passed ZIP CRC checks. The exact archived bytes passed the same bounded credential-pattern scan with no matches. The archive preserves the earlier preparation checkpoint; subsequent capture notes do not change its contents. It contains no credentials, databases or recordings.
+
+
+Later source archives use the exact local commit in their filename. Each adjacent manifest records that commit, archive SHA-256, file hashes, ZIP CRC, equality to committed blobs and a bounded credential-pattern check. `data/submission/latest.json` identifies the latest prepared checkpoint. These are local review packages, not published judge access. The original archive remains preserved.
