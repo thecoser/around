@@ -2,13 +2,15 @@
 
 Use two tabs running the same application with separate data. Keep the source label visible. The Ring tab proves the integration. The sample tab demonstrates the full visit story.
 
-## Current handoff, September 29
+## Current handoff, September 30
 
 Preserve the approved 29.3-second `data/recordings/around-demo-ring-sparkle.mp4` and its sidecars. Current verification, hash and remaining delivery work are in [SUBMISSION-READINESS](SUBMISSION-READINESS.md). Historical media entries below are receipts, not current instructions to renew keys, repeat inference or replace the master. Ask before any additional paid provider calls. No upload, publication or submission is authorized.
 
 For the next capture, show official Playground interaction and Around's actual sync with credentials prepared privately. Record the returned result, source label and dated live-view evidence without a new Bedrock query. The page's Amazon Bedrock configuration label does not prove inference during this capture. Reuse the approved sample segment only after an explicit sample transition. Fresh Bedrock narration requires an actual approved call or wording that clearly refers to the earlier verified run.
 
-Latest capture attempt: owner recorded the Codex in-app browser, where the Ring token was entered. One submitted sync returned the generic app error and added no stored records. No retry occurred. The saved take is preserved as `data/recordings/around-ring-sync-failed-2026-09-29.mov`; eight decoded frames confirm correct framing and the failure. Do not use it as successful ingestion footage. A materially different diagnosis remains pending. See SUBMISSION-READINESS for exact evidence. The earlier successful Ring ingestion remains historical evidence.
+Latest capture: the diagnostic sync and a subsequent recorded sync both succeeded on September 30, reporting “Already up to date. No duplicate moments were added.” One device and two September 28 live-view records remain stored, with zero matches. No Bedrock request occurred. The recorded MOV is preserved as `data/recordings/around-ring-sync-2026-09-30.mov`, but a native “Save password?” popup obscures its result. Browser-only screenshots did not show this popup. The previous failed take and unresolved failure remain recorded in SUBMISSION-READINESS.
+
+Next capture is a saved-result continuation only: owner dismisses the popup with No Thanks, records the app panel with microphone off, and lead shows the existing success status, source label and dated cards. No token entry or new provider request is needed. Check the native recording itself. Label any edited join as a continuation, not uninterrupted sync footage. Official Playground interaction footage is still pending.
 
 ## Start the two tabs
 

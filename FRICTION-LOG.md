@@ -8,7 +8,9 @@ The prior recording's generic HTTP 500 remains unexplained. A token-free host TL
 
 The Ring adapter now returns fixed failure stages and allowlisted categories for fetch and response-body exceptions. The sync route distinguishes response validation from local storage failures. Invalid header characters are rejected before fetch. Raw provider errors, payloads and credentials stay out of responses and logs. Existing explicit HTTP errors remain intact; no retries or fixture fallback were added.
 
-TypeScript, lint, all 31 tests, production build and all three browser scenarios passed. Synthetic cases cover interrupted bodies, late-page failure without ingestion, redaction, and a real SQLite rollback after an insert. A synthetic malformed-header POST to the restarted production route returned HTTP 400 before any Ring transport. The server and actual Codex app page were prepared for one fresh-token diagnostic sync. Owner entry is pending; no new actual Ring or paid inference request has occurred during this diagnostic preparation.
+TypeScript, lint, all 31 tests, production build and all three browser scenarios passed. Synthetic cases cover interrupted bodies, late-page failure without ingestion, redaction, and a real SQLite rollback after an insert. A synthetic malformed-header POST to the restarted production route returned HTTP 400 before any Ring transport.
+
+Owner entered a fresh token in the actual Codex app page. Two presence-only selector reads timed out; a screenshot showed the populated masked field. One keyboard activation submitted the diagnostic sync successfully. Around reported “Already up to date. No duplicate moments were added.” One device, two original Ring live views and zero matches remain stored. This establishes current API connectivity and deduplication, not a new event or the cause of the prior failure. Both token and server state changed. No paid inference was used. Owner was asked to prepare one new recorded sync; successful diagnostic footage does not exist because recording was off.
 
 ## 2026-09-29: submission readiness recheck
 
@@ -317,3 +319,12 @@ Audio level analysis initially failed in the sandbox with AVFAudio CheckClientFo
 First original soundtrack mix failed with AVFoundation -11800 / underlying -12842 after writing its WAV stem. Hypothesis: the AVAudioFile writer remained open when the WAV was loaded as an AVAsset, leaving its header unfinished. Preserved first-attempt files, changed the writer lifetime to close before asset loading, and made one bounded retry. No external services or provider requests.
 
 The bounded retry succeeded after explicitly closing the WAV writer. Final soundtrack preview is 27.8 seconds with one video format and one mixed audio track.
+
+
+### 2026-09-30: successful Ring sync obscured in recording
+
+The diagnostic sync and subsequent recorded sync both returned Already up to date, with no duplicate moments. Existing one-device/two-live-view/zero-match counts remained unchanged. This does not isolate the earlier failure cause, since token and server state changed.
+
+Preserved `around-ring-sync-2026-09-30.mov` and its Desktop original. The 311.138-second, 510 by 740 take contains one unreviewed audio track. Eight broad and six early frames were inspected. A browser-native Save password popup obscures the result after submission, despite being absent from browser screenshots. No unmasked token appeared in the inspected frames; full-file clearance is not claimed. No submission-ready sync clip has been produced.
+
+Read-only Steward recommended bounded salvage, then a clearly labeled saved-result continuation with no new requests. Native Codex control is prohibited by the tool, so owner dismissal and recorder start are required. No password saving, provider retry, or Bedrock call is planned. Official Playground footage remains separate pending work.
