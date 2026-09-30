@@ -6,15 +6,11 @@ Use two tabs running the same application with separate data. Keep the source la
 
 Preserve the approved 29.3-second `data/recordings/around-demo-ring-sparkle.mp4` and its sidecars. Current verification, hash and remaining delivery work are in [SUBMISSION-READINESS](SUBMISSION-READINESS.md). Historical media entries below are receipts, not current instructions to renew keys, repeat inference or replace the master. Ask before any additional paid provider calls. No upload, publication or submission is authorized.
 
-For the next capture, show official Playground interaction and Around's actual sync with credentials prepared privately. Record the returned result, source label and dated live-view evidence without a new Bedrock query. The page's Amazon Bedrock configuration label does not prove inference during this capture. Reuse the approved sample segment only after an explicit sample transition. Fresh Bedrock narration requires an actual approved call or wording that clearly refers to the earlier verified run.
+New local review: `data/recordings/around-submission-review-v7.mp4`, 59.3 seconds. It shows a recorded Playground control frame, actual simulator video playback, the successful fresh-sync result from a separate take, a labeled saved-record still, and the full approved sample once at seconds 25–54.3. Visual, audio-payload and uninterrupted browser-playback checks passed. Owner review of v7 is pending. The owner-approved v6 is preserved unchanged.
 
-Latest capture: the diagnostic sync and a subsequent recorded sync both succeeded on September 30, reporting “Already up to date. No duplicate moments were added.” One device and two September 28 live-view records remain stored, with zero matches. No Bedrock request occurred. The recorded MOV is preserved as `data/recordings/around-ring-sync-2026-09-30.mov`, but a native “Save password?” popup obscures its result. Browser-only screenshots did not show this popup. The previous failed take and unresolved failure remain recorded in SUBMISSION-READINESS.
+The September 30 sync received one new live-view request at 10:54:33 AM Eastern. One device and three Ring live-view records are stored, with zero matches. The Motion control label does not turn the returned record into a classified detection. No Bedrock query occurred during this capture; its configuration label is not inference evidence.
 
-Saved-result continuation completed without a provider request. Review excerpt: `data/recordings/around-ring-saved-results-review.mp4`, 19 seconds, silent, with explicit evidence captions. It shows the existing successful sync status and September 28 records. The source MOV and approved sample master are preserved. Playback reached the end without a reported error.
-
-Owner-approved local review: `data/recordings/around-submission-review-v6.mp4`, 46.1 seconds. The repeated Ring Home walkthrough is removed; the opening is a six-second dated evidence card. Separate decoding and one encoder resolved the earlier white sample render; a one-frame closing flash was removed. The full approved sample appears once at seconds 10.9–40.2. Its compressed audio is identical and correctly offset, and the source master remains unchanged. Boundary frames and continuous browser playback passed. Earlier failed exports remain preserved.
-
-This is an edited saved-results review with a visible sample transition. Official Playground interaction and an unobscured sync recording remain pending. No provider call is needed to review this file. The closing card keeps the missing footage explicit.
+The video is an edited sequence, not a continuous control-to-sync take. The password popup prevents a clean uninterrupted sync-action shot. The edit shows the recorded successful result, and labels the later saved-record still. No further token entry or provider request is needed to review or edit this material. Earlier takes, failures and their source hashes remain recorded in SUBMISSION-READINESS and FRICTION-LOG.
 
 ## Start the two tabs
 
@@ -65,7 +61,7 @@ Steps 1 through 3 cover the current Ring capture. Steps 4 and 5 are the optional
 4. Use an expectation on the same date as the records. For a same-day demo, enter the plumber sentence once, then ask Did the plumber come? If using older records, ask a dated question such as Did the plumber come on September 28, 2026? A daily briefing always covers today.
 5. Show the answer's Amazon Bedrock label and expand its saved evidence. With only live views, it must not confirm a visit.
 
-Our verified Ring records are from September 28, 2026. There is also a September 29 plumber expectation parsed by Bedrock. Do not call old activity today's activity or create duplicate expectations in the same window. Fresh provider ingestion for a new recording requires a valid Ring token and actual provider access; this preparation step does not claim that a new sync occurred.
+Our verified Ring records are from September 28 and September 30, 2026. There is also a September 29 plumber expectation parsed by Bedrock. Do not call old activity today's activity or create duplicate expectations in the same window. Fresh provider ingestion for a new recording requires a valid Ring token and actual provider access; this preparation step does not claim that a new sync occurred.
 
 ## Part 2: sample plumber visit
 
@@ -80,7 +76,7 @@ The default sample mode uses local demo answers. Label this in the recording and
 
 ## Recording and delivery
 
-Follow the current 75 to 100-second assembly plan in SUBMISSION-COPY.md, or the optional 2:45 full-flow script only after its additional provider calls are approved. Trim pauses, not evidence or source labels. Use English narration or subtitles. The rules require a public YouTube or Vimeo video under three minutes and a GitHub repository with judge access. The source can run locally; do not expose this unauthenticated app publicly.
+Review the current 59.3-second edited cut described in SUBMISSION-COPY.md, or the optional 2:45 full-flow script only after its additional provider calls are approved. Trim pauses, not evidence or source labels. Use English narration or subtitles. The rules require a public YouTube or Vimeo video under three minutes and a GitHub repository with judge access. The source can run locally; do not expose this unauthenticated app publicly.
 
 Repository visibility, any public license, upload destination, and final publication still need owner decisions. Organizer clarification is optional. The official FAQ permits Playground demos; the sample segment must remain disclosed. No hardware purchase is required for this preparation path.
 
@@ -231,3 +227,10 @@ Continuous browser playback displayed the updated app caption at5.75s and ended 
 ### Owner approval
 
 Owner approved `data/recordings/around-demo-ring-sparkle.mp4` in conversation: “I'm happy with this version.” Treat this 29.3-second file as the approved sample demo master, with matching `.srt`, `.vtt` and `.json` sidecars. This resolves owner listening review for this version. Keep it unchanged unless further edits are requested. Remaining full-submission evidence and publication steps are separate.
+
+
+## September 30 fresh Ring review
+
+`data/recordings/around-submission-review-v7.mp4` is a separate 59.3-second review. It combines a recorded Playground control still, cropped simulator playback, the recorded successful fresh-sync result, a labeled current saved-record still, and the full approved sample once. Preserve the approved sample and v6. The new event is September 30 at 10:54:33 AM Eastern, `live_view`, source Ring; one device, three events, zero matches.
+
+This edit does not include an unobscured sync click or represent a continuous take. The native password prompt and credential controls are excluded. Audio from the raw takes is omitted; the sample's original compressed audio is retained. Technical checks and owner approval status belong in SUBMISSION-READINESS.md. Do not re-enter a token or repeat provider execution to repair this edit. Publication, upload and submission remain approval gates.

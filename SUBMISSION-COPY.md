@@ -30,34 +30,34 @@ The sample adapter uses the same storage, grouping and matching code as the Ring
 
 ## What we verified
 
-- Around called the official Ring APIs, received one Playground device and two live-view records, stored them, and displayed their timestamps.
+- Around called the official Ring APIs, received one Playground device and three live-view records, stored them, and displayed their timestamps. The September 30 sync added the new 10:54 AM record.
 - Around used Bedrock to parse the original plumber sentence into the correct date and 10:00–13:00 window.
 - A dated question about the stored Ring records selected the correct expectation and cited the live-view request while declining to confirm a visit.
 - The corrected daily briefing used Bedrock and kept yesterday's Ring activity separate from today's expectations.
 - The labeled four-event sample produced one probable visit, a likely plumber match and estimated bounds of 10:41 AM to 11:27 AM.
-- TypeScript, lint, 31 targeted tests, a production build and three browser scenarios pass. Mocked API tests and actual provider results are identified separately. Two September 30 syncs succeeded and added no duplicates. The initial recorded take has a native password-save popup over its result. A later saved-result continuation yielded a clear 19-second review excerpt, and a repaired combined review is available; the latest edit removes the repeated Home walkthrough. The official Playground and unobscured sync footage remain pending. The earlier sync failure's cause remains unresolved.
+- TypeScript, lint, 31 targeted tests, a production build and three browser scenarios pass. Mocked API tests and actual provider results are identified separately. Two September 30 syncs succeeded and added no duplicates. The initial recorded take has a native password-save popup over its result. A later saved-result continuation yielded a clear 19-second review excerpt, and a repaired combined review is available; the latest edit removes the repeated Home walkthrough. September 30 recordings now show Playground simulator playback and a successful fresh-sync result. The native password popup prevents a clean uninterrupted sync-action shot. The earlier sync failure's cause remains unresolved.
 
-The positive two-device visit is verified with sample events only. Classified motion and a positive visit match have not been exercised using live Ring detections. Bedrock has been verified with actual Ring records and, on September 29, with the full positive sample story: expectation parsing, the qualified visit answer and the daily briefing all succeeded in four additional Converse calls. The approved 29.3-second narrated sample video shows saved results. It does not show the original requests or real Ring ingestion. Its typing sequence and decorative microphone are edited visuals; voice input is not implemented. The real Ring recording remains unfinished.
+The positive two-device visit is verified with sample events only. Classified motion and a positive visit match have not been exercised using live Ring detections. Bedrock has been verified with actual Ring records and, on September 29, with the full positive sample story: expectation parsing, the qualified visit answer and the daily briefing all succeeded in four additional Converse calls. The approved 29.3-second narrated sample video shows saved results. It does not show the original requests or real Ring ingestion. Its typing sequence and decorative microphone are edited visuals; voice input is not implemented. The new edited Ring review uses separate recordings and a clearly labeled saved-record still. It does not claim a continuous capture.
 
-## Available local review media
+## Current local review
 
-Current combined review: `data/recordings/around-submission-review-v6.mp4`, 46.1 seconds. It includes a six-second saved Ring evidence card, a 4.9-second sample transition, the full approved 29.3-second sample once with original audio, and a 5.9-second closing disclosure. The repeated Ring Home walkthrough is removed. The sample source file is unchanged. Frame, compressed-audio and continuous-playback checks passed. Official Playground interaction, unobscured sync footage and owner review remain open.
+New review: `data/recordings/around-submission-review-v7.mp4`, 59.3 seconds. Visual, audio-payload and continuous-browser-playback checks passed. Owner review is pending. The original approved sample master and owner-approved v6 are preserved unchanged.
 
-The separate silent Ring excerpt and approved sample master remain available. Earlier combined exports failed and are preserved as diagnostic evidence, not submission media.
-
-## Current assembly plan, approximately 75 to 100 seconds
-
-Record a separate real Ring walkthrough, then append the approved sample master without changing that source file. Keep the combined export local for owner review.
-
-| Segment | Picture and English caption or narration |
+| Time | Evidence shown |
 | --- | --- |
-| Real Ring, 30 to 45 seconds | Official Playground live-view control, then Around's actual Sync Ring activity action and returned result. “Around connects to the official Ring Playground through device discovery and event history.” Keep credentials and identifiers out of the frame. |
-| Evidence, 10 to 15 seconds | Ring source label and dated live-view card, with related moment expanded. “These records are requests to open a live view. They do not confirm motion, a visitor or successful playback.” Use only the dates and result actually captured. |
-| Transition, 5 seconds | “Next: sample activity with previously generated Amazon Bedrock results. The visit events were not received from Ring.” |
-| Approved sample, 29.3 seconds | Append `around-demo-ring-sparkle.mp4`. Preserve its narration, music and visuals. |
-| Closing note, 5 seconds | “Single-home prototype. Timing does not confirm identity. The sample typing and microphone are edited visuals; voice input is not implemented.” |
+| 0–3 | Recorded still of the official Playground Motion live-view control |
+| 3–9 | Actual simulator video playback, cropped to omit API trace and identifiers |
+| 9–14 | Around's recorded successful sync result, from a separate take |
+| 14–20 | Clearly labeled saved-record still: September 30, 10:54 AM live-view request |
+| 20–25 | Explicit transition to sample activity with previously generated Bedrock results |
+| 25–54.3 | Full approved sample once, with its original audio |
+| 54.3–59.3 | Prototype limits, identity uncertainty and edited microphone disclosure |
 
-No fresh Bedrock calls are needed for this plan. The Ring segment must be captured and reviewed before assembly can be called complete. Its Bedrock configuration label is not evidence of inference during the new capture.
+The video is an edited sequence of separate takes and disclosed stills. It does not show an uninterrupted control-to-sync sequence or an unobscured sync click. Fresh official Ring ingestion is independently verified in the application and local database. The returned record is a live-view request, not a classified motion event, visit or expectation match. No Bedrock request was made during the new capture.
+
+The embedded Playground video is “Birds on Feeders” by Michael Black on Vimeo, identified by the Playground as CC BY 4.0 and clipped from the original. This review further crops the picture. Keep that credit visible and include it in the eventual upload description.
+
+No fresh provider calls are needed. Technical verification is recorded in [submission readiness](docs/SUBMISSION-READINESS.md). Raw recordings remain private and are excluded from the source package. Owner approval is required before uploading, publishing or submitting.
 
 ## Optional earlier full-flow script, approximately 2 minutes 45 seconds
 
@@ -146,7 +146,7 @@ Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator,
 | --- | --- |
 | Ring and Bedrock runtime evidence | Verified within the limits above |
 | Source labels and sample rehearsal | Prepared; separate modes and databases |
-| Public English video under three minutes | 29.3-second narrated sample cut approved; real Ring segment, full submission assembly and upload pending |
+| Public English video under three minutes | 59.3-second v7 assembled and technically verified; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
 | GitHub repository and judge access | Local repository only; visibility and publication pending |
 | Public-repository license, if applicable | Owner decision pending |
 | Devpost project URL and submission | Not created or submitted |

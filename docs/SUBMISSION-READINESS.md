@@ -1,6 +1,8 @@
 # Around submission readiness
 
-Checked September 30, 2026, America/New_York. Local preparation is in progress. Nothing has been published, uploaded or submitted.
+Checked September 30, 2026, America/New_York. The new local v7 video and submission copy are prepared for owner review. Nothing has been published, uploaded or submitted.
+
+Current cut: `data/recordings/around-submission-review-v7.mp4`, 59.3 seconds. Official Playground playback and fresh Ring ingestion are verified. The edit uses separate takes and labeled stills. An unobscured sync-click sequence is not included; do not claim continuous capture. The owner-approved sample master and v6 remain unchanged.
 
 Lead owns repository and media edits. The read-only Progress Steward reviews phase transitions. Target outcome: a reviewable source package and a complete real Ring capture, preserving the approved sample master. Next observable capture result: official Playground interaction followed by successful Around sync and dated Ring cards. Budget: one capture pass after private token entry, stop on the first access failure; up to 15 minutes for capture and review. No additional paid provider calls without fresh owner approval.
 
@@ -11,8 +13,8 @@ Lead owns repository and media edits. The read-only Progress Steward reviews pha
 | TypeScript, lint, unit/contract tests | `npm run check` passes; 31 tests after Ring diagnostic repair |
 | Production build | `npm run build` passes |
 | Browser scenarios | `npm run test:e2e` passes; 3 scenarios |
-| Ring data preserved | Read-only SQLite check: one device, two `source=ring` / `live_view` records, two live-view activities, zero matches |
-| Ring event dates | September 28, 2026 at 2:54:58 PM and 2:56:29 PM Eastern |
+| Ring data preserved | Read-only SQLite check after the September 30 fresh sync: one device, three `source=ring` / `live_view` records, three live-view activities, zero matches |
+| Ring event dates | September 28, 2026 at 2:54:58 PM and 2:56:29 PM Eastern; September 30 at 10:54:33 AM Eastern |
 | Approved sample master | 9,589,336 bytes; SHA-256 below; no edits |
 | Source exclusions | `.env.local`, `data/`, recordings, databases, build and test output ignored |
 | Credential-pattern scan | Initial 51 non-ignored source candidates: no AWS access-key, Bedrock bearer-key, JWT-shaped value or private-key matches; this is a bounded check, not a security audit |
@@ -30,7 +32,7 @@ The first browser-suite attempt could not bind port 3100 in the sandbox (`listen
 
 | Segment | What it establishes | What it does not establish |
 | --- | --- | --- |
-| Actual Ring records | Official discovery/history previously succeeded and records remain stored | Classified detections, visitor identity, successful video playback, or new-event ingestion on September 30 |
+| Actual Ring records | Official discovery/history succeeded, including one fresh live-view record ingested September 30 | Classified detections, visitor identity, or successful video playback |
 | Historical Bedrock checks | Actual parsing, question interpretation and constrained answer composition were exercised | Broad reliability or a currently usable credential |
 | Approved 29.3-second sample video | Owner-approved presentation of saved sample activity with previously generated Bedrock results | Recorded request submission, voice input, or real Ring ingestion |
 | Contract/browser tests | Local behavior under fixtures and mocked responses | Live provider availability |
@@ -81,7 +83,7 @@ The [official rules](https://amazonappdev2026.devpost.com/rules), checked Septem
 
 The [FAQ](https://amazonappdev2026.devpost.com/details/faqs) permits the Ring Playground. It permits either a public repository with an open-source license or a private repository shared with the reviewers. For private access, it names `testing@devpost.com`, `chris-trag`, `knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, and `emersonsklar`; invitations need acceptance and expire after seven days. Recheck access near submission. No invitation has been sent.
 
-Pending: owner visibility/license choice, GitHub destination, official Playground interaction and unobscured sync footage, owner review of the repaired combined export, upload destination, Devpost entry and final submission approval. A saved-result Ring review excerpt is available. The judge guide provides free local sample evaluation; live-provider judging access remains to be arranged without distributing owner credentials. Do not describe this as completed judge access.
+Pending: owner review of v7, visibility/license choice, GitHub destination, upload destination, Devpost entry and final submission approval. v7 includes official Playground playback and a fresh-sync result. It does not include an unobscured sync click. The judge guide provides free local sample evaluation; live-provider judging access remains to be arranged without distributing owner credentials. Do not describe this as completed judge access.
 
 Prepared materials: [submission copy](../SUBMISSION-COPY.md), [judge guide](JUDGE-GUIDE.md), [runbook](DEMO-RUNBOOK.md), [product feedback](../PRODUCT-FEEDBACK.md), and [friction log](../FRICTION-LOG.md). Licensing, collaborator invitations, publishing, uploading and submitting remain separate owner actions or approval gates.
 
@@ -95,3 +97,24 @@ September 30 editorial correction: owner reported the combined cut felt like the
 
 
 Owner approved the 46.1-second v6 local edit on September 30: “ok looks good.” Preserve `around-submission-review-v6.mp4` and the original approved sample master. This closes review of the current edit only. The actual Playground-to-Around capture, repository visibility/access decisions, publishing, upload and final submission remain separate pending work. No new paid-call authority is implied.
+
+
+### September 30 fresh ingestion verified, recording review pending
+
+One authorized Around sync following the official Playground Motion control returned “1 moments received and grouped.” Native Chrome showed the new September 30, 10:54 AM live-view card and expanded explanation. Read-only SQLite confirmed one device, three Ring live-view events, three activities and zero matches. The new event timestamp is `2026-09-30T14:54:33.078Z`. Receipt: `data/recordings/ring-evidence/fresh-sync-20260930.json`. This closes the fresh-ingestion runtime check. The returned event is a live-view request, despite the Playground control being labeled Motion; no classified detection or visitor is established.
+
+Owner was asked to stop and save the Around take. Saved-file framing, privacy and playback review are pending, so the complete video gate remains open. No Bedrock call was made. Preserve the approved sample and v6 review unchanged. Next observable result: reviewed clean excerpts from the separate Playground and Around recordings, within one bounded local review pass. Lead owns media and documentation; Steward reviews the phase transition. No further Ring request is planned.
+
+
+Latest Around recording located on Desktop after owner reported it stopped unexpectedly: `Screen Recording 2026-09-30 at 11.04.18 AM.mov` (filename uses a narrow space before AM). Preserved identical private copy `data/recordings/private/around-fresh-sync-2026-09-30.mov`, SHA-256 `147dd453a70c3dc002b867f7282fe7d19a1b5a5fed3bcc28908801916ec3981a`. It decodes, duration 332.59 seconds, 2440 by 1568, one unreviewed audio track. Twelve sampled frames include initial masked credential controls and a native password prompt, then an unobscured “1 moments received and grouped” result with Ring source labeling. Tail remains on the success view; the new dated card was not found in these samples. Stop cause is unknown. The take is preserved, with usable result imagery identified, but it is not fully privacy-cleared or a completed edited walkthrough. No additional provider request or recording was started.
+
+
+### New v7 edit prepared for owner review
+
+`around-submission-review-v7.mp4` is 59.3 seconds, 970 by 920, one H.264 configuration. SHA-256: `9a750851cb0e6ecf8931dd662cf2c7d3b8449176ef8e97705abed639d12a5da6`. It includes a recorded-control still, six seconds of actual simulator playback, five seconds of the recorded successful fresh-sync result, a labeled saved-record still, a sample disclosure, the entire approved sample once and a closing note. Source intervals and crop geometry are in `scripts/media/assemble-fresh-ring-review.swift`; the adjacent local JSON records edit provenance.
+
+Twenty-five decoded frames cover all cuts and each retained second of Ring footage. They show no API trace, device identifiers, credential controls or native password prompt. This is review of retained intervals, not clearance of raw takes. The sample retains all 1,758 frames and the 56 original compressed audio blocks. Audio payload SHA-256 matches `4035a0861de909736919a3f02d61e861402fccb09966496839269672ecb673a8`; the MP4 edit list confirms a 25-second offset and 29.3-second audio duration. Raw take audio is omitted. Both approved source hashes remain unchanged.
+
+The Progress Steward confirmed the claims distinguish simulator playback, live-view ingestion and sample visits. Fresh-ingestion runtime verification is complete. An unobscured click-to-result capture remains absent and is not implied by the edited result. No application code changed and no provider requests were made during editing; the previously passed 31 tests, three browser scenarios and build remain the applicable code verification. Owner approval of v7 is pending.
+
+Continuous browser playback of v7 reached `ended=true`, `currentTime=59.3`, `error=null`, unmuted. The earlier playback check paused at 18.857 seconds after another browser tab was inspected; a fresh uninterrupted check then completed. This is technical playback verification, not a new audible quality review.
