@@ -12,7 +12,7 @@ Latest capture: the diagnostic sync and a subsequent recorded sync both succeede
 
 Saved-result continuation completed without a provider request. Review excerpt: `data/recordings/around-ring-saved-results-review.mp4`, 19 seconds, silent, with explicit evidence captions. It shows the existing successful sync status and September 28 records. The source MOV and approved sample master are preserved. Playback reached the end without a reported error.
 
-Current combined review: `data/recordings/around-submission-review-v5.mp4`, 59.2 seconds. Separate decoding and one encoder resolved the earlier white sample render; a one-frame closing flash was removed. The full approved sample occupies seconds 24–53.3. Its compressed audio is identical and correctly offset, and the source master remains unchanged. Boundary frames and continuous browser playback passed. Earlier failed exports remain preserved.
+Current combined review: `data/recordings/around-submission-review-v6.mp4`, 46.1 seconds. The repeated Ring Home walkthrough is removed; the opening is a six-second dated evidence card. Separate decoding and one encoder resolved the earlier white sample render; a one-frame closing flash was removed. The full approved sample appears once at seconds 10.9–40.2. Its compressed audio is identical and correctly offset, and the source master remains unchanged. Boundary frames and continuous browser playback passed. Earlier failed exports remain preserved.
 
 This is an edited saved-results review with a visible sample transition. Official Playground interaction and an unobscured sync recording remain pending. No provider call is needed to review this file. The closing card keeps the missing footage explicit.
 
