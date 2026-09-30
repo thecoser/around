@@ -1,6 +1,6 @@
 # Around submission readiness
 
-Checked September 29, 2026, America/New_York. Local preparation is in progress. Nothing has been published, uploaded or submitted.
+Checked September 30, 2026, America/New_York. Local preparation is in progress. Nothing has been published, uploaded or submitted.
 
 Lead owns repository and media edits. The read-only Progress Steward reviews phase transitions. Current outcome: a reviewable source package and a real Ring capture, preserving the approved sample master. Next observable capture result: official Playground interaction followed by successful Around sync and dated Ring cards. Budget: one capture pass after private token entry, stop on the first access failure; up to 15 minutes for capture and review. No additional paid provider calls without fresh owner approval.
 
@@ -8,7 +8,7 @@ Lead owns repository and media edits. The read-only Progress Steward reviews pha
 
 | Check | Evidence |
 | --- | --- |
-| TypeScript, lint, unit/contract tests | `npm run check` passes; 28 tests |
+| TypeScript, lint, unit/contract tests | `npm run check` passes; 31 tests after Ring diagnostic repair |
 | Production build | `npm run build` passes |
 | Browser scenarios | `npm run test:e2e` passes; 3 scenarios |
 | Ring data preserved | Read-only SQLite check: one device, two `source=ring` / `live_view` records, two live-view activities, zero matches |
@@ -45,7 +45,13 @@ Current blocker: one submitted Ring sync returned “The request could not be co
 
 The owner stopped recording and confirmed the Desktop location. Original preserved; identical copy saved as `data/recordings/around-ring-sync-failed-2026-09-29.mov`. SHA-256: `efbac205808e0a8d45d3548033f03803b6c32699817dd22ab4f0f3f680376693`. Duration 194.788 seconds, 602 by 734 pixels, one audio track. Eight decoded frames were inspected: correct app panel and source label, populated masked token field, cleared field, then the generic error. No unmasked token appeared in those inspected frames. Audio was not reviewed. This is failure evidence, not submission-ready footage; masked credential controls and long pauses should not be published. Media inspection details are under `data/recordings/ring-failed-review/`.
 
-The approved sample master's hash remains unchanged. A failed attempt does not complete the real Ring walkthrough. Next materially different test: expose only an allowlisted failure category at the existing server boundary, validate it with synthetic errors, and use that category to distinguish transport/timeout from local runtime failure before planning a new capture. That diagnostic change and any further sync have not been performed. Owner token entry would be required again; do not reuse or reconstruct the cleared token.
+The approved sample master's hash remains unchanged. A failed attempt does not complete the real Ring walkthrough.
+
+September 30 diagnostic preparation: owner requested diagnosis and completion. Lead implemented fixed Ring error stages and allowlisted categories for discovery, history, response validation and local storage. Raw error messages, payloads, URLs and credentials are neither returned nor logged. Invalid HTTP-header characters are rejected before fetch. Existing provider HTTP statuses and deliberate application errors remain visible. No retry, fixture fallback, matching change or product feature was added.
+
+Validation passed: TypeScript, lint, 31 tests, production build, and three browser scenarios. New tests cover secret redaction, fetch and response-body failures, no retry after rejection, no partial history ingestion, and SQLite rollback after an event insert. A synthetic invalid-header request to the restarted production route returned the intended local HTTP 400 without contacting Ring. A separate credential-free TLS handshake to the Ring API host succeeded in 81 ms. It does not establish the app's authorization or explain the original exception.
+
+The diagnostic build is running on the same localhost:3000 address. The actual Codex in-app browser page was refreshed with both credential fields empty. Owner private entry of a fresh temporary Ring token is pending for one bounded diagnostic sync, with recording off and no Bedrock call. Stop on its first failure and preserve its category before any new capture. The read-only Steward reviewed the changed files and recommended proceeding within that boundary.
 
 Capture the simulator control and actual sync first. Keep the Ring source label and actual event dates visible. Show the returned result and expanded live-view record. A live-view request remains a request even if the simulator player fails. Keep credential setup off camera. Stop before any Tell/Ask action in Bedrock mode unless additional calls have been approved.
 

@@ -31,7 +31,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The Chromium install is needed only when the matching browser is absent. Tests use isolated databases, synthetic events and mocked provider transport. They do not prove current provider access. The checked September 29 baseline has 28 targeted tests and three browser scenarios.
+The Chromium install is needed only when the matching browser is absent. Tests use isolated databases, synthetic events and mocked provider transport. They do not prove current provider access. The checked September 30 baseline has 31 targeted tests and three browser scenarios.
 
 ## Exercise the actual integrations
 

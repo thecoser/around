@@ -35,7 +35,7 @@ The sample adapter uses the same storage, grouping and matching code as the Ring
 - A dated question about the stored Ring records selected the correct expectation and cited the live-view request while declining to confirm a visit.
 - The corrected daily briefing used Bedrock and kept yesterday's Ring activity separate from today's expectations.
 - The labeled four-event sample produced one probable visit, a likely plumber match and estimated bounds of 10:41 AM to 11:27 AM.
-- TypeScript, lint, 28 targeted tests, a production build and three browser scenarios pass. Mocked API tests and actual provider results are identified separately.
+- TypeScript, lint, 31 targeted tests, a production build and three browser scenarios pass. Mocked API tests and actual provider results are identified separately. The latest recording attempt failed during Ring sync; its cause remains under diagnosis and the full video is not ready.
 
 The positive two-device visit is verified with sample events only. Classified motion and a positive visit match have not been exercised using live Ring detections. Bedrock has been verified with actual Ring records and, on September 29, with the full positive sample story: expectation parsing, the qualified visit answer and the daily briefing all succeeded in four additional Converse calls. The approved 29.3-second narrated sample video shows saved results. It does not show the original requests or real Ring ingestion. Its typing sequence and decorative microphone are edited visuals; voice input is not implemented. The real Ring recording remains unfinished.
 

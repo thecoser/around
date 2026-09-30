@@ -2,6 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 import { AppError, config, required } from "../config";
 import type { EventType, RingDevice, RingEvent } from "../types";
+import { safeRingError } from "./errors";
 
 const object = z.record(z.string(), z.unknown());
 const resource = z.object({ id: z.string().min(1), type: z.string(), attributes: object, relationships: object.optional() });
@@ -19,9 +20,19 @@ async function pages(path: string, token: string, fetcher: typeof fetch = fetch)
   for (let count = 0; next; count++) {
     if (count >= 20 || seen.has(next)) throw new AppError("Ring history exceeded the bounded sync limit. No partial sync was saved.", 502);
     seen.add(next);
-    const response = await fetcher(ringUrl(next), { headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.api+json" }, signal: AbortSignal.timeout(12_000), redirect: "error", cache: "no-store" });
-    if (!response.ok) throw new AppError(`Ring returned HTTP ${response.status}. Check access, token expiry, and API setup. No fixture fallback was used.`, 502);
-    const page = pageSchema.parse(await response.json());
+    const headers = { Authorization: `Bearer ${token}`, Accept: "application/vnd.api+json" };
+    // Validate locally before fetch so a malformed pasted value is distinguishable
+    // from a provider rejection. Keep the value out of all diagnostics.
+    try { new Headers(headers); }
+    catch { throw new AppError("The Ring token contains characters that cannot be sent in an HTTP header. Paste only the token. No request was sent.", 400); }
+    let page: z.infer<typeof pageSchema>;
+    try {
+      const response = await fetcher(ringUrl(next), { headers, signal: AbortSignal.timeout(12_000), redirect: "error", cache: "no-store" });
+      if (!response.ok) throw new AppError(`Ring returned HTTP ${response.status}. Check access, token expiry, and API setup. No fixture fallback was used.`, 502);
+      page = pageSchema.parse(await response.json());
+    } catch (error) {
+      throw safeRingError(error, path === "/v1/devices" ? "device discovery" : "event history");
+    }
     results.push(...page.data);
     // The reference explicitly permits empty pages with links.next. Stop on empty.
     next = page.data.length ? page.links?.next : null;

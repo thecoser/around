@@ -2,6 +2,14 @@
 
 Record problems when observed. No reconstructed provider experiences.
 
+## 2026-09-30: Ring sync diagnostic repair
+
+The prior recording's generic HTTP 500 remains unexplained. A token-free host TLS handshake to api.amazonvision.com verified successfully in 81 ms. This rules out a TLS failure in that separate probe only; no provider HTTP request was sent.
+
+The Ring adapter now returns fixed failure stages and allowlisted categories for fetch and response-body exceptions. The sync route distinguishes response validation from local storage failures. Invalid header characters are rejected before fetch. Raw provider errors, payloads and credentials stay out of responses and logs. Existing explicit HTTP errors remain intact; no retries or fixture fallback were added.
+
+TypeScript, lint, all 31 tests, production build and all three browser scenarios passed. Synthetic cases cover interrupted bodies, late-page failure without ingestion, redaction, and a real SQLite rollback after an insert. A synthetic malformed-header POST to the restarted production route returned HTTP 400 before any Ring transport. The server and actual Codex app page were prepared for one fresh-token diagnostic sync. Owner entry is pending; no new actual Ring or paid inference request has occurred during this diagnostic preparation.
+
 ## 2026-09-29: submission readiness recheck
 
 `npm run check` passed TypeScript, lint and all 28 targeted tests. Production build passed. The first browser-suite run stopped before assertions because sandbox networking rejected binding 127.0.0.1:3100 with `listen EPERM`. The unchanged suite then passed all three scenarios with approved local-server execution. This was an execution restriction, not a new app failure or provider result.

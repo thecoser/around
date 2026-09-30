@@ -2,6 +2,8 @@
 
 Current assessment through 2026-09-29. Actual Ring ingestion and all three Bedrock language roles have been exercised in Around. The complete classified plumber visit uses clearly labeled sample events. Dated onboarding checkpoints below preserve earlier failures and decisions; they are not current blockers.
 
+September 30 follow-up: a new recorded Ring sync returned an unclassified application error and preserved the existing records. Its cause is unresolved. DNS and a separate token-free host TLS probe succeeded, which does not prove authenticated API availability. Safe diagnostic categories are now locally verified, with 31 tests and three browser scenarios passing; a fresh-token diagnostic sync is pending. This does not erase the earlier successful integration evidence or establish a Ring service defect.
+
 ## Ring developer documentation and Partner API
 
 - Used for: device discovery, historical event ingestion, signed motion/doorbell notifications, and mapping two devices to a probable home visit.
