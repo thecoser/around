@@ -41,17 +41,20 @@ The positive two-device visit is verified with sample events only. Classified mo
 
 ## Current local review
 
-New review: `data/recordings/around-submission-review-v7.mp4`, 59.3 seconds. Visual, audio-payload and continuous-browser-playback checks passed. Owner review is pending. The original approved sample master and owner-approved v6 are preserved unchanged.
+New review: `data/recordings/around-submission-review-v8.mp4`, 83.3 seconds. The owner approved the three-section framing and simplified sample explanation. Review of the rendered cut is pending. The approved sample master, owner-approved v6 and previous v7 remain unchanged.
 
-| Time | Evidence shown |
+The video addresses hackathon judges: establish the official simulator source, verify real Ring integration, then demonstrate homeowner value with a clearly disclosed sample.
+
+| Time | Section and purpose |
 | --- | --- |
-| 0–3 | Recorded still of the official Playground Motion live-view control |
-| 3–9 | Actual simulator video playback, cropped to omit API trace and identifiers |
-| 9–14 | Around's recorded successful sync result, from a separate take |
-| 14–20 | Clearly labeled saved-record still: September 30, 10:54 AM live-view request |
-| 20–25 | Explicit transition to sample activity with previously generated Bedrock results |
-| 25–54.3 | Full approved sample once, with its original audio |
-| 54.3–59.3 | Prototype limits, identity uncertainty and edited microphone disclosure |
+| 0–8 | Opening: Around connects expected visits with recorded activity; explains the viewing sequence |
+| 8–22 | 1. Ring integration: the official Playground. Purpose card, recorded control still and actual simulator playback |
+| 22–39 | 2. Integration proof: Ring activity in Around. Purpose card, recorded successful result and labeled saved-record still |
+| 39–49 | 3. Product demo: was the expected visit likely? Uses the approved plain-language sample explanation |
+| 49–78.3 | Full approved sample once, with its original audio |
+| 78.3–83.3 | Prototype limits and edited microphone disclosure |
+
+Approved sample setup: “Next, see how Around answers ‘Did the plumber come?’ This example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.”
 
 The video is an edited sequence of separate takes and disclosed stills. It does not show an uninterrupted control-to-sync sequence or an unobscured sync click. Fresh official Ring ingestion is independently verified in the application and local database. The returned record is a live-view request, not a classified motion event, visit or expectation match. No Bedrock request was made during the new capture.
 
@@ -146,7 +149,7 @@ Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator,
 | --- | --- |
 | Ring and Bedrock runtime evidence | Verified within the limits above |
 | Source labels and sample rehearsal | Prepared; separate modes and databases |
-| Public English video under three minutes | 59.3-second v7 assembled and technically verified; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
+| Public English video under three minutes | 83.3-second v8 assembled; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
 | GitHub repository and judge access | Local repository only; visibility and publication pending |
 | Public-repository license, if applicable | Owner decision pending |
 | Devpost project URL and submission | Not created or submitted |

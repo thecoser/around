@@ -367,3 +367,6 @@ Latest Around recording located on Desktop after owner reported it stopped unexp
 
 
 September 30 local edit recovered usable evidence: retained Playground source30–36s visibly plays the bird simulation, cropped below the identifier watermark and left of the trace. Around source60–65s shows the successful fresh-sync result. A separately captured saved-record still supplies the new dated card and is labeled as a still. v7 is an edited review, not an uninterrupted control-to-sync take. No repeat provider call was needed. Both approved videos remain byte-identical. All retained Ring seconds and cut boundaries were visually checked; sample audio payloads match. No claim of full raw-take privacy clearance is made.
+
+
+September 30 editorial follow-up: owner found v7's three parts difficult to follow for a first-time viewer. The prior titles described actions before explaining the audience and purpose. Owner approved judge-oriented sections and the simpler “Did the plumber come?” sample explanation. v8 uses three numbered purpose cards and opening orientation. Existing raw takes, approved videos and v7 are preserved. This is a presentation revision, with no new provider execution or changed evidence claims.
