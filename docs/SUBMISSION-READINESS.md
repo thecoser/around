@@ -1,8 +1,8 @@
 # Around submission readiness
 
-Checked September 30, 2026, America/New_York. The new local v8 video and submission copy are prepared for owner review. Nothing has been published, uploaded or submitted.
+Checked September 30, 2026, America/New_York. The new local v9 video and submission copy are prepared for owner review. Nothing has been published, uploaded or submitted.
 
-Current cut: `data/recordings/around-submission-review-v8.mp4`, 83.3 seconds, with three numbered purpose cards. Official Playground playback and fresh Ring ingestion are verified. The edit uses separate takes and labeled stills. An unobscured sync-click sequence is not included; do not claim continuous capture. The owner-approved sample master and v6 remain unchanged.
+Current cut: `data/recordings/around-submission-review-v9.mp4`, 83.3 seconds, with three numbered purpose cards. Official Playground playback and fresh Ring ingestion are verified. The edit uses separate takes and labeled stills. An unobscured sync-click sequence is not included; do not claim continuous capture. The owner-approved sample master and v6 remain unchanged.
 
 Lead owns repository and media edits. The read-only Progress Steward reviews phase transitions. Target outcome: a reviewable source package and a complete real Ring capture, preserving the approved sample master. Next observable capture result: official Playground interaction followed by successful Around sync and dated Ring cards. Budget: one capture pass after private token entry, stop on the first access failure; up to 15 minutes for capture and review. No additional paid provider calls without fresh owner approval.
 
@@ -83,7 +83,7 @@ The [official rules](https://amazonappdev2026.devpost.com/rules), checked Septem
 
 The [FAQ](https://amazonappdev2026.devpost.com/details/faqs) permits the Ring Playground. It permits either a public repository with an open-source license or a private repository shared with the reviewers. For private access, it names `testing@devpost.com`, `chris-trag`, `knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, and `emersonsklar`; invitations need acceptance and expire after seven days. Recheck access near submission. No invitation has been sent.
 
-Pending: owner review of v8, visibility/license choice, GitHub destination, upload destination, Devpost entry and final submission approval. v8 includes official Playground playback and a fresh-sync result. It does not include an unobscured sync click. The judge guide provides free local sample evaluation; live-provider judging access remains to be arranged without distributing owner credentials. Do not describe this as completed judge access.
+Pending: owner review of v9, visibility/license choice, GitHub destination, upload destination, Devpost entry and final submission approval. v9 includes official Playground playback and a fresh-sync result. It does not include an unobscured sync click. The judge guide provides free local sample evaluation; live-provider judging access remains to be arranged without distributing owner credentials. Do not describe this as completed judge access.
 
 Prepared materials: [submission copy](../SUBMISSION-COPY.md), [judge guide](JUDGE-GUIDE.md), [runbook](DEMO-RUNBOOK.md), [product feedback](../PRODUCT-FEEDBACK.md), and [friction log](../FRICTION-LOG.md). Licensing, collaborator invitations, publishing, uploading and submitting remain separate owner actions or approval gates.
 
@@ -127,3 +127,11 @@ Owner clarified that hackathon judges need to know why each section is included,
 File: `data/recordings/around-submission-review-v8.mp4`, 83.3 seconds, SHA-256 `ce1705f7ca91e507cf40ae0e0cd20110e9bb51a60977079c1062a43f593e5f17`. Sample placement: 49–78.3 seconds. The renderer preserves all 1,758 sample frames and the original 56 compressed audio blocks; the MP4 edit list confirms a 49-second offset and 29.3-second duration. Approved sample, v6 and v7 file hashes are unchanged. Card readability and cut frames were inspected. The read-only Steward found the three purposes and evidence boundaries clear. Owner approval covers wording; approval of the rendered v8 remains pending. No new provider call, feature, upload or publication occurred.
 
 The uninterrupted v8 browser check reached `ended=true`, `currentTime=83.3`, `error=null`, unmuted. This is technical playback verification, not a new audible quality review.
+
+### September 30 presentation cleanup, v9
+
+Owner requested the established logo and “Spatial Intelligence for your home” tagline on the opening card, “expected activities” wording, a rounded 83-second duration label and removal of redundant editing notes. v9 makes these changes, uses native player controls, and keeps source labels, the sample explanation and a concise footage credit. The three stored Ring records remain documented internally; the video now identifies the single new record it shows. No new provider calls or application features.
+
+File: `data/recordings/around-submission-review-v9.mp4`, 83.3 seconds, SHA-256 `cd3051db879e727ab08851a57b3174b45f3f3c145f6c25872e3baeccce969a91`. All 1,758 sample frames remain at seconds 49–78.3. The original 56 compressed audio blocks match, and the MP4 edit list confirms their position and duration. Sample master and v6, v7, v8 hashes are unchanged. Revised cards and cuts were visually inspected. The read-only Steward found no material evidence or scope issue in the captions. Lead verified that the review page contains no custom play button or repeated footer. Owner review of v9 is pending.
+
+Continuous v9 browser playback, started through the native player, reached `ended=true`, `currentTime=83.3`, `error=null`, unmuted. The page was then reset to its opening logo poster for owner review. This verifies technical playback, not a new audible quality review.

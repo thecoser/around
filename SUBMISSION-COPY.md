@@ -41,13 +41,13 @@ The positive two-device visit is verified with sample events only. Classified mo
 
 ## Current local review
 
-New review: `data/recordings/around-submission-review-v8.mp4`, 83.3 seconds. The owner approved the three-section framing and simplified sample explanation. Review of the rendered cut is pending. The approved sample master, owner-approved v6 and previous v7 remain unchanged.
+New review: `data/recordings/around-submission-review-v9.mp4`, 83.3 seconds (displayed as 83 seconds). The owner approved the three-section framing and simplified sample explanation, then requested a cleaner presentation and the Around logo. Review of the rendered v9 is pending. The approved sample master, owner-approved v6 and previous cuts remain unchanged.
 
 The video addresses hackathon judges: establish the official simulator source, verify real Ring integration, then demonstrate homeowner value with a clearly disclosed sample.
 
 | Time | Section and purpose |
 | --- | --- |
-| 0–8 | Opening: Around connects expected visits with recorded activity; explains the viewing sequence |
+| 0–8 | Opening: Around connects expected activities with recorded activity; explains the viewing sequence |
 | 8–22 | 1. Ring integration: the official Playground. Purpose card, recorded control still and actual simulator playback |
 | 22–39 | 2. Integration proof: Ring activity in Around. Purpose card, recorded successful result and labeled saved-record still |
 | 39–49 | 3. Product demo: was the expected visit likely? Uses the approved plain-language sample explanation |
@@ -149,7 +149,7 @@ Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator,
 | --- | --- |
 | Ring and Bedrock runtime evidence | Verified within the limits above |
 | Source labels and sample rehearsal | Prepared; separate modes and databases |
-| Public English video under three minutes | 83.3-second v8 assembled; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
+| Public English video under three minutes | 83.3-second v9 assembled; owner review and public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
 | GitHub repository and judge access | Local repository only; visibility and publication pending |
 | Public-repository license, if applicable | Owner decision pending |
 | Devpost project URL and submission | Not created or submitted |

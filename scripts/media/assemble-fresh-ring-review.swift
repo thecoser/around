@@ -15,16 +15,39 @@ func text(_ c:CGContext,_ value:String,_ y:CGFloat,_ size:CGFloat,_ height:CGFlo
  let fs=CTFramesetterCreateWithAttributedString(a);let path=CGPath(rect:CGRect(x:44,y:CGFloat(H)-y-height,width:882,height:height),transform:nil)
  CTFrameDraw(CTFramesetterCreateFrame(fs,CFRange(location:0,length:0),path,nil),c)
 }
+// Established Around wordmark and Radio geometry, reused from render-logo-intro.swift.
+func logo(_ c:CGContext) {
+ let orange=CGColor(red:225/255,green:115/255,blue:66/255,alpha:1)
+ let ink=CGColor(red:53/255,green:43/255,blue:38/255,alpha:1)
+ func line(_ value:String,_ size:CGFloat,_ color:CGColor,_ bold:Bool=false,_ kern:CGFloat=0)->CTLine {
+  CTLineCreateWithAttributedString(NSAttributedString(string:value,attributes:[NSAttributedString.Key(kCTFontAttributeName as String):CTFontCreateWithName((bold ? "Arial-BoldMT" : "ArialMT") as CFString,size,nil),NSAttributedString.Key(kCTForegroundColorAttributeName as String):color,NSAttributedString.Key(kCTKernAttributeName as String):kern]))
+ }
+ let word=line("around",99,ink,true,-5.7),dot=line(".",99,orange,true,-5.7)
+ let ww=CTLineGetTypographicBounds(word,nil,nil,nil),dw=CTLineGetTypographicBounds(dot,nil,nil,nil)
+ let mx=(970-(108+27+ww+dw-3))/2+54,cy=775.0
+ c.textPosition=CGPoint(x:mx+81,y:cy-32);CTLineDraw(word,c)
+ c.textPosition=CGPoint(x:mx+81+ww-3,y:cy-32);CTLineDraw(dot,c)
+ c.saveGState();c.translateBy(x:mx,y:cy)
+ c.setFillColor(orange);c.fillEllipse(in:CGRect(x:-54,y:-54,width:108,height:108))
+ c.scaleBy(x:75/24,y:75/24);c.setStrokeColor(CGColor(red:45/255,green:32/255,blue:27/255,alpha:1));c.setLineWidth(2);c.setLineCap(.round)
+ for r in [6.0,10.0] {
+  c.beginPath();c.addArc(center:.zero,radius:r,startAngle:-.pi/4,endAngle:.pi/4,clockwise:false);c.strokePath()
+  c.beginPath();c.addArc(center:.zero,radius:r,startAngle:3 * .pi/4,endAngle:5 * .pi/4,clockwise:false);c.strokePath()
+ }
+ c.strokeEllipse(in:CGRect(x:-2,y:-2,width:4,height:4));c.restoreGState()
+ let tagline=line("Spatial Intelligence for your home",26,ink)
+ c.textPosition=CGPoint(x:(970-CTLineGetTypographicBounds(tagline,nil,nil,nil))/2,y:660);CTLineDraw(tagline,c)
+}
 func still(_ path:String)->CGImage {CGImageSourceCreateImageAtIndex(CGImageSourceCreateWithURL(dir.appendingPathComponent(path) as CFURL,nil)!,0,nil)!}
-func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:String)->CVPixelBuffer {
+func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:String,branded:Bool=false)->CVPixelBuffer {
  var b:CVPixelBuffer?;CVPixelBufferCreate(nil,W,H,kCVPixelFormatType_32BGRA,[kCVPixelBufferCGImageCompatibilityKey:true,kCVPixelBufferCGBitmapContextCompatibilityKey:true] as CFDictionary,&b)
  CVPixelBufferLockBaseAddress(b!,[]);defer{CVPixelBufferUnlockBaseAddress(b!,[])}
  let c=CGContext(data:CVPixelBufferGetBaseAddress(b!),width:W,height:H,bitsPerComponent:8,bytesPerRow:CVPixelBufferGetBytesPerRow(b!),space:CGColorSpaceCreateDeviceRGB(),bitmapInfo:CGImageAlphaInfo.premultipliedFirst.rawValue|CGBitmapInfo.byteOrder32Little.rawValue)!
  c.setFillColor(CGColor(red:1,green:0.98,blue:0.96,alpha:1));c.fill(CGRect(x:0,y:0,width:W,height:H))
  c.setFillColor(CGColor(red:0.88,green:0.45,blue:0.26,alpha:1));c.fill(CGRect(x:44,y:CGFloat(H)-32,width:64,height:5))
  if img == nil {
-  text(c,title,90,44,150)
-  text(c,subtitle,300,32,340)
+  if branded {logo(c)} else {text(c,title,90,44,150)}
+  text(c,subtitle,branded ? 330 : 300,32,340)
  } else {
   text(c,title,55,38,105);text(c,subtitle,165,25,125)
  }
@@ -33,7 +56,7 @@ func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:Stri
  return b!
 }
 Task {do {
- let out=dir.appendingPathComponent("around-submission-review-v8-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v8.mp4")
+ let out=dir.appendingPathComponent("around-submission-review-v9-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v9.mp4")
  guard !FileManager.default.fileExists(atPath:out.path),!FileManager.default.fileExists(atPath:final.path) else {fatalError("Preserving existing outputs")}
  let writer=try AVAssetWriter(outputURL:out,fileType:.mp4)
  let input=AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:W,AVVideoHeightKey:H,AVVideoCompressionPropertiesKey:[AVVideoAverageBitRateKey:10_000_000,AVVideoExpectedSourceFrameRateKey:60,AVVideoMaxKeyFrameIntervalKey:60]])
@@ -41,18 +64,18 @@ Task {do {
  var frameIndex:Int64=0
  func append(_ b:CVPixelBuffer) async throws {while !input.isReadyForMoreMediaData {try await Task.sleep(nanoseconds:1_000_000)};guard adaptor.append(b,withPresentationTime:CMTime(value:frameIndex,timescale:60)) else {throw writer.error!};frameIndex+=1}
  func hold(_ b:CVPixelBuffer,_ seconds:Int) async throws {for _ in 0..<(seconds*60) {try await append(b)}}
- try await hold(buffer(nil,crop:nil,title:"Around",subtitle:"Around helps homeowners connect expected visits with recorded activity.\n\nFirst, we show the Ring integration. Then, we demonstrate the visit experience using labeled sample activity.",footer:"Ring integration • Evidence in Around • Sample visit experience"),8)
+ try await hold(buffer(nil,crop:nil,title:"Around",subtitle:"Around helps homeowners connect expected activities with recorded activity.\n\nFirst, we show the Ring integration. Then, we demonstrate the visit experience using labeled sample activity.",footer:"",branded:true),8)
  try await hold(buffer(nil,crop:nil,title:"1. Ring integration\nThe official Playground",subtitle:"We use Ring’s simulator to exercise the integration without physical hardware.",footer:"This section establishes where the activity comes from."),5)
- try await hold(buffer(still("private/control-crop-review/player-22.png"),crop:nil,title:"1. Ring integration",subtitle:"Motion live-view control\nRecorded September 30, 2026",footer:"Control frame from the recording. In this run, the control opened a live view; the returned record was not a classified motion event."),3)
+ try await hold(buffer(still("private/control-crop-review/player-22.png"),crop:nil,title:"1. Ring integration",subtitle:"Motion live-view control\nRecorded control frame",footer:""),3)
  func clip(_ path:String,_ start:Double,_ seconds:Int,_ crop:CGRect,_ title:String,_ subtitle:String,_ footer:String) async throws {
  let a=AVURLAsset(url:dir.appendingPathComponent(path));let g=AVAssetImageGenerator(asset:a);g.appliesPreferredTrackTransform=true;g.requestedTimeToleranceBefore = .zero;g.requestedTimeToleranceAfter = .zero
  for f in 0..<(seconds*60) {let im=try await g.image(at:tm(start+Double(f)/60));try await append(buffer(im.image,crop:crop,title:title,subtitle:subtitle,footer:footer))}
  }
- try await clip("private/around-playground-trace-2026-09-30.mov",30,6,CGRect(x:160,y:520,width:1040,height:465),"1. Ring integration","Recorded simulator playback\nAPI trace and identifiers cropped out","“Birds on Feeders” by Michael Black on Vimeo, CC BY 4.0. Clipped by the Playground; this edit crops the picture.")
+ try await clip("private/around-playground-trace-2026-09-30.mov",30,6,CGRect(x:160,y:520,width:1040,height:465),"1. Ring integration","Recorded simulator playback","“Birds on Feeders” by Michael Black on Vimeo, CC BY 4.0. Cropped excerpt.")
  print("Playground scenes rendered")
  try await hold(buffer(nil,crop:nil,title:"2. Integration proof\nRing activity in Around",subtitle:"Around receives a new live-view record through the official Ring API and shows what that record can establish.",footer:"This section verifies the connection and how Around treats the evidence."),6)
- try await clip("private/around-fresh-sync-2026-09-30.mov",60,5,CGRect(x:650,y:390,width:1710,height:670),"2. Integration proof","Official device discovery and event history\nSuccessful sync, recorded in a separate take","Pauses and the browser password prompt are omitted. No Bedrock request was made during this capture.")
- try await hold(buffer(still("ring-evidence/fresh-record-still.png"),crop:CGRect(x:215,y:180,width:585,height:270),title:"2. Integration proof",subtitle:"September 30 at 10:54 AM\nSaved record still captured after the recording",footer:"Three actual Ring records are stored. The new record does not establish detected motion, a visitor or an expectation match."),6)
+ try await clip("private/around-fresh-sync-2026-09-30.mov",60,5,CGRect(x:650,y:390,width:1710,height:670),"2. Integration proof","Official device discovery and event history\nSuccessful sync, recorded in a separate take","")
+ try await hold(buffer(still("ring-evidence/fresh-record-still.png"),crop:CGRect(x:215,y:180,width:585,height:270),title:"2. Integration proof",subtitle:"New Ring record: September 30 at 10:54 AM\nSaved record, shown in a still image",footer:""),6)
  try await hold(buffer(nil,crop:nil,title:"3. Product demo\nWas the expected visit likely?",subtitle:"Next, see how Around answers ‘Did the plumber come?’\n\nThis example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.",footer:"This section shows the value to a homeowner."),10)
  let sampleStart=Double(frameIndex)/60
  let master=AVURLAsset(url:dir.appendingPathComponent("around-demo-ring-sparkle.mp4"));let track=try await master.loadTracks(withMediaType:.video)[0]
