@@ -76,7 +76,7 @@ func buffer(_ img:CGImage?,crop:CGRect?,title:String,subtitle:String,footer:Stri
  return b!
 }
 Task {do {
- let out=dir.appendingPathComponent("around-submission-review-v12-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v12.mp4")
+ let out=dir.appendingPathComponent("around-submission-review-v13-video.mp4"),final=dir.appendingPathComponent("around-submission-review-v13.mp4")
  guard !FileManager.default.fileExists(atPath:out.path),!FileManager.default.fileExists(atPath:final.path) else {fatalError("Preserving existing outputs")}
  let writer=try AVAssetWriter(outputURL:out,fileType:.mp4)
  let input=AVAssetWriterInput(mediaType:.video,outputSettings:[AVVideoCodecKey:AVVideoCodecType.h264,AVVideoWidthKey:W,AVVideoHeightKey:H,AVVideoCompressionPropertiesKey:[AVVideoAverageBitRateKey:10_000_000,AVVideoExpectedSourceFrameRateKey:60,AVVideoMaxKeyFrameIntervalKey:60]])
@@ -85,7 +85,7 @@ Task {do {
  func append(_ b:CVPixelBuffer) async throws {while !input.isReadyForMoreMediaData {try await Task.sleep(nanoseconds:1_000_000)};guard adaptor.append(b,withPresentationTime:CMTime(value:frameIndex,timescale:60)) else {throw writer.error!};frameIndex+=1}
  func hold(_ b:CVPixelBuffer,_ seconds:Int) async throws {for _ in 0..<(seconds*60) {try await append(b)}}
  try await hold(buffer(nil,crop:nil,title:"Around",subtitle:"Around helps homeowners connect expected activities with recorded activity.\n\nFirst, we demonstrate the visit experience using labeled sample activity. Then, we show the Ring integration.",footer:"",branded:true),8)
- try await hold(buffer(nil,crop:nil,title:"1. Product demo",subtitle:"Next, see how Around answers ‘Did the plumber come?’\n\nThis example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.",footer:"This section shows the value to a homeowner."),10)
+ try await hold(buffer(nil,crop:nil,title:"1. Product demo",subtitle:"See how Around answers ‘Did the plumber come?’\n\nThis example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.",footer:"This section shows the value to a homeowner."),10)
  let sampleStart=Double(frameIndex)/60
  let master=AVURLAsset(url:dir.appendingPathComponent("around-demo-ring-sparkle.mp4"));let track=try await master.loadTracks(withMediaType:.video)[0]
  let reader=try AVAssetReader(asset:master);let output=AVAssetReaderTrackOutput(track:track,outputSettings:[kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32BGRA]);reader.add(output);reader.startReading();var sampleFrames=0

@@ -1,8 +1,8 @@
 # Around submission readiness
 
-Checked September 30, 2026, America/New_York. The new local v12 video and submission copy are prepared for owner review. Nothing has been published, uploaded or submitted.
+Checked September 30, 2026, America/New_York. The local v13 video and submission copy include the owner’s final wording correction. Nothing has been published, uploaded or submitted.
 
-Current cut: `data/recordings/around-submission-review-v12.mp4`, 118.3 seconds, with the labeled sample demo first, then the Ring walkthrough and integration proof. Official Playground playback and fresh Ring ingestion are verified. The edit uses separate takes and labeled stills. An unobscured sync-click sequence is not included; do not claim continuous capture. The owner-approved sample master and v6 remain unchanged.
+Current cut: `data/recordings/around-submission-review-v13.mp4`, 118.3 seconds, with the labeled sample demo first, then the Ring walkthrough and integration proof. Official Playground playback and fresh Ring ingestion are verified. The edit uses separate takes and labeled stills. An unobscured sync-click sequence is not included; do not claim continuous capture. The owner-approved sample master and v6 remain unchanged.
 
 Lead owns repository and media edits. The read-only Progress Steward reviews phase transitions. Target outcome: a reviewable source package and a complete real Ring capture, preserving the approved sample master. Next observable capture result: official Playground interaction followed by successful Around sync and dated Ring cards. Budget: one capture pass after private token entry, stop on the first access failure; up to 15 minutes for capture and review. No additional paid provider calls without fresh owner approval.
 
@@ -83,7 +83,7 @@ The [official rules](https://amazonappdev2026.devpost.com/rules), checked Septem
 
 The [FAQ](https://amazonappdev2026.devpost.com/details/faqs) permits the Ring Playground. It permits either a public repository with an open-source license or a private repository shared with the reviewers. For private access, it names `testing@devpost.com`, `chris-trag`, `knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, and `emersonsklar`; invitations need acceptance and expire after seven days. Recheck access near submission. No invitation has been sent.
 
-Pending: owner review of v12, visibility/license choice, GitHub destination, upload destination, Devpost entry and final submission approval. v12 includes official Playground playback and a fresh-sync result. It does not include an unobscured sync click. The judge guide provides free local sample evaluation; live-provider judging access remains to be arranged without distributing owner credentials. Do not describe this as completed judge access.
+Pending: visibility/license choice, GitHub destination, upload destination, Devpost entry and final submission approval. v13 includes official Playground playback and a fresh-sync result. It does not include an unobscured sync click. The judge guide provides free local sample evaluation; live-provider judging access remains to be arranged without distributing owner credentials. Do not describe this as completed judge access.
 
 Prepared materials: [submission copy](../SUBMISSION-COPY.md), [judge guide](JUDGE-GUIDE.md), [runbook](DEMO-RUNBOOK.md), [product feedback](../PRODUCT-FEEDBACK.md), and [friction log](../FRICTION-LOG.md). Licensing, collaborator invitations, publishing, uploading and submitting remain separate owner actions or approval gates.
 
@@ -159,3 +159,9 @@ Owner requested two more seconds on every section 3 page. They now last 12, 12 a
 Duration: 118.3 seconds, displayed as “118 seconds.” File: `data/recordings/around-submission-review-v12.mp4`, SHA-256 `9054fe897c332037aebaa377f207fe12375d4a3c72877808ebdfc272137d4068`. Original 1,758 sample frames and 56 compressed audio blocks remain at 18–47.3 seconds. The audio edit list confirms the placement. Approved master and previous v11 hashes are unchanged. Lead visually checked the shorter title, section 3 boundaries, moving logo frames and settled closing layout. This bounded presentation revision used a lead self-check. Owner review remains pending.
 
 Continuous v12 browser playback reached `ended=true`, `currentTime=118.3`, `error=null`, unmuted. Closing-frame screenshot saved. The page displays “118 seconds.” and is reset to the opening poster.
+
+### September 30 final wording correction, v13
+
+Owner said everything looked good, with one change: “Next, see how” implied a missed step after the opening “First, we demonstrate.” v13 changes the product-demo card to “See how Around answers ‘Did the plumber come?’” No other wording, timing, source, audio or design change. The owner’s approval covers v12 with this requested correction.
+
+File: `data/recordings/around-submission-review-v13.mp4`, SHA-256 `7f08ff9eee987b02c7ec31a0c4d11998bfe2be6f6e65d2eae6863e8bed12ec0a`. Duration remains 118.3 seconds and the page still displays 118 seconds. Lead visually verified the corrected card and unchanged transition at 18 seconds. The 1,758 sample frames and 56 original compressed audio blocks are preserved. Approved master and v12 hashes are unchanged. Full continuous playback was verified on v12 and was not repeated for this single-line correction. Publication, upload and submission remain pending separate approval.
