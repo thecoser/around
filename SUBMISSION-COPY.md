@@ -35,9 +35,13 @@ The sample adapter uses the same storage, grouping and matching code as the Ring
 - A dated question about the stored Ring records selected the correct expectation and cited the live-view request while declining to confirm a visit.
 - The corrected daily briefing used Bedrock and kept yesterday's Ring activity separate from today's expectations.
 - The labeled four-event sample produced one probable visit, a likely plumber match and estimated bounds of 10:41 AM to 11:27 AM.
-- TypeScript, lint, 31 targeted tests, a production build and three browser scenarios pass. Mocked API tests and actual provider results are identified separately. Two September 30 syncs succeeded and added no duplicates. The recorded take has a native password-save popup over its result, so the full video is not ready. The earlier sync failure's cause remains unresolved.
+- TypeScript, lint, 31 targeted tests, a production build and three browser scenarios pass. Mocked API tests and actual provider results are identified separately. Two September 30 syncs succeeded and added no duplicates. The initial recorded take has a native password-save popup over its result. A later saved-result continuation yielded a clear 19-second review excerpt, but combined export failed visual review and the full video is not ready. The earlier sync failure's cause remains unresolved.
 
 The positive two-device visit is verified with sample events only. Classified motion and a positive visit match have not been exercised using live Ring detections. Bedrock has been verified with actual Ring records and, on September 29, with the full positive sample story: expectation parsing, the qualified visit answer and the daily briefing all succeeded in four additional Converse calls. The approved 29.3-second narrated sample video shows saved results. It does not show the original requests or real Ring ingestion. Its typing sequence and decorative microphone are edited visuals; voice input is not implemented. The real Ring recording remains unfinished.
+
+## Available local review media
+
+`data/recordings/around-ring-saved-results-review.mp4` is a 19-second silent, captioned excerpt of existing real Ring results. It is explicitly an edited saved-result walkthrough, not recorded provider execution. Review it alongside the unchanged approved 29.3-second sample master. The attempted combined export is not usable because its sample portion rendered white. Official Playground interaction, unobscured sync footage and a passing combined export remain open.
 
 ## Current assembly plan, approximately 75 to 100 seconds
 

@@ -10,7 +10,9 @@ For the next capture, show official Playground interaction and Around's actual s
 
 Latest capture: the diagnostic sync and a subsequent recorded sync both succeeded on September 30, reporting “Already up to date. No duplicate moments were added.” One device and two September 28 live-view records remain stored, with zero matches. No Bedrock request occurred. The recorded MOV is preserved as `data/recordings/around-ring-sync-2026-09-30.mov`, but a native “Save password?” popup obscures its result. Browser-only screenshots did not show this popup. The previous failed take and unresolved failure remain recorded in SUBMISSION-READINESS.
 
-Next capture is a saved-result continuation only: owner dismisses the popup with No Thanks, records the app panel with microphone off, and lead shows the existing success status, source label and dated cards. No token entry or new provider request is needed. Check the native recording itself. Label any edited join as a continuation, not uninterrupted sync footage. Official Playground interaction footage is still pending.
+Saved-result continuation completed without a provider request. Review excerpt: `data/recordings/around-ring-saved-results-review.mp4`, 19 seconds, silent, with explicit evidence captions. It shows the existing successful sync status and September 28 records. The source MOV and approved sample master are preserved. Playback reached the end without a reported error.
+
+Combined export is not ready: the first two attempts failed composition, and a repaired third attempt rendered the sample portion white. It is not a deliverable. Review the valid Ring excerpt and `around-demo-ring-sparkle.mp4` separately. Do not replace the sample with the failed combined export. Official Playground interaction and an unobscured sync recording remain pending. No further provider call is needed to review these existing clips.
 
 ## Start the two tabs
 
