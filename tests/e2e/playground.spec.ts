@@ -1,0 +1,75 @@
+import { test, expect } from "@playwright/test";
+test("stored Ring-shaped live view reaches UI and answers without becoming a visit", async ({ page, request }) => {
+  await page.goto("/");
+  await expect(page.getByRole("region", { name: "Demo data source" })).toContainText("Ring Playground activity");
+  await expect(page.getByRole("region", { name: "Demo data source" })).toContainText("A live-view request does not confirm a visitor");
+  await expect(page.getByRole("heading", { name: "Live view requested", exact: true })).toHaveCount(1);
+  await expect(page.getByRole("heading", { name: "Probable visit", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Play sample visit" })).toHaveCount(0);
+  await expect(page.getByText("1 device received from Ring: Contract test camera")).toBeVisible();
+  await page.getByRole("button", { name: "What did Ring record?", exact: true }).click();
+  await expect(page.locator(".answer-card")).toContainText("1 live-view request");
+  await expect(page.locator(".answer-card")).toContainText("10:41 AM");
+  await page.getByRole("button", { name: "Tell Around", exact: true }).last().click();
+  const dialog = page.getByRole("dialog");
+  await dialog.getByRole("textbox").fill("The plumber is coming today between 10 and 1.");
+  await dialog.getByRole("button", { name: "Save expectation" }).click();
+  await dialog.getByRole("button", { name: "Back to my home" }).click();
+  await expect(page.locator(".answer-card")).toHaveCount(0);
+  await page.getByRole("button", { name: "Did the plumber come?", exact: true }).click();
+  await expect(page.locator(".answer-card")).toContainText("don't have enough recorded activity");
+  await expect(page.locator(".answer-card")).toContainText("opening a live view does not establish that anyone visited");
+  await expect(page.locator(".expectation-status")).toHaveText("Expected");
+  await page.reload();
+  await expect(page.getByRole("heading", { name: "Live view requested", exact: true })).toHaveCount(1);
+  const state = await (await request.get("/api/state")).json();
+  expect(state.events).toBeUndefined();
+  expect(state.matches).toHaveLength(0);
+  // Browser behavior for a failed sync is simulated, with no provider request.
+  await page.route("**/api/ring/sync", route => route.fulfill({ status: 502, contentType: "application/json", body: JSON.stringify({ error: "Contract test: token expired." }) }));
+  await page.getByLabel("Temporary Ring access token").fill("synthetic-browser-test-token");
+  await page.getByRole("button", { name: "Sync Ring activity" }).click();
+  await expect(page.locator(".error[role=alert]")).toContainText("Contract test: token expired.");
+  await expect(page.getByLabel("Temporary Ring access token")).toHaveValue("");
+  await expect(page.getByRole("heading", { name: "Live view requested", exact: true })).toHaveCount(1);
+  await page.screenshot({ path: "test-results/playground-contract-desktop.png", fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.screenshot({ path: "test-results/playground-contract-mobile.png", fullPage: true });
+});
+
+test("temporary Bedrock key is forwarded only to Tell and Ask and clears on Clear or reload", async ({ page }) => {
+  await page.route("**/api/state", async route => {
+    const response = await route.fetch();
+    const state = await response.json();
+    state.config.aiMode = "bedrock";
+    await route.fulfill({ response, json: state });
+  });
+  const bodies: Record<string, string>[] = [];
+  for (const path of ["ask", "expectations"]) await page.route(`**/api/${path}`, async route => {
+    bodies.push(route.request().postDataJSON());
+    await route.fulfill({ status: 502, json: { error: "Synthetic Bedrock failure. No local fallback was used." } });
+  });
+  await page.goto("/");
+  const input = page.getByLabel("Temporary Bedrock API key");
+  await input.fill("synthetic-browser-bedrock-key");
+  await page.getByRole("button", { name: "Did the plumber come?", exact: true }).click();
+  await expect(page.locator(".error[role=alert]")).toContainText("No local fallback");
+  expect(bodies[0].bedrockToken).toBe("synthetic-browser-bedrock-key");
+  await page.getByRole("button", { name: "Tell Around", exact: true }).last().click();
+  const dialog = page.getByRole("dialog");
+  await dialog.getByRole("textbox").fill("The electrician is coming tomorrow between 9 and 12.");
+  await dialog.getByRole("button", { name: "Save expectation" }).click();
+  await expect(dialog.locator("[role=alert]")).toContainText("No local fallback");
+  expect(bodies[1].bedrockToken).toBe("synthetic-browser-bedrock-key");
+  await dialog.getByRole("button", { name: "Close Tell Around" }).click();
+  await page.getByRole("button", { name: "Clear Bedrock key" }).click();
+  await expect(input).toHaveValue("");
+  await page.getByRole("button", { name: "Did the plumber come?", exact: true }).click();
+  await expect.poll(() => bodies.length).toBe(3);
+  expect(bodies[2].bedrockToken).toBeUndefined();
+  await input.fill("another-synthetic-key");
+  await page.reload();
+  await expect(input).toHaveValue("");
+  expect(await page.evaluate(() => JSON.stringify({ local: { ...localStorage }, session: { ...sessionStorage } }))).not.toContain("synthetic");
+});

@@ -1,0 +1,9 @@
+export type RingMode = "fixture" | "ring";
+export type RingDevice = { id: string; externalDeviceId: string; name: string; locationName: string; deviceType: string; zone: "driveway" | "front_door" | "other" };
+export type EventType = "vehicle_arrival" | "vehicle_departure" | "vehicle" | "person" | "motion" | "doorbell" | "live_view";
+export type RingEvent = { id: string; externalEventId: string; deviceId: string; eventType: EventType; occurredAt: string; rawPayload: string; source: RingMode };
+export type Activity = { id: string; type: "visit" | "activity" | "live_view"; startedAt: string; endedAt: string | null; label: string; confidence: number; summary: string; eventIds: string[]; locationName: string; source: RingMode };
+export type Expectation = { id: string; originalText: string; category: "visit"; personOrService: string; expectedDate: string; startWindow: string; endWindow: string; location: string; status: "expected" | "likely_match" | "ambiguous" };
+export type ExpectationMatch = { expectationId: string; activityId: string; confidence: number; explanation: string };
+export type Snapshot = { devices: RingDevice[]; events: RingEvent[]; activities: Activity[]; expectations: Expectation[]; matches: ExpectationMatch[] };
+export type Answer = { text: string; evidence: { id: string; label: string }[]; engine: "fixture" | "bedrock"; source: RingMode };
