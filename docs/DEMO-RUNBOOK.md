@@ -12,7 +12,9 @@ Latest capture: the diagnostic sync and a subsequent recorded sync both succeede
 
 Saved-result continuation completed without a provider request. Review excerpt: `data/recordings/around-ring-saved-results-review.mp4`, 19 seconds, silent, with explicit evidence captions. It shows the existing successful sync status and September 28 records. The source MOV and approved sample master are preserved. Playback reached the end without a reported error.
 
-Combined export is not ready: the first two attempts failed composition, and a repaired third attempt rendered the sample portion white. It is not a deliverable. Review the valid Ring excerpt and `around-demo-ring-sparkle.mp4` separately. Do not replace the sample with the failed combined export. Official Playground interaction and an unobscured sync recording remain pending. No further provider call is needed to review these existing clips.
+Current combined review: `data/recordings/around-submission-review-v5.mp4`, 59.2 seconds. Separate decoding and one encoder resolved the earlier white sample render; a one-frame closing flash was removed. The full approved sample occupies seconds 24–53.3. Its compressed audio is identical and correctly offset, and the source master remains unchanged. Boundary frames and continuous browser playback passed. Earlier failed exports remain preserved.
+
+This is an edited saved-results review with a visible sample transition. Official Playground interaction and an unobscured sync recording remain pending. No provider call is needed to review this file. The closing card keeps the missing footage explicit.
 
 ## Start the two tabs
 
