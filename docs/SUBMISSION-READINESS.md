@@ -92,3 +92,6 @@ Later source archives use the exact local commit in their filename. Each adjacen
 
 
 September 30 editorial correction: owner reported the combined cut felt like the demo played twice. v6 removes the repeated Ring Home walkthrough. Current review is `data/recordings/around-submission-review-v6.mp4`, 46.1 seconds: six-second dated Ring evidence card, 4.9-second sample transition, unchanged full sample once at 10.9–40.2, and 5.9-second closing disclosure. Decoded cut points are correct, and the 56 compressed audio payload blocks still match the approved source. Continuous browser playback reached ended=true at 46.1 seconds with error=null. Earlier versions remain preserved. Official Playground and unobscured sync footage remain pending.
+
+
+Owner approved the 46.1-second v6 local edit on September 30: “ok looks good.” Preserve `around-submission-review-v6.mp4` and the original approved sample master. This closes review of the current edit only. The actual Playground-to-Around capture, repository visibility/access decisions, publishing, upload and final submission remain separate pending work. No new paid-call authority is implied.
