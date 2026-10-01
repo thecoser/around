@@ -32,7 +32,7 @@ Neither file was edited during documentation hardening. [Storyboard](../DEMO-STO
 
 ## Remaining delivery work
 
-Use [SUBMISSION-CHECKLIST](../SUBMISSION-CHECKLIST.md) for each requirement and owner decision. The Around draft is saved under thecoser with four of five steps complete. The owner confirmed Praxais LLC, United States, New and three eligibility declarations. Documentation publication and screenshot uploads are approved. The documentation is published; Devpost image selection is pending because the automated file chooser did not open. Remaining decisions concern evaluation access and final rules/terms acceptance and submission. No additional capture or inference is needed to review the current submission package.
+Use [SUBMISSION-CHECKLIST](../SUBMISSION-CHECKLIST.md) for each requirement and owner decision. The Around draft is saved under thecoser with four of five steps complete. The owner confirmed Praxais LLC, United States, New and three eligibility declarations. Documentation publication and screenshot uploads are approved. The documentation is published. After the owner selected the files, both Devpost screenshots were saved with sample/local-answer captions and verified in the preview. Remaining decisions concern evaluation access and final rules/terms acceptance and submission. No additional capture or inference is needed to review the current submission package.
 
 Lead owns local documentation. A read-only Progress Steward reviewed implementation limits and the final package. The first current browser attempt failed before assertions with sandbox `listen EPERM`; the unchanged suite passed with local-server permission. Logs are under `data/submission/hardening/`. No application behavior or test assertion was changed.
 

@@ -63,3 +63,5 @@ After content approval, the owner registered as thecoser and created the draft. 
 ## Approved documentation publication
 
 The owner approved publication and both sample screenshot uploads. The exact reviewed 22-file package was committed and pushed as `8328cca`. Application code and approved videos are unchanged. Devpost's automated gallery chooser did not open; native Codex computer access was unavailable, so the owner was asked to select the two exact approved files. Devpost upload completion and final submission have not been claimed. Earlier local-only statements describe prior checkpoints.
+
+The owner completed file selection. Desktop image 5465069 and mobile image 5465070 are now saved in the Devpost gallery with explicit sample/local-answer captions. Both images and captions were verified in the refreshed preview. The finalization page still reports Draft, 4/5, with its rules/terms checkbox unchecked.

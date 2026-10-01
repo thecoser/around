@@ -25,7 +25,7 @@ This checklist separates prepared materials from external form completion and un
 | Repository access | Public MIT repository | No collaborator invitations needed for this public plan |
 | Availability during judging | Public source/video currently available | Owner maintains access through judging; no automated monitor was created |
 | Eligibility and representative | Individual/team/organization options in rules | Owner confirmed Praxais LLC, United States and three eligibility declarations; final rules/terms acceptance remains |
-| Devpost account/form | Signed in as thecoser; Around draft 1207712 | Four of five steps complete; draft preview checked, optional images not uploaded |
+| Devpost account/form | Signed in as thecoser; Around draft 1207712 | Four of five steps complete; draft preview checked; desktop/mobile sample images saved and verified |
 | Final submission | No project submission receipt | Requires separate owner approval after complete preview |
 
 ## Optional materials
@@ -35,7 +35,7 @@ This checklist separates prepared materials from external form completion and un
 | Feature requests | [FEATURE-REQUESTS](FEATURE-REQUESTS.md), paste-ready copy | Five experience-based requests with priority and suggested behavior |
 | Friction log | [FRICTION-LOG](FRICTION-LOG.md), original chronology preserved | Structured observations, severity, workarounds and suggestions; no bonus guaranteed |
 | Open Source mini challenge | Public MIT source exists | Not selected; no separate qualifying contribution claimed |
-| Images | `docs/images/around-sample-desktop.png`, `around-sample-mobile.png` | Synthetic fixture screenshots, labeled local answers; published in GitHub. Devpost upload approved, waiting for file selection |
+| Images | `docs/images/around-sample-desktop.png`, `around-sample-mobile.png` | Synthetic fixture screenshots, labeled local answers; published in GitHub and saved in Devpost with explicit sample captions |
 
 ## Verification performed for this documentation pass
 
@@ -65,7 +65,7 @@ Current claims distinguish planned delivery confirmation and voice input from im
 
 1. **Evidence and positioning:** the positive visit is sample-only; actual Ring evidence is three live views. Positioning approved by owner; saved draft preserves the real/sample distinction.
 2. **Judge access and declarations:** decide how authorized live-provider evaluation will be available without a judge charge; entrant, country, prior-work and three eligibility answers are confirmed. Final rights/rules/terms acceptance remains.
-3. **The exact public package:** documentation publication and the two screenshot uploads are approved. The documentation is published; Devpost image selection remains pending. The actual fields are saved and the preview is checked. Final submission still requires approval.
+3. **The exact public package:** documentation publication and the two screenshot uploads are approved. The documentation is published and both Devpost images are saved and verified. The actual fields are saved and the preview is checked. Final submission still requires approval.
 
 No feature addition, visibility change, invitation, new upload, paid call or Devpost write occurred during this pass.
 
