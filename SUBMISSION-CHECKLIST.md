@@ -1,6 +1,6 @@
 # Around submission checklist
 
-Checked September 30, 2026. Primary track: **Ring**. Intended mini challenge: **AWS Builder**. Documentation hardening is local; its updated files have not been pushed. The earlier approved source is public at commit `7feeee7c263955220df05c3aec25050a379aa3bc`. Devpost is not submitted.
+Checked September 30, 2026. Primary track: **Ring**. Intended mini challenge: **AWS Builder**. The approved documentation and two labeled sample screenshots are published at commit `8328cca`. The initial source publication was commit `7feeee7c263955220df05c3aec25050a379aa3bc`. Devpost is not submitted.
 
 This checklist separates prepared materials from external form completion and unresolved decisions. References: [official rules](https://amazonappdev2026.devpost.com/rules), [FAQ](https://amazonappdev2026.devpost.com/details/faqs). Rule descriptions are summaries; the live official text controls. Deadline shown: October 23, 2026, noon Pacific / 3 PM Eastern. Judging ends November 20, 2026.
 
@@ -9,7 +9,7 @@ This checklist separates prepared materials from external form completion and un
 | Item | Current evidence | Status / remaining action |
 | --- | --- | --- |
 | Project description | [SUBMISSION-COPY](SUBMISSION-COPY.md), [executive summary](EXECUTIVE-SUMMARY.md) | Owner-approved copy saved in Devpost; exact pitch fits 200 characters |
-| GitHub URL | https://github.com/thecoser/around | Public; latest documentation changes need approval before push |
+| GitHub URL | https://github.com/thecoser/around | Public; reviewed documentation published at `8328cca` |
 | Necessary app source/assets | Source, lockfile, `.env.example`, scripts and MIT license | App build and sample verified; optional media tools depend on private recordings and are not needed to run app |
 | Setup and testing instructions | [README](README.md), [judge guide](docs/JUDGE-GUIDE.md) | Prepared and sample launcher exercised by browser suite |
 | Ring runtime integration | Official discovery/history call sites and actual stored-record observations | Verified within [evidence limits](SUBMISSION-EVIDENCE.md); not live classified visit validation |
@@ -35,7 +35,7 @@ This checklist separates prepared materials from external form completion and un
 | Feature requests | [FEATURE-REQUESTS](FEATURE-REQUESTS.md), paste-ready copy | Five experience-based requests with priority and suggested behavior |
 | Friction log | [FRICTION-LOG](FRICTION-LOG.md), original chronology preserved | Structured observations, severity, workarounds and suggestions; no bonus guaranteed |
 | Open Source mini challenge | Public MIT source exists | Not selected; no separate qualifying contribution claimed |
-| Images | `docs/images/around-sample-desktop.png`, `around-sample-mobile.png` | Fresh synthetic fixture screenshots, labeled local answers. No new Devpost upload authorized |
+| Images | `docs/images/around-sample-desktop.png`, `around-sample-mobile.png` | Synthetic fixture screenshots, labeled local answers; published in GitHub. Devpost upload approved, waiting for file selection |
 
 ## Verification performed for this documentation pass
 
@@ -65,7 +65,7 @@ Current claims distinguish planned delivery confirmation and voice input from im
 
 1. **Evidence and positioning:** the positive visit is sample-only; actual Ring evidence is three live views. Positioning approved by owner; saved draft preserves the real/sample distinction.
 2. **Judge access and declarations:** decide how authorized live-provider evaluation will be available without a judge charge; entrant, country, prior-work and three eligibility answers are confirmed. Final rights/rules/terms acceptance remains.
-3. **The exact public package:** approve the local documentation changes before pushing, the actual fields are saved and the preview is checked. Separately approve any upload and final submission.
+3. **The exact public package:** documentation publication and the two screenshot uploads are approved. The documentation is published; Devpost image selection remains pending. The actual fields are saved and the preview is checked. Final submission still requires approval.
 
 No feature addition, visibility change, invitation, new upload, paid call or Devpost write occurred during this pass.
 

@@ -295,4 +295,4 @@ The owner confirmed Organization: Praxais LLC, country: United States, no Canadi
 
 The form accepts a 60-character project name and 200-character elevator pitch. Optional project images may be JPG, PNG or GIF, up to 5 MB each, with 3:2 recommended. The optional file attachment limit is 35 MB. No new image or attachment was uploaded.
 
-Updated repository publication, optional image uploads, evaluation-access arrangements and final submission remain separate decisions. This document does not authorize provider charges or final submission. Original scripts and media revision history are preserved in docs/history/SUBMISSION-COPY-pre-hardening-2026-09-30.md.
+The updated repository documentation and both sample screenshots are published in `8328cca`. Devpost screenshot uploads are approved but awaiting file selection. Evaluation-access arrangements and final submission remain separate decisions. This document does not authorize provider charges or final submission. Original scripts and media revision history are preserved in docs/history/SUBMISSION-COPY-pre-hardening-2026-09-30.md.

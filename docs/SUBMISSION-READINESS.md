@@ -5,7 +5,7 @@ September 30, 2026. The working prototype, approved video and initial source pub
 ## Published assets
 
 - Source: https://github.com/thecoser/around, public, MIT, copyright 2026 Praxais LLC.
-- Published source baseline: `7feeee7c263955220df05c3aec25050a379aa3bc`. The current documentation changes are local and require approval before push.
+- Initial source baseline: `7feeee7c263955220df05c3aec25050a379aa3bc`. The approved documentation and two sample screenshots were published in `8328cca`.
 - Video: https://youtu.be/3w68n80gRA8, public on Praxais Studios. Approved v13, 118.3 seconds; published playback completed at 118.341 seconds without error. Saved title/description matched the approved copy.
 - Local publication receipt: `data/submission/publication-receipt.json`. Raw recordings and credentials are not public repository assets.
 
@@ -32,7 +32,7 @@ Neither file was edited during documentation hardening. [Storyboard](../DEMO-STO
 
 ## Remaining delivery work
 
-Use [SUBMISSION-CHECKLIST](../SUBMISSION-CHECKLIST.md) for each requirement and owner decision. The Around draft is saved under thecoser with four of five steps complete. The owner confirmed Praxais LLC, United States, New and three eligibility declarations. Remaining decisions concern evaluation access, updated repository publication, optional image uploads and final rules/terms acceptance and submission. No additional capture or inference is needed to review the current submission package.
+Use [SUBMISSION-CHECKLIST](../SUBMISSION-CHECKLIST.md) for each requirement and owner decision. The Around draft is saved under thecoser with four of five steps complete. The owner confirmed Praxais LLC, United States, New and three eligibility declarations. Documentation publication and screenshot uploads are approved. The documentation is published; Devpost image selection is pending because the automated file chooser did not open. Remaining decisions concern evaluation access and final rules/terms acceptance and submission. No additional capture or inference is needed to review the current submission package.
 
 Lead owns local documentation. A read-only Progress Steward reviewed implementation limits and the final package. The first current browser attempt failed before assertions with sandbox `listen EPERM`; the unchanged suite passed with local-server permission. Logs are under `data/submission/hardening/`. No application behavior or test assertion was changed.
 
