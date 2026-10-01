@@ -1,194 +1,298 @@
-# Around
+# Around submission copy
+
+Current source of truth for the Devpost draft, prepared September 30, 2026. Project and runtime claims have been checked against the implementation. Public source and video exist. The Around Devpost draft is saved under thecoser with four of five steps complete; it has not been submitted. The owner confirmed Praxais LLC, United States, New, and the three eligibility declarations. The exact approved short description fits the 200-character elevator-pitch limit. Do not paste preparation notes into the public description.
+
+## Project name
+
+Around
+
+## Tagline
 
 Spatial intelligence for your home.
 
-Around helps you stay on top of what is happening around your home. Tell Around what you are expecting, then ask simple questions about what happened.
+## Short description
 
-## Submission status
+Tell Around what you are expecting at home, then ask what happened. It connects recorded activity with expected visits, turning scattered camera moments into clear, useful answers about your home.
 
-This is the source of truth for Devpost wording. The text is a prepared draft, not a published submission. The MVP covers expected home visits and activity summaries. Delivery tracking, identity recognition and home automation are not implemented.
+## Full project description
 
-Current readiness: [verification and delivery checklist](docs/SUBMISSION-READINESS.md). Judge instructions: [JUDGE-GUIDE](docs/JUDGE-GUIDE.md). The approved sample video is `data/recordings/around-demo-ring-sparkle.mp4`, 29.3 seconds. Preserve it unchanged. Earlier media versions below are historical. Additional paid provider calls require fresh owner approval; older unused-call allowances are not current authorization.
+Around helps homeowners connect expected activities with recorded activity. Tell it who you are expecting and when, then ask what happened.
 
-We are proceeding with a transparent two-part demonstration. The official [FAQ](https://amazonappdev2026.devpost.com/details/faqs) permits the Ring Developer Playground and does not require physical hardware. Organizer clarification is optional, not a stated submission prerequisite. We have not received an individual eligibility decision and do not claim one.
+The prototype focuses on a familiar question: “Did the plumber come?” Tell Around, “The plumber is coming today between 10 and 1.” It saves the expected visit and time window. Related driveway and front-door moments can become a probable visit that fits that expectation. Ask Around gives estimated timing and explains that a likely match does not confirm who visited. “Anything I should know?” gives a short briefing based on today's stored activity and expectations.
+
+The public demo begins with this homeowner experience using labeled sample events and answers generated earlier by Amazon Bedrock. It then shows the official Ring Playground and real Ring records received by Around. Our actual Playground runs returned one device and three live-view requests. Around displays those as live views and excludes them from visits. The positive classified two-device visit is sample-verified, not a claim about live Ring detections.
+
+Around is a local, single-home prototype. It offers a repeatable credential-free sample, with real Ring and Bedrock paths available for separately authorized configuration. Delivery confirmation, visitor recognition, voice input, alerts and home controls are planned for future releases.
+
+## Inspiration
+
+A camera timestamp is rarely the homeowner's whole question. People want to know whether an expected service visit happened and what activity was recorded while they were away. Future releases will extend Around to more everyday questions, from confirming package arrivals to recognizing an expected dog walker.
+
+We started with one expectation and one service-visit scenario. Saving what the homeowner expects makes later observations more useful, as long as the answer preserves what those observations can and cannot establish.
 
 ## What it does
 
-Around connects what you expect with the activity recorded around your home.
+Tell Around saves a person or service, date and same-day time window. Activity grouping joins compatible observations at one home. Matching compares a probable visit's start with the expected window and keeps competing candidates ambiguous.
 
-Tell Around, “The plumber is coming today between 10 and 1.” In the sample visit scenario, related driveway and front-door events become one probable visit. Around compares its timing with the expected window. Ask “Did the plumber come?” and it gives estimated arrival and departure times while explaining that timing cannot confirm the visitor's identity.
-
-The real Ring integration reads device information and event history from the official Playground. These records currently describe requests to open a live view. Around shows them accurately and can explain that they are insufficient to confirm a visitor. “Anything I should know?” gives a short briefing based on stored activity and expectations.
+In the sample, four moments become one probable visit with estimated bounds of 10:41 AM to 11:27 AM. The timing supports a likely plumber match. Around does not currently identify the visitor or establish continuous presence. Ask Around can also explain that the stored evidence is insufficient and provide a daily briefing.
 
 ## How we built it
 
-Around is one Next.js application using React, TypeScript, Tailwind CSS and SQLite. Deterministic code groups nearby events and matches visits to expectation windows. The Ring adapter calls official device discovery and event-history endpoints. It also implements signed webhook ingestion, which is tested against the documented contract but has not received a live webhook.
+Around uses Next.js, React, TypeScript, Tailwind CSS and Node SQLite. The Ring adapter normalizes official API responses into stored events. Deterministic code handles grouping, matching, dates and complete answer facts. The sample adapter uses the same domain logic in a separate source-labeled database.
 
-Amazon Bedrock's Converse API, using Amazon Nova Micro, parses expectations, interprets natural-language questions and selects complete, evidence-backed statements for answers. The explicit briefing shortcuts route deterministically. Dates, grouping, matching and uncertainty stay outside the model. Unsupported model selections are rejected, and provider failures remain visible.
+Amazon Bedrock's Converse API, using Nova Micro through the AWS SDK for JavaScript v3, handles expectation parsing, freeform question interpretation and selection of validated fact IDs. Unknown selections fail visibly. The application renders the approved fact text, including its uncertainty, rather than displaying unrestricted model prose.
 
-The sample adapter uses the same storage, grouping and matching code as the Ring adapter. It runs in a separate database and is visibly labeled. We do not present sample detections as events produced by Ring.
+## Ring integration
 
-## What we verified
+The sync route calls official device discovery and event history at runtime, validates IDs/timestamps and persists the result transactionally. Actual Around runs retrieved one Playground device and three live-view requests, including a new September 30 record. Those records influence the answer without becoming invented visits.
 
-- Around called the official Ring APIs, received one Playground device and three live-view records, stored them, and displayed their timestamps. The September 30 sync added the new 10:54 AM record.
-- Around used Bedrock to parse the original plumber sentence into the correct date and 10:00–13:00 window.
-- A dated question about the stored Ring records selected the correct expectation and cited the live-view request while declining to confirm a visit.
-- The corrected daily briefing used Bedrock and kept yesterday's Ring activity separate from today's expectations.
-- The labeled four-event sample produced one probable visit, a likely plumber match and estimated bounds of 10:41 AM to 11:27 AM.
-- TypeScript, lint, 31 targeted tests, a production build and three browser scenarios pass. Mocked API tests and actual provider results are identified separately. Two September 30 syncs succeeded and added no duplicates. The initial recorded take has a native password-save popup over its result. A later saved-result continuation yielded a clear 19-second review excerpt, and a repaired combined review is available; the latest edit removes the repeated Home walkthrough. September 30 recordings now show Playground simulator playback and a successful fresh-sync result. The native password popup prevents a clean uninterrupted sync-action shot. The earlier sync failure's cause remains unresolved.
+The configured two-device path and signed webhook handler are implemented and contract-tested. They support the richer expected-visit workflow, whose positive demonstration currently uses samples. Around's contribution is connecting expected activities with recorded evidence, not adding another motion notification. It does not claim live classified multi-device validation.
 
-The positive two-device visit is verified with sample events only. Classified motion and a positive visit match have not been exercised using live Ring detections. Bedrock has been verified with actual Ring records and, on September 29, with the full positive sample story: expectation parsing, the qualified visit answer and the daily briefing all succeeded in four additional Converse calls. The approved 29.3-second narrated sample video shows saved results. It does not show the original requests or real Ring ingestion. Its typing sequence and decorative microphone are edited visuals; voice input is not implemented. The new edited Ring review uses separate recordings and a clearly labeled saved-record still. It does not claim a continuous capture.
+## AWS Builder integration
 
-## Current local review
+Amazon Bedrock is the application's AWS runtime service. The verified model was Amazon Nova Micro in us-east-1. Tell Around uses one Converse request to parse an expectation. A normal freeform Ask uses interpretation followed by fact selection. The exact briefing shortcuts route deterministically and use one fact-selection request. The Home briefing itself is computed locally.
 
-New review: `data/recordings/around-submission-review-v13.mp4`, 118.3 seconds (displayed as 118 seconds). At the owner’s request, the sample product demo now leads after the opening page, followed by the real Ring walkthrough and integration proof. Ring walkthrough and integration-proof holds are longer. The closing uses the established animated logo, tagline and “Single Home Prototype.” The owner approved the cut with one wording correction: “See how Around answers” replaces “Next, see how Around answers.” That correction is applied in v13, and the owner approved the final video. The approved sample master and previous cuts remain unchanged.
+Actual app-side checks verified parsing, a dated insufficient-evidence answer from official Ring records, a corrected daily briefing and the positive sample flow. For visit answers, the selection step receives one mandatory whole fact; it does not infer who visited or freely compose new claims. These bounded roles are integrated with persistence and deterministic activity logic. No AgentCore, Strands, SageMaker, S3 or cloud-hosted application is implemented.
 
-The video addresses hackathon judges: demonstrate homeowner value with a clearly disclosed sample, then establish the official simulator source and verify real Ring integration.
+## Challenges we ran into
 
-| Time | Section and purpose |
-| --- | --- |
-| 0–8 | Opening: Around connects expected activities with recorded activity; explains the viewing sequence |
-| 8–18 | 1. Product demo. Uses the approved plain-language sample explanation |
-| 18–47.3 | Full approved sample once, with its original audio |
-| 47.3–73.3 | 2. Ring integration: the official Playground. Eight-second purpose card, ten-second recorded control still and eight-second simulator playback segment |
-| 73.3–113.3 | 3. Integration proof: Ring activity in Around. Purpose card, recorded successful result and labeled saved-record still |
-| 113.3–118.3 | Animated Around logo, tagline, Single Home Prototype and edited-visuals/voice-input disclosure |
+The tested Ring Playground Motion/Vehicle controls returned live-view history, not classified events from multiple devices. We kept that distinction visible and used a separately labeled sample for the positive visit.
 
-Approved sample setup: “See how Around answers ‘Did the plumber come?’ This example uses sample activity, with answers generated earlier by Amazon Bedrock. The visit shown was not recorded by Ring.”
+Bedrock onboarding encountered account verification and unexplained short-term-key access denial. An approved narrow IAM identity and one-day key enabled app-side inference. One model response misunderstood the explicit daily-briefing command. Deterministic command routing corrected that observed case, and the subsequent live recheck passed.
 
-The video is an edited sequence of separate takes and disclosed stills. It does not show an uninterrupted control-to-sync sequence or an unobscured sync click. Fresh official Ring ingestion is independently verified in the application and local database. The returned record is a live-view request, not a classified motion event, visit or expectation match. No Bedrock request was made during the new capture.
+Recording introduced separate problems: native password prompts obscured sync results and one take captured the wrong browser surface. We preserved the failed takes and used clearly disclosed separate recordings and stills. The video does not claim uninterrupted request execution.
 
-The embedded Playground video is “Birds on Feeders” by Michael Black on Vimeo, identified by the Playground as CC BY 4.0 and clipped from the original. This review further crops the picture. Keep that credit visible and include it in the eventual upload description.
+## Accomplishments we are proud of
 
-No fresh provider calls are needed. Technical verification is recorded in [submission readiness](docs/SUBMISSION-READINESS.md). Raw recordings remain private and are excluded from the source package. Owner approval is required before uploading, publishing or submitting.
+Around connects an expected visit, grouped activity and a qualified answer in one coherent interaction. The actual Ring path stores provider records and supports an insufficient-evidence answer instead of inventing an arrival. Bedrock has been exercised on both real Ring records and sample activity.
 
-## Optional earlier full-flow script, approximately 2 minutes 45 seconds
+The current verification pass includes TypeScript, lint, 31 targeted tests, a production build and three browser scenarios. The source is public under MIT and the approved English demo is 118.3 seconds long. The sample can be run locally without credentials or paid inference.
 
-This alternative requires new provider execution and fresh approval before paid calls. It is not the current capture plan and does not replace the approved sample master.
+## What we learned
 
-| Time | Show | Say |
-| --- | --- | --- |
-| 0:00–0:15 | Around Home, orange Ask card | “This is Around. Spatial intelligence for your home. Tell it what you expect, then ask what happened.” |
-| 0:15–0:45 | Official Ring Playground, then Around's Ring Playground activity label and actual records | “Around reads device information and history through the official Ring APIs. These Playground records are live-view requests. They do not identify a visitor.” |
-| 0:45–1:10 | An expectation and a question dated to those Ring records; expand the answer evidence | “Around uses Amazon Bedrock to understand the question and answer from saved evidence. Here, it correctly says there isn't enough evidence to confirm the plumber came.” |
-| 1:10–1:20 | Switch to the separately labeled Sample activity tab | “The Playground controls we tested did not produce the classified, multi-device events for our visit scenario. This next segment uses clearly labeled sample events.” |
-| 1:20–1:40 | Tell Around, original plumber sentence, saved 10 AM–1 PM card | “I'm expecting a plumber today between ten and one.” |
-| 1:40–2:00 | Play sample visit; show one probable visit and likely match | “Four related moments across the driveway and front door become one probable visit that fits my expectation.” |
-| 2:00–2:25 | Did the plumber come? and Anything I should know? | “The answer estimates the visit's timing and keeps its uncertainty. The briefing gives me the short version.” |
-| 2:25–2:45 | Answer evidence and the two source labels | “Around connects expectations with recorded activity. It distinguishes a likely match from confirmed identity, and sample data from real Ring records.” |
+A live-view request, a motion detection and a probable visit are different kinds of evidence. Preserving those differences is central to a useful answer. Timing can suggest a match without identifying a person.
 
-If the sample segment uses local demo answers, add a visible caption: “Sample activity and local demo answers.” Explain that Bedrock was demonstrated in the real Ring segment. If it actually uses Bedrock, leave the Amazon Bedrock label visible instead. Do not splice a response from one source into a segment claiming another.
+Keeping activity logic deterministic and language tasks bounded made the system easier to verify. We also learned to separate successful provider execution from usable video evidence: a recording of saved results needs to say that it shows saved results.
 
-The real Ring clip must show the application functioning with the official simulator, including API ingestion. Stored records are useful for rehearsal but do not replace recording that interaction. Use their actual dates. The sample 10:41 and 11:27 times are not provider observations.
+## What's next for Around
 
-See [docs/DEMO-RUNBOOK.md](docs/DEMO-RUNBOOK.md) for the two-tab setup and recording steps. Keep credentials and account identifiers out of the recording.
+First, validate classified events from two authorized Ring devices and test overlapping visits, missing observations and ambiguous expectations. Broader use would need authenticated household access, account linking, credential refresh and data-retention controls.
 
-### Read-aloud narration draft
+Future releases are planned to add delivery confirmation, visitor recognition, voice input, notifications and home controls. These capabilities will build on the current expected-visit experience, with each grounded in the evidence needed to give homeowners useful answers.
 
-Use your own voice, at a conversational pace, with brief pauses for the screen actions. This draft describes the verified Bedrock sample run. The earlier silent rehearsal uses local answers and must retain its separate label if included.
+## Potential impact
 
-**Opening and actual Ring records**
+The initial audience is homeowners coordinating service visits while busy or away. Around could reduce the manual comparison of a schedule with separate camera moments. The sample demonstrates that interaction for an expected plumber visit, with a daily briefing as a second use case.
 
-“This is Around. Spatial intelligence for your home. Tell it what you're expecting, then ask what happened.
+This is a product hypothesis, not measured customer impact. No adoption, time-saving or market-demand claim has been validated. The next product evaluation should test whether the qualified answers are useful and understandable in actual homes.
 
-Around connects to the official Ring APIs. These are actual records received from the Ring Developer Playground. They show requests to open a live view. That doesn't tell us who was there.
+## Track
 
-Amazon Bedrock helps Around understand our questions and answer from saved evidence. When I ask about the plumber on the date of these records, Around says there isn't enough evidence to confirm a visit. It doesn't turn a camera interaction into an invented arrival.”
+Ring
 
-**Transition and sample visit**
+## Mini challenge
 
-“To show the full visit experience, this next part uses clearly labeled sample activity, with Amazon Bedrock handling the language.
+AWS Builder
 
-I tell Around: The plumber is coming today between ten and one. Around saves the expected visit and its time window.
+## Built with
 
-Now we play four sample moments across the driveway and front door. Around brings them together into one probable visit that fits my expectation.
+Ring APIs, Ring Developer Playground, Amazon Bedrock, Amazon Nova Micro, AWS SDK for JavaScript v3, Next.js, React, TypeScript, Tailwind CSS, Node.js, SQLite, Zod, date-fns-tz, Lucide and Playwright.
 
-Did the plumber come? It looks likely. Activity began around ten forty-one and may have ended around eleven twenty-seven. The answer keeps an important distinction: timing cannot confirm who visited.
+## Links and testing instructions
 
-Anything I should know? Around gives me a short briefing based on what it has saved.”
+Source: https://github.com/thecoser/around
 
-**Close**
+Video: https://youtu.be/3w68n80gRA8
 
-“Around helps connect what you expected with what was recorded. A likely visit stays a likely visit. Missing evidence stays missing evidence. And sample activity stays clearly labeled.”
+Judge guide: https://github.com/thecoser/around/blob/main/docs/JUDGE-GUIDE.md
 
-Record the real Ring and Bedrock segment before using its narration in a finished video. The sample rehearsal alone is not a complete submission video.
+Use Node.js 24 or newer. Run `npm ci`, `npm run build`, then `npm run demo:sample`. Open http://127.0.0.1:3001. Confirm Sample activity and Local demo answers. Save the original plumber sentence once, play the sample visit and ask the two displayed questions. A new sample database is created on each launch.
 
-### Approved narration wording for the sample demo
+Actual Ring and Bedrock execution requires separately authorized credentials and README configuration. No key is bundled or promised. The application must stay on loopback. Full live-provider judging access remains an owner decision; the free sample does not close that gap.
 
-The owner refined and approved this wording in conversation. It describes the saved-results sample segment only. The disclosure stays at the end. “Looks like” and “around” preserve the uncertainty of the inferred visit and estimated times.
+## Video disclosure and credit
 
-This is Around.
+The video combines separate takes and labeled stills. The sample visit was not recorded by Ring and shows previously generated Bedrock answers. The real records are live-view requests, not proof of detected motion, a visitor or a matched visit. An unobscured sync click is not included. Sample typing and microphone graphics are edited visuals; voice input is planned for a future release and is not currently implemented.
 
-It works with Ring to help you manage what’s happening at home.
+The published description credits “Birds on Feeders” by Michael Black on Vimeo, provided through the official Ring Playground and identified there as CC BY 4.0. It names the original clipping, our crop, omitted audio and frame hold. Sparkle is an original local composition. Source notices retain Lucide/Feather attribution.
 
-Did the plumber come? Ask Around.
+## Product feedback
 
-Yeah, it looks like the plumber came around 10:41 and left around 11:27.
+The five answers below match the actual Devpost fields and were saved and read back without truncation. Full per-tool observations remain in [PRODUCT-FEEDBACK](PRODUCT-FEEDBACK.md).
 
-Around remembers what you’re expecting and connects it to what happened. Your home’s activity becomes something you can ask about, in your own words.
+### Feedback Question 1: Which developer tools, APIs, and SDKs did you use and for what?
 
-This demo uses sample activity and Amazon Bedrock.
+Ring developer documentation and official Partner APIs
+Around calls official discovery and history APIs, validates provider IDs and timestamps, and stores normalized activity. Its signed webhook handler and configured two-device pipeline are implemented and contract-tested; they have not been validated through live webhook delivery or two real devices.
 
-Read-aloud copy: `data/recordings/around-demo-voiceover.txt`. The owner supplied the original 26.068-second recording and a replacement question take. The Ring/manage-home opening was rerecorded in New Recording 13.m4a; the owner confirmed it begins “This is Around.” The latest export includes both new opening lines.
+Ring Developer Playground
+Hardware-free token setup, device/history exploration and official simulator playback, followed by Around's own API ingestion.
 
-Current narrated sample review cut: `data/recordings/around-demo-ring-sparkle.mp4` (29.3 seconds). The original voice is included with a modest level increase; the visit-card timing follows the speech and the disclosure plays over the closing animation. Captions use the owner-confirmed text and measured pause timing. Owner approved the latest combined video, narration and soundtrack in conversation. This remains a saved-results sample demonstration, not the full Ring submission video.
+Amazon Bedrock, Amazon Nova Micro and AWS SDK for JavaScript v3
+Around uses Amazon Bedrock Converse with Nova Micro in `us-east-1` through `@aws-sdk/client-bedrock-runtime`. It parses Tell Around sentences, interprets freeform Ask questions and selects complete evidence facts for answers. Explicit Ask briefing shortcuts route locally and use one fact-selection request. The Home briefing makes no model call. No AgentCore, Strands, SageMaker, S3 or AWS hosting is used.
 
-## Challenges and what we learned
+AWS IAM and temporary credentials
+IAM supported development-time authorization for the dedicated Bedrock demo identity. The app itself does not create IAM resources. A one-day key was used through SDK bearer authentication; no general AWS access keys or console password were needed by Around.
 
-The Ring Playground's Vehicle and Motion controls produced live-view history rather than classified motion events. We preserved that distinction instead of turning a live view into an invented visit. This led to the separate, labeled sample scenario and a meaningful real-data insufficient-evidence answer.
+Supporting tools: Next.js and React provide the local UI and server routes; TypeScript types domain objects; Tailwind CSS styles the interface. Node.js and SQLite persist activity locally. Zod validates boundaries, date-fns-tz and Intl handle local times, and Lucide/Feather supply icons. Node test runner and tsx run unit/contract tests; Playwright and Chromium exercise browser flows; ESLint and Next ESLint config provide static checks. npm and Git manage dependencies and source history. Codex/browser automation supported implementation, review and documentation. macOS AVFoundation, AppKit, AVFAudio and QuickTime/Screenshot supported local media composition and recording.
 
-Bedrock onboarding first hit account verification, then a short-term-key access denial. A dedicated IAM identity limited to Nova Micro and a one-day Bedrock key enabled the app integration. One model response misread the explicit briefing command as a visit question. Deterministic routing for the two briefing shortcuts fixed that observed problem, and the live recheck passed. Details were recorded as they occurred in FRICTION-LOG.md.
+### Feedback Question 2: For each tool, API, or SDK used in your project, what worked well?
 
-## Product feedback field
+Ring developer documentation and official Partner APIs
+JSON:API examples, explicit raw-body HMAC guidance, directed device IDs and pagination rules gave us a useful integration contract. The official sample clarified how a Next.js app could use Playground credentials. Actual Around calls retrieved one device and three live-view records across the observed runs.
 
-Use [PRODUCT-FEEDBACK.md](PRODUCT-FEEDBACK.md) for the observed Ring, simulator, SDK and AWS experience. It covers use, strengths, unclear behavior, onboarding, documentation, friction, improvements and whether we would use each tool again. The first failures remain in [FRICTION-LOG.md](FRICTION-LOG.md).
+Ring Developer Playground
+The Playground provided a temporary token and one test device without app registration. The UI stated a 30-minute token lifetime. September 30 recording shows media playback working, and Around received a new live-view history record.
 
-## Remaining submission work
+Amazon Bedrock, Amazon Nova Micro and AWS SDK for JavaScript v3
+The SDK supported bearer authentication without installing an AWS CLI. Actual app-side checks parsed the original plumber sentence into the correct same-day window. A dated answer referenced real Ring live-view activity and declined to confirm a visitor. A separate four-call sample run completed parsing, a qualified positive answer and the daily briefing.
 
-| Item | Status |
-| --- | --- |
-| Ring and Bedrock runtime evidence | Verified within the limits above |
-| Source labels and sample rehearsal | Prepared; separate modes and databases |
-| Public English video under three minutes | 118.3-second v13 approved by the owner; public upload pending. Separate takes and stills disclosed; unobscured sync click absent |
-| GitHub repository and judge access | Public `thecoser/around` selected; local source ready, publication pending |
-| Public-repository license, if applicable | MIT with Praxais LLC copyright prepared; publication pending |
-| Devpost project URL and submission | Not created or submitted |
-| Optional organizer clarification | Draft retained in FRICTION-LOG.md; not sent; not a submission prerequisite |
+AWS IAM and temporary credentials
+Narrow model/region permissions supported the tested app flow. The owner's direct entry into temporary local password fields avoided application credential storage.
 
-The [official rules](https://amazonappdev2026.devpost.com/rules) govern submission. Intended track: Ring. Intended mini challenge: AWS Builder. Documented AWS use is demonstrated, but awards, eligibility decisions and final acceptance remain with the organizers.
+Supporting tools: Next.js/React supported a working production build and browser flow. TypeScript/Tailwind provided typed domain objects and consistent responsive styling. Node/SQLite avoided a separate database service; transactions and uniqueness made replay safe. Zod rejected malformed input. date-fns-tz/Intl supported explicit timezone handling and DST tests. Lucide/Feather suited the compact interface. Node test runner/tsx supported fast TypeScript tests; Playwright/Chromium covered desktop/mobile behavior, persistence and key lifecycle. ESLint/Next ESLint config caught issues without disabling rules. npm's lockfile and Git history supported repeatable setup. Codex/browser automation assisted bounded implementation and review. macOS media frameworks and QuickTime/Screenshot produced the approved edited demo after local tooling fixes. No independent performance benchmark or usability study was performed.
 
-## Known limitations
+### Feedback Question 3: For each tool, API, or SDK used in your project, what needs work?
 
-Visit grouping is a heuristic and can merge separate visits close together. Timing cannot identify a person. Missing activity does not establish absence, and activity bounds do not prove continuous presence. The MVP is local and single-home, with no public authentication, automated token refresh or production deployment. The one-day demo credential needs renewal when it expires; it is not included in the repository.
+Ring developer documentation and official Partner APIs
+We need complete classified-history examples and a linked simulator quickstart. A failed Around sync initially surfaced as a generic error. Later fresh-token/server runs succeeded; the original cause is unresolved and cannot be attributed to Ring. Safe local diagnostics now distinguish discovery, history, validation and storage failures.
 
-## Historical media revisions
+Ring Developer Playground
+The Motion and Vehicle controls selected live-view media. Observed history returned `on_demand`, not classified motion. One simulated device cannot stand in for distinct driveway/front-door devices. The positive visit therefore remains a separately labeled sample. This is a coverage limitation, not a claim that the API fabricated detections.
 
-The entries below preserve the review sequence. Their uses of “current,” “latest,” or “pending” describe that earlier checkpoint. Only `around-demo-ring-sparkle.mp4` is the selected approved sample master.
+September 28 WHEP requests returned HTTP 201 while the player showed “Unable to play media.” Later playback success does not explain that first failure. Separate the video controls from event generation, offer typed scenarios across multiple device IDs, and give safe player diagnostics. Surface token scope before generation.
 
-Video review artifact: `data/recordings/around-demo-with-logo-compatible.mp4` supersedes the initial logo export after a reported white-playback issue. The opener and saved-results content are unchanged; the repaired encoding was verified by continuous in-app browser playback.
+Amazon Bedrock, Amazon Nova Micro and AWS SDK for JavaScript v3
+Official documentation explained key lifetimes and IAM backing. The default LimitedAccess policy was broader than this single-model prototype needed. A minimal regional/model policy and SDK example would help. Show verification state before a model test, and distinguish account, model and bearer-permission failures in actionable diagnostics.
 
-Current video review artifact: `data/recordings/around-demo-complete.mp4` adds the approved logo animation in reverse at the end and finishes on blank cream. Duration is 27.7167 seconds. Earlier evidence limitations remain unchanged.
+One response misread “Anything I should know?” as a visit question. The answer stayed grounded but did not serve the requested intent. Deterministic routing for the explicit shortcuts fixed the observed case; a subsequent actual Bedrock briefing passed. Model selections are validated and unknown IDs are rejected. A visit answer currently contains one mandatory whole fact; this is constrained selection rather than open-ended generation.
 
-Current narrated review artifact: `data/recordings/around-demo-narrated-captioned.mp4`. Owner audio and captions added; pending owner listening/timing approval.
+AWS IAM and temporary credentials
+One-time retrieval and browser coordination complicated safe transfer. A credential appeared in an automation output during setup; the exposed/uncaptured keys were subsequently deleted with explicit owner approval before replacement. That was our handling failure, not a demonstrated AWS defect. We stopped raw dialog inspection and used owner-only retrieval. Details without secret values remain in the original log.
 
-Latest video revision: `data/recordings/around-demo-narrated-refined.mp4`. Closing sample/Bedrock disclosure remains in the audio, delayed until after the closing logo appears, at 1.2x speed and 6 dB below its previous level. Its caption is omitted at the owner’s request. Main narration captions remain.
+Supporting tools: Next.js normalized a local request URL differently from the Host header; our origin check needed repair without allowing foreign origins. Document that behavior beside local-origin examples. Node SQLite still emits an experimental warning. Two initial SQL placeholder errors were application defects, resolved with explicit columns. No independent TypeScript, Tailwind, Zod, date-fns-tz or Lucide defect was established; retain compatible pinned versions, negative/date tests and icon notices. The tsx CLI's IPC was sandbox-blocked; node --import tsx --test ran the same tests. Playwright initially lacked its matching browser revision, and sandbox restrictions blocked the local server before assertions. Installation and approved local execution resolved those environment failures. ESLint raised an effect-state warning fixed with an asynchronous callback; an upstream support warning also appeared during setup. npm registry/cache restrictions and incompatible /usr/local/bin/git were local issues; system Git worked. Codex/browser automation selected the wrong recording surface and exposed a credential during dialog inspection; those were our handling failures. Use visible capture preflight and owner-only credential entry. macOS media work encountered decoder permissions, drawing across an async suspension, timeline gaps and mixed video configurations. Close writers before reading, inspect decoded frames and verify continuous playback.
 
-Latest visual revision: `data/recordings/around-demo-narrated-typed.mp4` (27.8 seconds). The question field is composited to type `did the plumber come` at 5.22–5.94 seconds, aligned to the owner's spoken question. A decorative microphone appears to the left of the arrow. This is an edited visual, not a new live query or implemented voice input. Existing response, source labels, captions and closing audio treatment are preserved.
+### Feedback Question 4: For each tool, API, or SDK used in your project, how was your onboarding experience?
 
-Current voice revision: `data/recordings/around-demo-narrated-retake.mp4`. Uses the owner's New Recording 10.m4a for “Did the plumber come? Ask Around.” Wording remains approved. The new take plays at natural speed, with a matched level and adjusted typing/caption timing. Remaining narration and closing disclaimer treatment are preserved.
+Ring developer documentation and official Partner APIs
+Public documentation did not initially expose an obvious simulator-first path. We located the authenticated Playground after owner sign-in. History examples left uncertainty about classified human/vehicle representation, so the adapter preserves generic motion and uses documented subtype filters in configured mode. Those classification paths remain mocked in tests.
 
-Latest audio cleanup: `data/recordings/around-demo-narrated-final.mp4`. Removed the breath in the pause after “and connects it to what happened,” preserving narration, captions, timing and closing treatment.
+Ring Developer Playground
+The Motion and Vehicle controls selected live-view media. Observed history returned `on_demand`, not classified motion. One simulated device cannot stand in for distinct driveway/front-door devices. The positive visit therefore remains a separately labeled sample. This is a coverage limitation, not a claim that the API fabricated detections.
 
-Optional soundtrack review: `data/recordings/around-demo-with-soundtrack.mp4`, an original locally synthesized instrumental bed beneath the approved narration. Awaiting owner listening approval; `around-demo-narrated-final.mp4` remains the approved no-music cut. No submission wording or product claims changed.
+Amazon Bedrock, Amazon Nova Micro and AWS SDK for JavaScript v3
+New-account verification initially blocked inference. A later console call succeeded while app-side short-term-key requests still returned HTTP 403. A separately approved, narrowly scoped IAM identity and one-day Bedrock key then enabled app-side parsing. That recovery proves the alternate credential worked at the time, not the cause of the earlier rejection or current key validity.
 
-Music status: the first subdued bed was rejected. Three peppier standalone directions are available under `data/recordings/soundtrack-options/`; awaiting owner selection before any new video mix. Approved no-music cut remains unchanged.
+AWS IAM and temporary credentials
+One-time retrieval and browser coordination complicated safe transfer. A credential appeared in an automation output during setup; the exposed/uncaptured keys were subsequently deleted with explicit owner approval before replacement. That was our handling failure, not a demonstrated AWS defect. We stopped raw dialog inspection and used owner-only retrieval. Details without secret values remain in the original log.
 
-Music direction update: owner prefers sample 2, Curious & Clever. Three brighter variations (2A Sunny, 2B Extra Bounce, 2C Sparkle) are ready under `data/recordings/soundtrack-variations/`. No new mix has been made; selection pending.
+Supporting tools: Next.js/React, TypeScript, Tailwind, Node/SQLite, Zod, date-fns-tz/Intl and Lucide/Feather were integrated into one local application with pinned dependencies. Initial database tests exposed two application SQL errors, and the local-origin check needed adjustment for Next.js URL normalization. Node test runner/tsx became usable through a no-IPC invocation in the restricted environment. Playwright/Chromium required the matching browser and local-server permissions before assertions could run. ESLint/Next ESLint config provided actionable feedback, with an upstream compatibility warning noted. npm setup encountered registry/cache restrictions; Git required the host-compatible system binary. Codex/browser automation and native recording required explicit coordination of the active browser and private credential entry. AVFoundation/AppKit/AVFAudio and QuickTime/Screenshot needed local permission and timeline/decoder fixes before the final video passed review. These are observations from this project, not broad reliability measurements.
 
-Owner selected soundtrack 2C Sparkle. The opening logo card now says “Works with Ring.” New approved narration sentence: “It works with Ring to help you manage what’s happening at home.” Awaiting that recording before the final music mix and narration/caption retiming.
+### Feedback Question 5: Would you build with these devices and services again?
 
-Latest assembled sample review: `data/recordings/around-demo-ring-sparkle.mp4`. Includes the confirmed new opening (“This is Around” and the Ring/manage-home sentence), “Works with Ring” on the opening card, selected 2C Sparkle music, updated captions and typing, and preserved breath cleanup and quiet closing disclosure. The longer opening adds 1.5 seconds; overall duration is 29.3 seconds. Owner approved the combined mix in conversation: “I'm happy with this version.”
+Ring developer documentation and official Partner APIs
+Yes for authorized device/activity metadata. We would validate real classified-event behavior before relying on the multi-device workflow. Suggested changes are the first two feature requests included in this entry.
 
-### Approved sample demo
+Ring Developer Playground
+Yes for API exploration and the observed ingestion path. It did not validate the richer classified-visit workflow. No broad uptime or latency claim follows from these few sessions.
 
-The owner approved `data/recordings/around-demo-ring-sparkle.mp4` with “I'm happy with this version.” This is the selected 29.3-second sample demo, including the revised Ring opening, logo label, captions, typing, cleaned voiceover and Sparkle soundtrack. Approval applies to this media version. No upload or hackathon submission has been performed or authorized by this approval.
+Amazon Bedrock, Amazon Nova Micro and AWS SDK for JavaScript v3
+Yes for bounded structured language tasks with application validation. These observations do not establish broad model accuracy, latency, cost or production reliability. Safe-error and authentication behavior are also tested with mocked transport, clearly separate from provider execution.
+
+AWS IAM and temporary credentials
+Yes with limited lifetime and least privilege. Better single-model examples would reduce the temptation to accept broad defaults. Expiry and revocation still require deliberate owner management.
+
+Supporting tools: Yes to Next.js/React for this compact local application and TypeScript/Tailwind for a typed, consistent interface. Yes to Node/SQLite for the prototype, with explicit Node requirements and insert columns. Yes to Zod and date-fns-tz/Intl with schemas, negative tests and an explicit timezone. Yes to Lucide/Feather with attribution. Yes to Node test runner/tsx and Playwright/Chromium with documented browser revisions, localhost permissions and a no-IPC test option. Yes to ESLint/Next ESLint config with compatible versions and lint retained as a check. Yes to npm/Git with lockfiles and a host-compatible Git binary. Yes to Codex/browser automation with bounded authority, source labels and owner-only credential entry. Yes to macOS media frameworks and QuickTime/Screenshot for local media work, with decoded-frame and continuous-playback verification.
+## Feature requests
+
+1. **Important, Ring Playground:** add independent simulated devices and classified human/vehicle/doorbell scenarios. Our tested controls returned one-device live-view history, leaving the positive two-device visit sample-only. Distinguish event creation from video playback.
+2. **Important, Ring documentation:** link a simulator-first quickstart and show complete classified-history responses with `event_types` examples. This would reduce setup and normalization uncertainty.
+3. **Nice-to-have, Ring Playground:** distinguish safe session, negotiation and player diagnostics. We observed HTTP 201 followed by a playback error, then later successful playback without an established root cause.
+4. **Important, Amazon Bedrock:** show account-verification and authorization status before inference. Distinguish account, model and bearer-permission rejections without exposing secrets.
+5. **Important, Bedrock/IAM/SDK:** provide a minimal one-model, one-region bearer-auth example with expiry and revocation guidance. Our approved narrow identity worked after earlier short-term-key failures.
+
+## Friction logs
+
+These paste-ready examples are drawn from the full repository log. Severity describes this project's impact, not an outage rating.
+
+### Classified history representation
+
+Observed: September 28.
+
+**Task and steps:** Normalize human/vehicle history correctly. Compared history examples, event-type table and webhook subtype contract.
+
+**Expected:** Complete human and vehicle response examples. **Actual:** Generic motion examples and classified filters did not fully illustrate returned subtype representation.
+
+**Severity:** Important. **Workaround:** Preserve generic motion; use dedicated documented event_types filters in configured mode; contract-test both forms.
+
+**Actionable suggestion:** Publish exact history payload examples for each supported classification. **Current outcome:** Implemented/contract-tested; live classification unverified.
+
+### Playground control and event mismatch
+
+Observed: September 28–30.
+
+**Task and steps:** Exercise a two-device visit without hardware. Used Vehicle, then one bounded Motion control/history check.
+
+**Expected:** Classified vehicle/person observations for visit validation. **Actual:** One device and on_demand history were returned; control labels described live-view media, not detected motion.
+
+**Severity:** Important. **Workaround:** Stopped unchanged attempts; display actual live views separately; positive visit uses labeled samples.
+
+**Actionable suggestion:** Provide independent simulated devices and typed history/webhook scenarios. **Current outcome:** Coverage limit persists; actual ingestion succeeds.
+
+### Playground playback failure
+
+Observed: September 28; follow-up September 30.
+
+**Task and steps:** Play simulator footage. Created WHEP sessions through Vehicle/Motion controls.
+
+**Expected:** Playable video after successful session creation. **Actual:** HTTP 201 sessions showed Unable to play media; later September 30 capture played successfully.
+
+**Severity:** Moderate. **Workaround:** Preserved failure and stopped repeated attempts; used the later observed working playback.
+
+**Actionable suggestion:** Report safe negotiation/player diagnostics separately from session creation. **Current outcome:** Later playback works; original cause unresolved.
+
+### Bedrock account verification
+
+Observed: September 28.
+
+**Task and steps:** Run Nova Micro from Around. Submitted expectation, added safe diagnostics, compared one console invocation.
+
+**Expected:** Parsed expectation or actionable setup error. **Actual:** Early requests failed; console finally reported account verification pending.
+
+**Severity:** Blocking at the time. **Workaround:** Stopped unchanged calls and resumed only after new evidence and authorization.
+
+**Actionable suggestion:** Surface verification status before model testing and key generation. **Current outcome:** Console later succeeded; original denials retained.
+
+### Bedrock bearer access denial
+
+Observed: September 29.
+
+**Task and steps:** Match console success from the app. Used same model/region and valid-shaped temporary key; inspected fixed error categories.
+
+**Expected:** SDK Converse success. **Actual:** Console succeeded while app calls returned AccessDeniedException HTTP 403; exact rejection cause remained unknown.
+
+**Severity:** Blocking at the time. **Workaround:** Stopped same-key retries; separately approved narrow IAM identity and one-day Bedrock key enabled parsing.
+
+**Actionable suggestion:** Provide minimal bearer-auth policy/example and precise safe authorization reasons. **Current outcome:** Alternate credential worked; cause of prior denial unresolved.
+
+### Explicit briefing intent error
+
+Observed: September 29.
+
+**Task and steps:** Answer Anything I should know? as a daily briefing. Ran the exact UI shortcut through model intent interpretation.
+
+**Expected:** Today’s stored activity and expectations. **Actual:** Grounded response answered only a visit question.
+
+**Severity:** Important, application/model interaction. **Workaround:** Route exact briefing shortcuts deterministically, retain Bedrock fact selection; regression and one authorized live recheck passed.
+
+**Actionable suggestion:** Document deterministic command routing alongside natural-language intent examples. **Current outcome:** Resolved for observed command; no universal model-reliability claim.
+
+## Owner review and form-dependent fields
+
+Saved draft: https://devpost.com/software/around-217ygo
+
+The owner confirmed Organization: Praxais LLC, country: United States, no Canadian residence, and New (created after August 31, 2026). The owner also confirmed the three eligibility declarations. Ring and AWS Builder are selected; Open Source is not selected. The additional-information fields contain the repository URL, AWS write-up, five feedback answers, feature requests, friction-log URL and judge-guide URL. The final rules/terms checkbox remains unchecked and Submit project has not been activated.
+
+The form accepts a 60-character project name and 200-character elevator pitch. Optional project images may be JPG, PNG or GIF, up to 5 MB each, with 3:2 recommended. The optional file attachment limit is 35 MB. No new image or attachment was uploaded.
+
+Updated repository publication, optional image uploads, evaluation-access arrangements and final submission remain separate decisions. This document does not authorize provider charges or final submission. Original scripts and media revision history are preserved in docs/history/SUBMISSION-COPY-pre-hardening-2026-09-30.md.

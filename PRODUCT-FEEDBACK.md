@@ -1,117 +1,72 @@
 # Product feedback
 
-Current assessment through 2026-09-30. Actual Ring ingestion and all three Bedrock language roles have been exercised in Around. The complete classified plumber visit uses clearly labeled sample events. Dated onboarding checkpoints below preserve earlier failures and decisions; they are not current blockers.
+Based on Around development and observed runs from September 28–30, 2026. This is a small local prototype, not a reliability, performance or cost benchmark. Original dated observations are preserved in [the feedback history](docs/history/PRODUCT-FEEDBACK-pre-hardening-2026-09-30.md) and [friction chronology](docs/history/FRICTION-LOG-original-2026-09-30.md).
 
-September 30 follow-up: the previous recorded Ring sync returned an unclassified application error and preserved the existing records. Its cause is unresolved. Safe diagnostic categories are now locally verified, with 31 tests and three browser scenarios passing. One fresh-token diagnostic sync and one recorded sync through the restarted app succeeded and reported no duplicate moments added. Both token and server state changed, so this recovery does not identify the original cause or establish a Ring service defect. A later September 30 sync added a third live-view record. All three remain distinct from sample visit evidence.
+## Ring developer documentation and official Partner APIs
 
-## Ring developer documentation and Partner API
+**Use.** Around calls official discovery and history APIs, validates provider IDs and timestamps, and stores normalized activity. Its signed webhook handler and configured two-device pipeline are implemented and contract-tested; they have not been validated through live webhook delivery or two real devices.
 
-- Used for: device discovery, historical event ingestion, signed motion/doorbell notifications, and mapping two devices to a probable home visit.
-- Worked well: public JSON:API examples, explicit raw-body HMAC instructions, opaque device IDs, and documented history pagination. The official sample makes a Next.js integration approachable.
-- Unclear: where to launch the official simulator and create multiple virtual devices; how classified history events appear in responses. General onboarding asks for hardware while hackathon instructions permit simulation.
-- Onboarding: official Playground credentials worked from Around's adapter. The September 28 run stored one device and two on_demand history records, shown in grounded answers. September 30 added a third record. Classified multi-device visit behavior is covered with samples and contract tests.
-- Documentation quality: detailed endpoint reference, but the simulator-first path was not discoverable through the inspected links. The development overview describes fewer notifications than the full reference.
-- Friction: Playground video controls produced live-view history rather than classified detections, and September 28 video playback failed despite successful session creation. The September 30 recording shows simulator playback working. Device discovery and history ingestion succeeded. Details were recorded contemporaneously in FRICTION-LOG.md.
-- Suggested improvements: link a simulator quickstart from hackathon resources; include two-device event playback and exact human/vehicle history examples.
-- Would use again: yes for device and activity metadata. The available Playground is useful for API verification, but did not exercise the classified multi-device workflow. The FAQ permits hardware-free Playground demos; organizer clarification is optional, and the sample visit remains disclosed.
+**Worked well.** JSON:API examples, explicit raw-body HMAC guidance, directed device IDs and pagination rules gave us a useful integration contract. The official sample clarified how a Next.js app could use Playground credentials. Actual Around calls retrieved one device and three live-view records across the observed runs.
 
-## Amazon Bedrock and AWS SDK for JavaScript v3
+**Onboarding and documentation.** Public documentation did not initially expose an obvious simulator-first path. We located the authenticated Playground after owner sign-in. History examples left uncertainty about classified human/vehicle representation, so the adapter preserves generic motion and uses documented subtype filters in configured mode. Those classification paths remain mocked in tests.
 
-- Used for: actual expectation parsing, natural-language question interpretation and constrained answer composition using Converse with Nova Micro in us-east-1.
-- Worked well: the dedicated, narrowly scoped IAM user's one-day Bedrock key works from the existing SDK. The plumber expectation was parsed and saved correctly, and a dated answer selected yesterday's expectation and cited its actual Ring live-view record without claiming a visitor.
-- Unclear: the earlier root-session short-term key returned 403 even after console invocation worked. Its exact rejection cause remains unknown.
-- Onboarding: new-account verification initially blocked inference. A dedicated IAM user with only bearer authentication and Nova Micro invocation recovered app access. No general AWS access keys or console password were needed.
-- Documentation quality: official key docs distinguish key lifetimes and underlying IAM users. The default LimitedAccess policy includes more actions than this MVP needs; a small exact-model example would help.
-- Friction: the model misclassified Anything I should know? as a visit question. The response remained grounded but failed the briefing intent. Explicit UI commands now route deterministically; the corrected daily briefing subsequently passed its live recheck.
-- Suggested improvements: surface verification state before testing, make access-denial reasons actionable, and provide least-privilege local-demo credential examples.
-- Would use again: yes for bounded structured tasks with validation and deterministic treatment of explicit commands. This small run does not establish broad reliability, measured cost or latency benchmarks.
+**Needs work and testing experience.** We need complete classified-history examples and a linked simulator quickstart. A failed Around sync initially surfaced as a generic error. Later fresh-token/server runs succeeded; the original cause is unresolved and cannot be attributed to Ring. Safe local diagnostics now distinguish discovery, history, validation and storage failures.
 
-September 29 positive-sample follow-up: with the replacement credential entered directly by the owner, the original plumber sentence, positive visit answer and explicit briefing all succeeded through Bedrock in four calls. The answer preserved the 10:41 AM and 11:27 AM estimates and uncertainty about identity. These inputs were visibly labeled sample activity. This extends the earlier real-Ring insufficient-evidence verification; it does not establish classified Ring detections.
+**Would use again.** Yes for authorized device/activity metadata. We would validate real classified-event behavior before relying on the multi-device workflow. Suggested changes are FR-1 and FR-2 in the [feature requests](FEATURE-REQUESTS.md).
 
-## Next.js, React, TypeScript and Tailwind CSS
+## Ring Developer Playground
 
-- Used for: one local application with server routes and responsive Home, Tell Around, Activity and Ask Around interactions. No UI framework beyond Tailwind and Lucide icons was necessary.
-- Worked well: a single codebase covers UI and ingestion. Type generation, lint and production compilation are quick. Local system fonts avoid build-time font downloads.
-- Unclear: the lint rule for state updates in effects initially flagged a helper with an awaited request. An explicit asynchronous request callback resolved it without disabling the rule.
-- Onboarding/documentation quality: straightforward setup; exact installed versions and lockfile are pinned.
-- Friction: local npm sandbox network/cache restrictions required approved execution. ESLint 9 emitted an upstream support warning; the installed Next.js lint preset and project lint pass. No critical audit findings were reported by npm.
-- Suggested improvement: make safe restricted-environment setup and version compatibility more visible in starter templates.
-- Would use again: yes for a compact local demo.
+**Use.** Hardware-free token setup, device/history exploration and official simulator playback, followed by Around's own API ingestion.
 
-## Node SQLite, Zod, date-fns-tz and Lucide
+**Worked well.** The Playground provided a temporary token and one test device without app registration. The UI stated a 30-minute token lifetime. September 30 recording shows media playback working, and Around received a new live-view history record.
 
-- Used for: local persistence, structured input validation, timezone conversion, and UI icons respectively.
-- Worked well: Node SQLite avoids another native addon or database service; transactions and uniqueness rules make replay safe. Zod rejects malformed provider output. Timezone tests cover winter offsets and nonexistent local times. Lucide is sufficient for the small interface.
-- Unclear: Node SQLite is still marked experimental in Node 24.12.0. Confidence scores are application heuristics, not a database or SDK feature.
-- Onboarding/documentation quality: bundled Node API and typed packages were sufficient for this bounded slice.
-- Friction: first tests found two application SQL placeholder-count mistakes, then passed after correction. This was an app bug, not a SQLite failure.
-- Suggested improvement: explicit column lists in app inserts prevent positional mistakes; retain the Node version requirement.
-- Would use again: yes for a local hackathon MVP.
+**Onboarding, documentation and limitations.** The Motion and Vehicle controls selected live-view media. Observed history returned `on_demand`, not classified motion. One simulated device cannot stand in for distinct driveway/front-door devices. The positive visit therefore remains a separately labeled sample. This is a coverage limitation, not a claim that the API fabricated detections.
 
-## Node test runner, tsx and Playwright
+**Needs work.** September 28 WHEP requests returned HTTP 201 while the player showed “Unable to play media.” Later playback success does not explain that first failure. Separate the video controls from event generation, offer typed scenarios across multiple device IDs, and give safe player diagnostics. Surface token scope before generation.
 
-- Used for: targeted grouping/matching/storage/adapter checks and the exact production browser flow on desktop and mobile dimensions.
-- Worked well: 31 targeted tests run quickly; mocked transport can validate official URL and payload handling without credentials. Browser checks cover the visit flow, Playground semantics and temporary-key handling.
-- Unclear: browser revision compatibility is separate from the Playwright npm package.
-- Onboarding/documentation quality: straightforward once the matching browser is installed.
-- Friction: tsx CLI IPC was blocked by the sandbox. Node with the tsx loader runs the same tests. The first browser launch found a missing Chromium revision and is logged. After installation and one app origin-check repair, the complete desktop flow and mobile overflow check pass.
-- Suggested improvement: document no-IPC TypeScript test invocation and matching browser installation up front.
-- Would use again: yes. Passing mocks are kept separate from actual provider validation.
+**Would use again.** Yes for API exploration and the observed ingestion path. It did not validate the richer classified-visit workflow. No broad uptime or latency claim follows from these few sessions.
 
-## Historical onboarding checkpoints
+## Amazon Bedrock, Amazon Nova Micro and AWS SDK for JavaScript v3
 
-These dated observations preserve the setup experience. Earlier pending-provider statements were superseded by successful Ring and Bedrock execution. Earlier wording requiring organizer clarification was an overly restrictive interpretation, corrected on 2026-09-29. The current approach is an explicitly labeled sample story alongside actual provider evidence.
+**Use and AWS Builder role.** Around uses Amazon Bedrock Converse with Nova Micro in `us-east-1` through `@aws-sdk/client-bedrock-runtime`. It parses Tell Around sentences, interprets freeform Ask questions and selects complete evidence facts for answers. Explicit Ask briefing shortcuts route locally and use one fact-selection request. The Home briefing makes no model call. No AgentCore, Strands, SageMaker, S3 or AWS hosting is used.
 
-### Provider onboarding follow-up, 2026-09-28
+**Worked well.** The SDK supported bearer authentication without installing an AWS CLI. Actual app-side checks parsed the original plumber sentence into the correct same-day window. A dated answer referenced real Ring live-view activity and declined to confirm a visitor. A separate four-call sample run completed parsing, a qualified positive answer and the daily briefing.
 
-The official Ring console was opened in Chrome and redirected to Amazon Developer Sign-In. Existing app access and simulator controls cannot be assessed until the owner signs in. This is an expected authentication prerequisite, not a provider outage. No account enrollment or credentials were created. Local AWS profile and shared-credentials files are also absent, so Bedrock account selection remains open. Browser connection/launch friction is recorded separately from Ring/AWS product behavior.
+**Onboarding from zero to first result.** New-account verification initially blocked inference. A later console call succeeded while app-side short-term-key requests still returned HTTP 403. A separately approved, narrowly scoped IAM identity and one-day Bedrock key then enabled app-side parsing. That recovery proves the alternate credential worked at the time, not the cause of the earlier rejection or current key validity.
 
-## Official Ring Playground runtime, 2026-09-28
+**Documentation and needed improvements.** Official documentation explained key lifetimes and IAM backing. The default LimitedAccess policy was broader than this single-model prototype needed. A minimal regional/model policy and SDK example would help. Show verification state before a model test, and distinguish account, model and bearer-permission failures in actionable diagnostics.
 
-- Used for: temporary test-token generation, device discovery, Vehicle/Motion live-view sessions and event-history inspection.
-- Worked well: token generation and console API discovery/history succeeded without registering an app. The UI states a 30-minute token lifetime.
-- Unclear: Vehicle/Motion labels select live video, but observed history records were on_demand. No control for producing motion.vehicle, motion.human, or two simulated devices was found in this bounded check.
-- Onboarding/documentation: the authenticated Playground is accessible and the [official sample](https://github.com/AmazonAppDev/ring-api-helloworld) documents using its token from code. Public setup docs were less direct about the simulator entry point and typed-event generation.
-- Friction: both WHEP sessions returned HTTP 201 but their player displayed "Unable to play media." One device was discovered. Local token-file storage was blocked by tool approval review, independently of Ring.
-- Suggested improvements: document the distinction between video simulation and motion-event creation; expose multiple synthetic devices and typed-event controls; show token scopes before generation; provide actionable playback diagnostics.
-- Would use again: yes for API exploration. Suitability for Around's two-device activity demo remains unproven. These console checks do not count as Around API execution.
+**Testing and reliability observations.** One response misread “Anything I should know?” as a visit question. The answer stayed grounded but did not serve the requested intent. Deterministic routing for the explicit shortcuts fixed the observed case; a subsequent actual Bedrock briefing passed. Model selections are validated and unknown IDs are rejected. A visit answer currently contains one mandatory whole fact; this is constrained selection rather than open-ended generation.
 
-### Simulator coverage clarification
+**Would use again.** Yes for bounded structured language tasks with application validation. These observations do not establish broad model accuracy, latency, cost or production reliability. Safe-error and authentication behavior are also tested with mocked transport, clearly separate from provider execution.
 
-Owner has no hardware. The [hackathon FAQ](https://amazonappdev2026.devpost.com/details/faqs) expressly permits Playground demos, but the [discussion response](https://amazonappdev2026.devpost.com/forum_topics/45309-ring-playground-chime-sub_type-and-sensor-coverage-what-s-the-intended-path-for-non-us-entrants) confirms that the video controls do not emit classified motion webhooks. This explains the runtime observations and limits Playground suitability for our two-device visit workflow. Suggested improvement: a documented event generator with independent synthetic device IDs and motion subtypes. A fixture-based story combined with genuine API proof remains a proposal requiring organizer clarification, not validated provider behavior.
+## AWS IAM and temporary credentials
 
-### Actual Around runtime follow-up
+**Use.** IAM supported development-time authorization for the dedicated Bedrock demo identity. The app itself does not create IAM resources. A one-day key was used through SDK bearer authentication; no general AWS access keys or console password were needed by Around.
 
-The official Playground token worked from Around's own Next.js adapter: one device and two on_demand history records were received and persisted. Their timestamps appeared in the UI and in grounded answers. Authentication and JSON:API parsing worked with the documented endpoints. The token can be supplied per request without disk storage. Chrome offered password saving, which was declined. The adapter now offers a meaningful simulator-to-answer demonstration, while the original classified multi-device visit remains unsupported by the available Playground controls. Bedrock execution remains pending.
+**Worked well.** Narrow model/region permissions supported the tested app flow. The owner's direct entry into temporary local password fields avoided application credential storage.
 
-### Bedrock onboarding checkpoint
+**Onboarding and friction.** One-time retrieval and browser coordination complicated safe transfer. A credential appeared in an automation output during setup; the exposed/uncaptured keys were subsequently deleted with explicit owner approval before replacement. That was our handling failure, not a demonstrated AWS defect. We stopped raw dialog inspection and used owner-only retrieval. Details without secret values remain in the original log.
 
-AWS console access is separate from the authenticated Ring Developer portal. The Bedrock console is open at AWS sign-in; no runtime call has been attempted. Official [API key documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html) clearly distinguishes session-limited short-term keys from long-term keys that create IAM users. The installed JavaScript SDK supports bearer authentication. Account access, model availability, latency, cost and output reliability are still unverified.
+**Would use again.** Yes with limited lifetime and least privilege. Better single-model examples would reduce the temptation to accept broad defaults. Expiry and revocation still require deliberate owner management.
 
-Bedrock signed-in follow-up: the owner selected a new free AWS account. In us-east-1 the console exposes Nova Micro (amazon.nova-micro-v1:0), its Playground and short-term API-key controls. The model card links usage terms. These controls are discoverable; account-plan inference entitlement is not established by viewing them. The SDK's existing bearer-auth support works in a transport-intercepted synthetic test without installing an AWS CLI or token-generator package. Runtime provider experience and whether we would use it again remain pending an actual call.
+## Application framework and supporting tools
 
-### Bedrock live setup result
+These tools also contributed to the finished project. Feedback is grouped where the experience was shared; no independent benchmark is claimed.
 
-- Tool/API: Nova Micro through Bedrock Converse and the Bedrock console Playground, us-east-1.
-- Used for: structured demo expectation parsing and a tiny access diagnostic.
-- Worked well: short-term key generation was available; the console ultimately explained the account-verification gate.
-- Unclear/friction: model selection and Run controls were available before the account could invoke models. Two app calls returned access denial; the console supplied the actionable reason.
-- Onboarding/documentation: the retired Model access page clearly describes automatic first-invocation enablement, but it does not explain this account's verification state. Console guidance says verification normally takes less than two hours, with an email path if still blocked afterward.
-- Suggested improvement: show verification status before key generation and model testing, and distinguish account verification from IAM denial in a structured error field.
-- Would use again: still provisional. Three attempts were denied, so runtime model quality, parsing and answer composition have not been assessed.
+| Tool or library | Use and what worked | Onboarding, testing or limitation | Would use again and improvement |
+| --- | --- | --- | --- |
+| Next.js, React | One application for local UI and server routes; production build and browser flow work | Next normalized a local request URL differently from the Host header; our first origin check rejected valid requests | Yes; document canonicalized URL behavior alongside local origin examples. Our app check was repaired without allowing foreign origins |
+| TypeScript, Tailwind CSS | Typed domain objects and consistent responsive styling | Installed versions and lockfile provided repeatable setup; no separate tool-specific failure established | Yes; retain pinned versions and desktop/mobile review |
+| Node.js, SQLite | Local persistence without a separate service or native database addon; transactions and uniqueness make replay safe | SQLite remains experimental in Node 24.12.0. First tests exposed two application SQL placeholder errors, then passed after explicit-column fixes | Yes for this prototype; document Node requirements and use explicit insert columns |
+| Zod | Validates request, provider and model output | Unknown or malformed data is rejected; no independent Zod defect observed | Yes; keep schemas adjacent to boundaries and retain negative tests |
+| date-fns-tz and Intl | Convert local expectation windows and format stored timestamps | Date/DST-gap tests provide relevant coverage; no library-specific failure observed | Yes; keep timezone explicit and bound to the database |
+| Lucide/Feather | Interface icons and the Radio geometry in the Around mark | Adequate for the compact UI; notices preserved in `LICENSES/lucide-react.txt` | Yes; preserve attribution and avoid implying an original icon geometry |
+| Node test runner and tsx | Fast TypeScript unit/contract tests | tsx CLI IPC was sandbox-blocked; `node --import tsx --test` ran the same tests | Yes; expose a no-IPC invocation in restricted-environment guidance |
+| Playwright and Chromium | Production browser flow, mobile overflow, persistence and key-lifecycle checks | Missing browser revision and local-server permission failures occurred before assertions; matching installation and approved host execution resolved them | Yes; document browser revision and localhost permissions separately from test failures |
+| ESLint and Next ESLint config | Static checks without disabled rules | An effect-state warning was resolved with an asynchronous callback; upstream ESLint support warning was observed during setup | Yes; follow compatible versions, retain lint as a check rather than suppressing it |
+| npm and Git | Dependency lockfile, source history and reproducible repository | Sandbox registry/cache access and an incompatible `/usr/local/bin/git` were local environment issues; system Git worked | Yes; report environment permission errors clearly and use the host-compatible binary |
+| Codex/browser automation | Implementation, bounded review, tests and documentation; owner-directed screen capture | Wrong browser/capture surface and credential-dialog inspection caused avoidable coordination failures | Yes with source labels, visible capture preflight and private owner credential entry; do not treat automation success as video evidence |
+| macOS AVFoundation, AppKit, AVFAudio, QuickTime/Screenshot | Local composition, recording review, narration/audio work and approved video assembly | Decoder permissions, drawing across an async suspension, timeline gaps and mixed video configurations caused tooling failures | Yes for local media work; close writers before reading, inspect decoded frames and verify continuous playback |
 
-### Bedrock retry, 2026-09-29
-
-The same Nova Micro model now responds in the AWS console. Around's short-term-key calls still return 403; exact cause is unknown. Console success does not verify SDK integration. Two app calls and one console call today bring the total to six attempted requests, one console success and five denials. Fixed diagnostic labels preserve useful categories without leaking provider details. A dedicated, narrowly permitted IAM identity and one-day Bedrock key are proposed for a distinct authentication test, pending owner approval. The default AmazonBedrockLimitedAccess policy includes substantially more actions than this MVP needs.
-
-
-### Corrected briefing verified live
-
-The explicit Anything I should know? command now uses deterministic briefing routing followed by one Bedrock fact-selection request. Its live result correctly distinguished today's expected plumber from yesterday's actual Ring live views, reporting no stored activity today without claiming nothing happened. This confirms the repaired path for the observed case. The initial intent error remains a reason to keep exact UI commands deterministic and freeform responses constrained by saved evidence.
-
-
-### September 30 Ring follow-up
-
-One further authorized Motion control opened simulator video that is visibly playing in the saved recording. This supersedes the earlier playback failure for this observed session only. Around then completed official discovery/history and added one new live-view request dated September 30 at 10:54:33 AM Eastern. Storage contains one device, three Ring live-view records and zero expectation matches. Motion remains the control label; the returned event is not a classified detection. No additional Bedrock inference occurred during this capture.
-
-Chrome's native password-save prompt complicated recording a clean sync sequence. Edited evidence shows the successful result from a separate take, with a later saved-record still explicitly labeled. This is capture friction, separate from the successful Ring API result.
+No performance benchmark or customer study was performed. Provider feedback stays separate from application defects, operating-system restrictions and recording mistakes.
